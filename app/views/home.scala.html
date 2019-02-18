@@ -4,6 +4,34 @@
 
     <head>
         <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/home.css")'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script>
+            $(document).ready(function(){
+
+                $.ajax({
+                    url: 'http://localhost:8080/restaurants/all',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(response){
+
+                        var len = response.length;
+
+                        for( var i = 0; i<2; i++){
+                            var id = response[i]['id'];
+                            var name = response[i]['name'];
+
+                            $("#row1").append("<div class='col-lg-4'>"+name+"</div>");
+                        }
+                        for( var i = 2; i<4; i++){
+                            var id = response[i]['id'];
+                            var name = response[i]['name'];
+
+                            $("#row2").append("<div class='col-lg-4'>"+name+"</div>");
+                        }
+                    }
+                });
+            });
+        </script>
     </head>
 
     <body>
@@ -20,13 +48,12 @@
             </form>
         </div>
 
-        srch
 
-        pop
+        <div class="row" id="row1">
+        </div>
 
-        3
-
-        4
+        <div class="row" id="row2">
+        </div>
     </body>
 
     <ul class="menu">
