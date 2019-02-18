@@ -7,7 +7,6 @@
 #GET    /explore                     controllers.HomeController.explore
 GET    /                            controllers.HomeController.index
 GET    /hello                       controllers.HomeController.hello
-GET    /helloredirect               controllers.HomeController.helloRedirect
 GET    /home                        controllers.HomeController.home
 GET    /login                       controllers.HomeController.login
 GET    /register                    controllers.HomeController.signup

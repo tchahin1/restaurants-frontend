@@ -24,10 +24,6 @@ public class HomeController extends Controller {
 
     public Result hello() { return ok(views.html.hello.render()); }
 
-    public Result helloRedirect() {
-        return redirect(routes.HomeController.hello());
-    }
-
     public Result home() { return ok(views.html.home.render()); }
 
     public Result login() { return ok(views.html.login.render()); }
