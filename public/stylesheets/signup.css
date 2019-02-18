@@ -1,0 +1,175 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: whitesmoke;
+    font-family: Century, AppleGothic;
+}
+
+.header{
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    height: 85px;
+    width: 100%;
+    background-color: white;
+}
+
+.menu{
+    margin-top: 23px;
+    margin-right: 2%;
+}
+
+ul{
+    float: right;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border-radius: 5px 5px 5px 5px;
+}
+
+ul li{
+    width: 200px;
+    height: 40px;
+    background-color: black;
+    text-align: center;
+    font-size: 25px;
+    opacity: .8;
+    line-height: 40px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: white;
+    display: block;
+    border-radius: 5px 5px 5px 5px;
+}
+
+ul li a:hover{
+    background-color: #fd6f60;
+}
+
+ul li ul li{
+    display: none;
+}
+
+ul li:hover ul li{
+    display: block;
+}
+
+.orange{
+    color: orangered;
+}
+
+footer{
+    background-color: #131d24;
+    margin-top: 100px;
+    height: 150px;
+}
+
+input{
+    padding-left: 10px;
+    background-color: white;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    margin-left: 35%;
+    width: 32%;
+    min-width: 150px;
+    height: 53px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.treci{
+    margin-top: 83px;
+    width: 33%;
+    min-width: 150px;
+    background-color: #fd6f60;
+    color: white;
+}
+
+.treci:hover{
+    cursor: pointer;
+}
+
+p{
+    margin-top: 60px;
+    margin-bottom: 10px;
+    margin-left: 35%;
+    top: 488px;
+    left: 174px;
+    font-size: 30px;
+    color: #131D24;
+    display: inline-block;
+}
+
+.orange1{
+    color: #fd6f60;
+    display: inline-block;
+    text-decoration: none;
+    margin-left: 14%;
+    font-size: 18px;
+}
+
+.selectCountry{
+    display: inline-block;
+    width: 49.9%;
+    height: 53px;
+    margin: 0px;
+}
+
+.selectCity{
+    display: inline-block;
+    width: 49%;
+    height: 53px;
+    margin: 0px;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    display: block;
+    padding: 10px 50px 10px 10px;
+    background: url(../images/arrow_down.png) no-repeat 95% center;
+    background-size: 20px 20px;
+    background-color: white;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+.divSelect{
+    width: 33%;
+    height: 53px;
+    margin-top: 10px;
+    margin-left: 35%;
+    padding: 0px;
+    background-color: whitesmoke;
+}
+
+@media(max-width: 1400px){
+    .divSelect{
+        width: 33%;
+        height: 53px;
+        margin-top: 10px;
+        margin-left: 35%;
+        padding: 0px;
+        background-color: whitesmoke;
+        margin-bottom: 50px;
+    }
+
+    .selectCity{
+        width: 100%;
+        height: 53px;
+        margin: 0px;
+    }
+
+    .selectCountry{
+        width: 100%;
+        height: 53px;
+        margin: 0px;
+    }
+}
+

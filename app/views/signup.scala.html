@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/signup.css")'>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <!--script src="../../public/javascripts/login.js"></script-->
+        <!--script src="../../public/javascripts/login1.js"></script-->
+        <script>
+             function register () {
+                 var name = $('#name').val();
+                 var last_name = $('#last_name').val();
+                 var email = $('#email').val();
+                 var phone_num = $('#phone_num').val();
+                 var country = $('#country').val();
+                 var city = $('#city').val();
+                 var password = $('#password').val();
+                 $.get("/auth/register", {name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city, password: password});
+             }
+        </script>
+        <script>
+            $(document).ready(function(){
+
+                $.ajax({
+                    url: 'http://localhost:8080/countries/all',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(response){
+
+                        var len = response.length;
+                        var select = "Select";
+
+                        $("#country").empty();
+                        $("#country").append("<option>"+select+"</option>");
+                        for( var i = 0; i<len; i++){
+                            var id = response[i]['id'];
+                            var name = response[i]['name'];
+
+                            $("#country").append("<option value='"+id+"'>"+name+"</option>");
+
+                        }
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+
+                $("#country").change(function(){
+                    var countryid = $(this).val();
+                    var countryName = $( "#country option:selected" ).text();
+                    var json = {
+                        'id': countryid,
+                        'name': countryName
+                    };
+
+                    var select = "Select";
+
+                    $.ajax({
+                        url: 'http://localhost:8080/cities/country',
+                        type: 'post',
+                        data: JSON.stringify(json),
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        success:function(response){
+
+                            var len = response.length;
+
+                            $("#city").empty();
+                            $("#city").append("<option>"+select+"</option>");
+                            for( var i = 0; i<len; i++){
+                                var id = response[i]['id'];
+                                var name = response[i]['name'];
+
+                                $("#city").append("<option value='"+id+"'>"+name+"</option>");
+
+                            }
+                        }
+                    });
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <ul class="menu">
+                <li><a>Menu</a>
+                    <ul>
+                        <li><a href="@routes.HomeController.hello()">Home</a></li>
+                        <li><a>Restaurants</a></li>
+                        <li><a class="orange">Log in</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <p>Create Account</p>
+        <a class="orange1" href="@routes.HomeController.login()">Login</a>
+        <input id="name" type="text" placeholder="First Name" class="prvi">
+        <input id="last_name" type="text" placeholder="Last Name" class="drugi">
+        <input id="email" type="text" placeholder="Email">
+        <input id="phone_num" type="text" placeholder="Phone Number">
+        <div class="divSelect">
+            <select id="country" class="selectCountry">
+                <option>Select</option>
+            </select>
+            <select id="city" class="selectCity">
+                <option>Select</option>
+            </select>
+        </div>
+        <input id="password" type="text" placeholder="Password">
+        <input type="text" placeholder="Confirm Password">
+        <input id="submitRegister" type="submit" value="Create Account" class="treci" onclick="register()">
+        <footer></footer>
+    </body>
+
+</html>
