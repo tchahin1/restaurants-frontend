@@ -1,34 +1,27 @@
-@import helper.select
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/home.css")'>
-    </head>
-
-    <body>
-        <div class="gornji_dio">
-            <form>
-                <p class="prvi">Make a free reservation</p>
-                <p class="drugi">Choose your table from hundreds of restaurants near you</p>
-            </form>
-        </div>
-        <div class="searchbox">
-            <form>
-                <input type="text" placeholder="Location, Restaurant or Cousine">
-                <input type="submit" value="Find a table">
-            </form>
-        </div>
-    </body>
-
-    <ul class="menu">
-        <li><a>Menu</a>
-            <ul>
-                <li><a href="@routes.HomeController.hello()">Home</a></li>
-                <li><a href="@routes.HomeController.login()">Log in</a></li>
-                <li><a href="@routes.HomeController.signup()">Sign up</a></li>
-            </ul>
-        </li>
-    </ul>
-
-</html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+</head>
+@home()
+<script>
+        $(document).ready(function(){
+            var token = window.localStorage.getItem("token");
+            //probably should do that for username either
+            if(token != null){
+                $(".orange").text("Log out");
+            }
+        });
+</script>
+<script>
+    $(".orange").click(function(event){
+        var token = window.localStorage.getItem("token");
+        //probably should do that for username either
+        if(token != null){
+            window.localStorage.clear();
+            $(".orange").text("Log in");
+        }
+        else{
+            $(".orange").attr("href", "http://localhost:9000/login");
+        }
+    });
+</script>

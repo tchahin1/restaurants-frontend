@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/signup.css")'>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-        <!--script src="../../public/javascripts/login.js"></script-->
-        <!--script src="../../public/javascripts/login1.js"></script-->
         <script>
              function register () {
                  var name = $('#name').val();
                  var last_name = $('#last_name').val();
                  var email = $('#email').val();
                  var phone_num = $('#phone_num').val();
-                 var country = $('#country').val();
-                 var city = $('#city').val();
+                 var country = $('#country :selected').text();
+                 var city = $('#city :selected').text();
                  var password = $('#password').val();
                  $.get("/auth/register", {name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city, password: password});
              }
@@ -28,7 +28,7 @@
                     success:function(response){
 
                         var len = response.length;
-                        var select = "Select";
+                        var select = "Select Country";
 
                         $("#country").empty();
                         $("#country").append("<option>"+select+"</option>");
@@ -54,7 +54,7 @@
                         'name': countryName
                     };
 
-                    var select = "Select";
+                    var select = "Select City";
 
                     $.ajax({
                         url: 'http://localhost:8080/cities/country',
@@ -81,37 +81,78 @@
 
             });
         </script>
+        <script src="@routes.Assets.at("javascripts/validation.js")"></script>
     </head>
     <body>
         <div class="header">
-            <ul class="menu">
-                <li><a>Menu</a>
-                    <ul>
-                        <li><a href="@routes.HomeController.hello()">Home</a></li>
-                        <li><a>Restaurants</a></li>
-                        <li><a class="orange">Log in</a></li>
-                    </ul>
-                </li>
-            </ul>
+            @header()
         </div>
-        <p>Create Account</p>
-        <a class="orange1" href="@routes.HomeController.login()">Login</a>
-        <input id="name" type="text" placeholder="First Name" class="prvi">
-        <input id="last_name" type="text" placeholder="Last Name" class="drugi">
-        <input id="email" type="text" placeholder="Email">
-        <input id="phone_num" type="text" placeholder="Phone Number">
-        <div class="divSelect">
-            <select id="country" class="selectCountry">
-                <option>Select</option>
-            </select>
-            <select id="city" class="selectCity">
-                <option>Select</option>
-            </select>
+        <div class="mainContent">
+            <div class="row">
+                <div class='col-md-7' class="titleSignup">
+                    <p id="signup">Create Account</p>
+                </div>
+                <div class='col-md-5' class="linkLogin">
+                    <a class="orange1" href="@routes.HomeController.login()">Login</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="name" type="text" placeholder="First Name" class="prvi" required>
+                </div>
+            </div>
+            <div id="errorMessageName" class="errorMessage"></div>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="last_name" type="text" placeholder="Last Name" class="drugi" required>
+                </div>
+            </div>
+            <div id="errorMessageLName" class="errorMessage"></div>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="email" type="text" placeholder="Email" required>
+                </div>
+            </div>
+            <div id="errorMessageEmail" class="errorMessage"></div>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="phone_num" type="text" placeholder="Phone Number" required>
+                </div>
+            </div>
+            <div id="errorMessagePhoneNum" class="errorMessage"></div>
+            <div class="row">
+                <div class='col-md-6'>
+                    <select id="country" class="selectCountry" required>
+                        <option>Select Country</option>
+                    </select>
+                </div>
+                <div class='col-md-6'>
+                    <select id="city" class="selectCity" required>
+                        <option>Select City</option>
+                    </select>
+                </div>
+            </div>
+            <div id="errorMessageSelect" class="errorMessage"></div>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="password" type="password" placeholder="Password" required>
+                </div>
+            </div>
+            <div id="errorMessagePass" class="errorMessage"></div>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="confirm" type="password" placeholder="Confirm Password" required>
+                </div>
+            </div>
+            <div id="errorMessageConfirm" class="errorMessage"></div>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="submitRegister" type="submit" value="Create Account" class="treci" onclick="validation()">
+                </div>
+            </div>
+            <div id="errorMessage"></div>
         </div>
-        <input id="password" type="text" placeholder="Password">
-        <input type="text" placeholder="Confirm Password">
-        <input id="submitRegister" type="submit" value="Create Account" class="treci" onclick="register()">
-        <footer></footer>
+        @footer()
     </body>
 
 </html>

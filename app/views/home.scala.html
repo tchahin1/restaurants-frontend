@@ -1,10 +1,40 @@
-@import helper.select
 <!DOCTYPE html>
     <html lang="en">
 
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .fa{
+                color: gray;
+            }
+            .checked {
+                color: orangered;
+            }
+            .checked1 {
+                color: black;
+            }
+            .pricing {
+                display: inline;
+                margin-left: 50px;
+            }
+            #button{
+                width: 70%;
+                margin-top: 20px;
+                background: #F9F9F9;
+                border: 1px solid #E5E5E5;
+                border-radius: 2px;
+                color: black;
+            }
+            #namePar{
+                padding-top: 20px;
+                margin-bottom: -20px;
+                font-size: 20px;
+            }
+        </style>
         <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/home.css")'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script>
             $(document).ready(function(){
 
@@ -13,57 +43,159 @@
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
-
-                        var len = response.length;
-
-                        for( var i = 0; i<2; i++){
+                        for( var i = 0; i<3; i++){
                             var id = response[i]['id'];
                             var name = response[i]['name'];
+                            var pictureUrl = response[i]['pictureUrl'];
+                            var starString = "";
+                            var starRatingChecked = '<span class="fa fa-star checked"></span>';
+                            var starRating = '<span class="fa fa-star"></span>';
+                            var stars = response[i]['stars'];
+                            for(var j=0; j<5; j++){
+                                if(stars!=0) {
+                                    starString+=starRatingChecked;
+                                    stars--;
+                                }
+                                else starString+=starRating;
+                            }
+                            var priceString = '<div class="pricing">';
+                            var priceRatingChecked = '<span class="fa fa-dollar checked1"></span>';
+                            var priceRating = '<span class="fa fa-dollar"></span>';
+                            var price = response[i]['pricing'];
+                            for(var j=0; j<4; j++){
+                                if(price!=0) {
+                                    priceString+=priceRatingChecked;
+                                    price--;
+                                }
+                                else priceString+=priceRating;
+                            }
+                            priceString += '</div>';
 
-                            $("#row1").append("<div class='col-lg-4'>"+name+"</div>");
+                            $("#row1").append("<div class='col-lg-4 col-sm-6 col-xs-12 rowElement'><img id=\"picture\" src="+pictureUrl+" height=\"260px\" width=\"300px\"><br><p id='namePar'>"+name+"</p><br>"+starString+priceString+"<br><input type='submit' id='button' value='Reserve now' onclick='reserve()'></div>");
                         }
-                        for( var i = 2; i<4; i++){
+                        for( var i = 3; i<6; i++){
                             var id = response[i]['id'];
                             var name = response[i]['name'];
+                            var starString = "";
+                            var starRatingChecked = '<span class="fa fa-star checked"></span>';
+                            var starRating = '<span class="fa fa-star"></span>';
+                            var stars = response[i]['stars'];
+                            for(var j=0; j<5; j++){
+                                if(stars!=0) {
+                                    starString+=starRatingChecked;
+                                    stars--;
+                                }
+                                else starString+=starRating;
+                            }
+                            var priceString = '<div class="pricing">';
+                            var priceRatingChecked = '<span class="fa fa-dollar checked1"></span>';
+                            var priceRating = '<span class="fa fa-dollar"></span>';
+                            var price = response[i]['pricing'];
+                            for(var j=0; j<4; j++){
+                                if(price!=0) {
+                                    priceString+=priceRatingChecked;
+                                    price--;
+                                }
+                                else priceString+=priceRating;
+                            }
+                            priceString += '</div>';
 
-                            $("#row2").append("<div class='col-lg-4'>"+name+"</div>");
+                            $("#row2").append("<div class='col-lg-4 col-sm-6 col-xs-12 rowElement'><img id=\"picture\" src="+pictureUrl+" height=\"260px\" width=\"300px\"><br><p id='namePar'>"+name+"</p><br>"+starString+priceString+"<br><input type='submit' id='button' value='Reserve now' onclick='reserve()'></div>");
                         }
                     }
                 });
             });
         </script>
+        <script>
+            function reserve(){
+                $(document).on("click", "#button", function() {
+                    var parent = $(this).parent();
+                    var name = parent.children("#namePar").text();
+                    window.location = '/restaurants/singlePage?name=' + name;
+                });
+            }
+        </script>
+        <script src="@routes.Assets.at("/javascripts/imageChange.js")"></script>
+        <script src="@routes.Assets.at("javascripts/searchRedirect.js")"></script>
     </head>
 
     <body>
-        <div class="gornji_dio">
-            <form>
-                <p class="prvi">Make a free reservation</p>
-                <p class="drugi">Choose your table from hundreds of restaurants near you</p>
-            </form>
-        </div>
-        <div class="searchbox">
-            <form>
-                <input type="text" placeholder="Location, Restaurant or Cousine">
-                <input type="submit" value="Find a table">
-            </form>
+        <div id="body">
+            <div class="gornji_dio">
+                @homeHeader()
+                <form>
+                    <p class="prvi">Make a free<br>reservation</p>
+                    <p class="drugi">Choose your table from hundreds of restaurants near you</p>
+                </form>
+                <div class="searchbox">
+                    <form class="searchForm">
+                        <input type="text" placeholder="Location, Restaurant or Cousine" id="searchQuery">
+                        <select id="country" class="selectPeople" required>
+                            <option>People</option>
+                        </select>
+                        <select id="country" class="selectDate" required>
+                            <option>Date</option>
+                        </select>
+                        <select id="country" class="selectTime" required>
+                            <option>Time</option>
+                        </select>
+                        <input type="submit" value="Find a table" onclick="searchRedirect()">
+                    </form>
+                </div>
+            </div>
         </div>
 
+        <div class="lower_part">
+            <p id="title1">Popular for lunch today</p>
+            <div id="columns">
+                <div class="row" id="row1">
+                </div>
 
-        <div class="row" id="row1">
+                <div class="row" id="row2">
+                </div>
+            </div>
         </div>
 
-        <div class="row" id="row2">
+        <div id="specials">
+            <p id="title2">Specials</p>
+            <div class="container">
+                <img src="@routes.Assets.at("/images/left_arrow.png")" id="leftArrow"/>
+                <div id="slideshow">
+                    <img alt="slideshow" src="@routes.Assets.at("/images/Pizza-capricciosa.jpg")" id="imgClickAndChange"/>
+                </div>
+                <img src="@routes.Assets.at("/images/right_arrow.png")" id="rightArrow"/>
+            </div>
         </div>
+
+        <div id="popularLocations">
+            <p id="title1">Popular locations</p>
+            @locations()
+        </div>
+        @footer()
+        <script>
+            $(document).ready(function(){
+                var token = window.localStorage.getItem("token");
+                //probably should do that for username either
+                if(token != null){
+                    $(".orange").text("Log out");
+                }
+                $(".searchForm").submit(function(e) {
+                    e.preventDefault();
+                });
+            });
+        </script>
+        <script>
+            $(".orange").click(function(event){
+                var token = window.localStorage.getItem("token");
+                //probably should do that for username either
+                if(token != null){
+                    window.localStorage.clear();
+                    $(".orange").text("Log in");
+                }
+                else{
+                    $(".orange").attr("href", "http://localhost:9000/login");
+                }
+            });
+        </script>
     </body>
-
-    <ul class="menu">
-        <li><a>Menu</a>
-            <ul>
-                <li><a href="@routes.HomeController.hello()">Home</a></li>
-                <li><a href="@routes.HomeController.index()">Log out</a></li>
-                <li><a href="@routes.HomeController.signup()">Sign up</a></li>
-            </ul>
-        </li>
-    </ul>
-
     </html>

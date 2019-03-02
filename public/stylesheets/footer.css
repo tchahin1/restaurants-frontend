@@ -1,0 +1,62 @@
+footer{
+    font-family: -apple-system;
+    font-size: 16px;
+    background-color: #131d24;
+    margin-top: 100px;
+    height: 150px;
+    padding-top: 50px;
+}
+
+.firstPart p{
+    font-family: -apple-system;
+    font-size: 16px;
+    color: #FFFFFF;
+    display: inline;
+    padding-left: 20px;
+}
+
+.secondPart p{
+    font-family: -apple-system;
+    font-size: 16px;
+    color: #FFFFFF;
+    display: inline;
+    padding-left: 20px;;
+}
+
+.firstPart{
+    display: inline;
+    margin-left: 210px;
+}
+
+.secondPart{
+    display: inline;
+    margin-left: 261px;
+}
+
+#copyright{
+    font-family: -apple-system;
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-left: 230px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 347px){
+    footer{
+        padding-top: 20px;
+    }
+
+    .firstPart{
+        margin-left: 0px;
+        display: inline;
+    }
+
+    .secondPart{
+        margin-left: 20px;
+        display: inline;
+    }
+
+    #copyright{
+        margin-left: 20px;
+    }
+}

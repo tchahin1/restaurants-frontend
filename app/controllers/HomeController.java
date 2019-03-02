@@ -22,8 +22,6 @@ public class HomeController extends Controller {
         return ok(views.html.explore.render());
     }
 
-    public Result hello() { return ok(views.html.hello.render()); }
-
     public Result home() { return ok(views.html.home.render()); }
 
     public Result login() { return ok(views.html.login.render()); }
@@ -31,4 +29,6 @@ public class HomeController extends Controller {
     public Result signup() { return ok(views.html.signup.render()); }
 
     public Result index() { return ok(views.html.index.render()); }
+
+    //public Result singlePage() { return ok(views.html.single_page.render()); }
 }
