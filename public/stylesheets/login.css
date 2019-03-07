@@ -3,6 +3,15 @@ body{
     padding: 0px;
     background-color: whitesmoke;
     font-family: Century, AppleGothic;
+    background-color: whitesmoke;
+}
+
+.mainContent{
+    margin: 0px;
+    padding: 0px;
+    background-color: whitesmoke;
+    font-family: Century, AppleGothic;
+    height: 495px;
 }
 
 .header{
@@ -13,59 +22,6 @@ body{
     height: 85px;
     width: 100%;
     background-color: white;
-}
-
-.menu{
-    margin-top: 23px;
-    margin-right: 2%;
-}
-
-ul{
-    float: right;
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-    border-radius: 5px 5px 5px 5px;
-}
-
-ul li{
-    width: 200px;
-    height: 40px;
-    background-color: black;
-    text-align: center;
-    font-size: 25px;
-    opacity: .8;
-    line-height: 40px;
-    border-radius: 5px 5px 5px 5px;
-}
-
-ul li a{
-    text-decoration: none;
-    color: white;
-    display: block;
-    border-radius: 5px 5px 5px 5px;
-}
-
-ul li a:hover{
-    background-color: #fd6f60;
-}
-
-ul li ul li{
-    display: none;
-}
-
-ul li:hover ul li{
-    display: block;
-}
-
-.orange{
-    color: orangered;
-}
-
-footer{
-    background-color: #131d24;
-    margin-top: 100px;
-    height: 150px;
 }
 
 input{
@@ -89,8 +45,8 @@ input{
 }
 
 .treci{
-    margin-top: 83px;
-    width: 33%;
+    margin-top: 73px;
+    width: 32%;
     min-width: 150px;
     background-color: #fd6f60;
     color: white;
@@ -100,10 +56,10 @@ input{
     cursor: pointer;
 }
 
-p{
+#login{
     margin-top: 60px;
     margin-bottom: 10px;
-    margin-left: 35%;
+    margin-left: 72%;
     top: 488px;
     left: 174px;
     font-size: 30px;
@@ -115,8 +71,49 @@ p{
     color: #fd6f60;
     display: inline-block;
     text-decoration: none;
-    margin-left: 18%;
+    margin-left: 14%;
     font-size: 18px;
+    margin-top: 70px;
+    margin-bottom: 10px;
+}
+
+#errorMessage{
+    color: red;
+    margin-left: 35%;
+    margin-top: 10px;
+}
+
+#popUp{
+    margin-left: 45%;
+    margin-bottom: 20px;
+}
+
+.taken{
+    color: red;
+}
+
+.successful{
+    color: lawngreen;
+}
+
+@media only screen and (max-width: 347px){
+    #login{
+        margin-left: 45%;
+    }
+
+    .orange1{
+        margin-left: 55%;
+    }
+
+    input{
+        margin-left: 22px;
+        width: 300px;
+    }
+
+    #errorMessage{
+        color: red;
+        margin-left: 7%;
+    }
 }
 
 

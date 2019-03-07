@@ -5,27 +5,24 @@ import models.UserLoginModel;
 import models.UserModel;
 import play.libs.Json;
 import play.libs.ws.WSRequest;
+import play.libs.ws.WSResponse;
 import utils.RestService;
 
 public class AuthService extends RestService {
 
-    public boolean login(String username, String password) {
+    public JsonNode login(String username, String password) {
 
-
-        WSRequest request = createRequest("/users/login");
+        WSRequest request = createRequest("/login");
 
         UserLoginModel userLoginModel = new UserLoginModel(username, password);
         JsonNode obj = Json.toJson(userLoginModel);
 
         JsonNode jsonNode = post(request, obj.toString());
 
-        JsonNode b = jsonNode;
-
-        if(b!=null) return true;
-        else return false;
+        return jsonNode;
     }
 
-    public boolean register(String name, String last_name, String email, String phone_num, String country, String city, String password) {
+    public JsonNode register(String name, String last_name, String email, String phone_num, String country, String city, String password) {
 
 
         WSRequest request = createRequest("/users/register");
@@ -36,7 +33,7 @@ public class AuthService extends RestService {
         JsonNode jsonNode = post(request, obj.toString());
 
         JsonNode b = jsonNode;
-        if(b!=null) return true;
-        else return false;
+        if(b!=null) return b;
+        else return b;
     }
 }

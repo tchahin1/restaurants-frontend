@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/login.css")'>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -8,27 +9,72 @@
              function login () {
                  var username = $('#username').val();
                  var password = $('#password').val();
-                 $.get("/auth/login", {username: username, password: password});
+                 $.ajax({
+                     url: '/auth/login',
+                     type: 'get',
+                     data: jQuery.param({username: username, password: password}),
+                     success:function(response){
+                         console.log(response);
+                         if(response != null && response["token"] != null) {
+                             window.localStorage.setItem("username", response["user"]);
+                             window.localStorage.setItem("token", response["token"]);
+                             $( ".successful" ).show();
+                             setTimeout(function() {
+                                     $( ".successful" ).hide();
+                                 }, 2000);
+                             $(this).delay(2500).queue(function() {
+
+                                 window.location.replace("/home");
+
+                                 $(this).dequeue();
+
+                             });
+                         }
+                         else {
+                             $( ".taken" ).show();
+                             setTimeout(function() {
+                                 $( ".taken" ).hide();
+                             }, 2000);
+                         }
+                     }
+                 });
              }
         </script>
+
+        <script src="@routes.Assets.at("javascripts/validationLogin.js")"></script>
     </head>
     <body>
         <div class="header">
-            <ul class="menu">
-                <li><a>Menu</a>
-                    <ul>
-                        <li><a href="@routes.HomeController.hello()">Home</a></li>
-                        <li><a>Restaurants</a></li>
-                        <li><a class="orange">Log in</a></li>
-                    </ul>
-                </li>
-            </ul>
+            @header()
         </div>
-        <p>Login</p>
-        <a class="orange1" href="@routes.HomeController.signup()">Create Account</a>
-        <input id="username" type="text" placeholder="Email" class="prvi">
-        <input id="password" type="text" placeholder="Password" class="drugi">
-        <input id="submitLogin" type="submit" value="Login" class="treci" onclick="login()">
-        <footer></footer>
+        <div class="mainContent">
+            <div class="row">
+                <div class='col-md-6'>
+                    <p id="login">Login</p>
+                </div>
+                <div class='col-md-6'>
+                    <a class="orange1" href="@routes.HomeController.signup()">Create Account</a>
+                </div>
+            </div>
+            <p id="popUp" class="successful" style="display: none;"> Successfully logged in! </p>
+            <p id="popUp" class="taken" style="display: none;"> Account doesn't exist! </p>
+            <div class="row">
+                <div class='col-md-12'>
+                    <input id="username" type="text" placeholder="Email" class="prvi">
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-lg-12'>
+                    <input id="password" type="password" placeholder="Password" class="drugi">
+                </div>
+            </div>
+            <div id="errorMessage"></div>
+            <div class="row">
+                <div class='col-lg-12'>
+                    <input id="submitLogin" type="submit" value="Login" class="treci" onclick="validation()">
+                </div>
+            </div>
+        </div>
+        @footer()
     </body>
 </html>

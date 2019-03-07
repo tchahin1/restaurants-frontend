@@ -2,7 +2,6 @@ body {
     margin: 0;
     font-family: Century, AppleGothic;
     font-weight: 400;
-    color: white;
     text-align: left;
     background: white;
     line-height: 1.5px;
@@ -11,23 +10,19 @@ body {
 .searchbox{
     background: #FFFFFF;
     border-radius: 3px;
-    position: absolute;
-    top: 65%;
-    left: 15%;
     width: 70%;
     height: 56px;
     opacity: 1;
+    margin-left: 16%;
 }
 
 .gornji_dio{
-    top: 0px;
-    left: 0px;
     width: 100%;
-    height: 95%;
+    height: 680px;
     opacity: 0.9;
-    background: url(../images/search_photo.jpg);
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../images/search_photo.jpg);
+    /*background: url(../images/search_photo.jpg);*/
     background-size: cover;
-    position: absolute;
 }
 
 input{
@@ -42,7 +37,7 @@ input[type="text"]{
     outline: none;
     padding: 0 25px;
     padding-left: 60px;
-    width: 83.1%;
+    width: 52%;
     min-width: 300px;
     height: 56px;
     border-radius: 3px 0 0 3px;
@@ -69,21 +64,21 @@ input[type="submit"]{
 }
 
 .prvi{
-    margin-top: 232px;
+    padding-top: 232px;
     font-size: 70px;
-    font-family: "Bradley Hand";
-    line-height: 30px;
+    font-family: "-apple-system";
+    line-height: 60px;
 }
 
 .drugi{
-    margin-top: 0px;
+    margin-top: 5%;
     font-size: 25px;
     font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    line-height: 10px;
+    font-family: "-apple-system";
+    line-height: 20px;
 }
 
-p{
+p.prvi,p.drugi{
     left: 50%;
     text-align: center;
     color: black;
@@ -92,45 +87,154 @@ p{
     -webkit-text-stroke-color: black;
 }
 
-.menu{
-    margin-top: 23px;
-    margin-right: 2%;
+#row1{
+    margin-left: 100px;
+    margin-right: 0px;
+    padding-top: 100px;
 }
 
-ul{
-    float: right;
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-    border-radius: 5px 5px 5px 5px;
+#row2{
+    margin-left: 100px;
+    margin-right: 0px;
+    padding-top: 121px;
 }
 
-ul li{
-    width: 200px;
-    height: 40px;
-    background-color: black;
+#specials{
+    margin-top: 150px;
+    width: 100%;
+    height: 584px;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../images/spaghetti.jpg);
+    background-size: cover;
+}
+
+#popularLocations{
+    width: 100%;
+    height: 600px;
+    background: white;
+}
+
+#title1{
+    margin-top: 73px;
+    color: black;
+    font-size: 30px;
     text-align: center;
-    font-size: 25px;
-    opacity: .8;
-    line-height: 40px;
-    border-radius: 5px 5px 5px 5px;
 }
 
-ul li a{
-    text-decoration: none;
+#title2{
+    padding-top: 73px;
     color: white;
-    display: block;
-    border-radius: 5px 5px 5px 5px;
+    font-size: 30px;
+    text-align: center;
 }
 
-ul li a:hover{
-    background-color: #fd6f60;
+#imgClickAndChange{
+    width: 480px;
+    height: 360px;
+    margin-left: 25%;
 }
 
-ul li ul li{
-    display: none;
+#leftArrow{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-top: 120px;
 }
 
-ul li:hover ul li{
-    display: block;
+#rightArrow{
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-top: -250px;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 10px 25px 10px 10px;
+    background: url(../images/arrow_down.png) no-repeat 95% center;
+    background-size: 20px 20px;
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+    font-size: 18px;
+    margin-left: -5px;
+    width: 100px;
+}
+
+#parClickAndChange{
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 347px){
+    .searchbox{
+        background: #FFFFFF;
+        border-radius: 3px;
+        width: 70%;
+        height: 56px;
+        opacity: 1;
+        margin-left: 7%;
+    }
+
+    #row1, #row2{
+        margin-left: 10px;
+        margin-right: 0px;
+        padding-top: 80px;
+
+    }
+
+    select{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        padding: 10px 25px 10px 10px;
+        background: url(../images/arrow_down.png) no-repeat 95% center;
+        background-size: 20px 20px;
+        background-color: white;
+        border: none;
+        border-radius: 2px;
+        font-size: 18px;
+        width: 100px;
+    }
+
+    .selectDate{
+        margin-left: -5px !important;
+    }
+
+    .selectTime{
+        position: relative;
+        float: right;
+        margin-top: -46px;
+        left: 57px;
+    }
+
+    input[type="submit"]{
+        margin-left: 0px;
+    }
+
+    #popularLocations{
+        width: 100%;
+        height: 800px;
+        background: white;
+    }
+
+    #imgClickAndChange{
+        width: 200px;
+        height: 180px;
+        margin-left: 10%;
+        margin-top: 50px;
+    }
+
+    #rightArrow{
+        width: 30px;
+        height: 30px;
+        float: right;
+        margin-top: -113px;
+    }
+
+    .rowElement{
+        margin-top: 20px;
+    }
 }

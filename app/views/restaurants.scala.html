@@ -1,0 +1,102 @@
+@(searchParam: String, filterByStars: Integer, filterByPrice: Integer, pageNum: Integer)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <style>
+                .fa{
+                    color: gray;
+                }
+                .checked {
+                    color: orangered;
+                }
+                .checked1 {
+                    color: black;
+                }
+                .pricing {
+                    display: inline;
+                    margin-left: 50px;
+                }
+                #button{
+                    width: 70%;
+                    margin-top: 20px;
+                    background: #F9F9F9;
+                    border: 1px solid #E5E5E5;
+                    border-radius: 2px;
+                    color: black;
+                }
+                #namePar{
+                    padding-top: 20px;
+                    margin-bottom: -20px;
+                    font-size: 20px;
+                }
+        </style>
+        <script src="@routes.Assets.at("javascripts/loadSearch.js")"></script>
+        <script src="@routes.Assets.at("javascripts/search.js")"></script>
+        <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/restaurants.css")'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="@routes.Assets.at("javascripts/searchFilterRedirect.js")"></script>
+    </head>
+    <body>
+        <div id="header">
+            @headerSearch()
+        </div>
+        <p id="loadQuery">@searchParam</p>
+        <p id="pageNumber">@pageNum</p>
+        <input type="number" id="filterStars" value=@filterByStars>
+        <input type="number" id="filterPrice" value=@filterByPrice>
+        <div class="pageContent">
+            <div class="searchbox">
+                <form class="searchForm">
+                    <input type="text" placeholder="Search for a restaurant..." id="searchQuery">
+                    <select id="sortby" class="selectSort" required>
+                        <option>Sort by</option>
+                    </select>
+                    <select id="filterby" class="selecFilter" required>
+                        <option>Filter by</option>
+                        <option value="1">One star</option>
+                        <option value="2">Two stars</option>
+                        <option value="3">Three stars</option>
+                        <option value="4">Four stars</option>
+                        <option value="5">Five stars</option>
+                        <option value="6">Cheap</option>
+                        <option value="7">Mediocre</option>
+                        <option value="8">Expensive</option>
+                        <option value="9">Very expensive</option>
+                    </select>
+                    <input type="button" value="Find a table" id="findTable" onclick="searchRedirect()">
+                </form>
+            </div>
+
+            <div id="columns">
+                <div class="row" id="row1">
+                    </div>
+
+                <div class="row" id="row2">
+                    </div>
+
+                <div class="row" id="row3">
+                    </div>
+            </div>
+            <div class="pageNumbers"></div>
+        </div>
+        <div id="popularLocations">
+            <p id="title1">Popular locations</p>
+            @locations()
+        </div>
+        @footer()
+        <script src="@routes.Assets.at("javascripts/loadPage.js")"></script>
+        <script>
+                function reserve(){
+                    $(document).on("click", "#button", function() {
+                        var parent = $(this).parent();
+                        var name = parent.children("#namePar").text();
+                        window.location = '/restaurants/singlePage?name=' + name;
+                    });
+                }
+        </script>
+    </body>
+</html>

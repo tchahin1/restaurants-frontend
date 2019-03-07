@@ -6,8 +6,6 @@
 
 #GET    /explore                     controllers.HomeController.explore
 GET    /                            controllers.HomeController.index
-GET    /hello                       controllers.HomeController.hello
-GET    /helloredirect               controllers.HomeController.helloRedirect
 GET    /home                        controllers.HomeController.home
 GET    /login                       controllers.HomeController.login
 GET    /register                    controllers.HomeController.signup
@@ -16,6 +14,15 @@ GET    /register                    controllers.HomeController.signup
 GET    /auth/login                  controllers.AuthController.login(username: String, password: String)
 GET    /auth/register               controllers.AuthController.register(name: String, last_name: String, email: String, phone_num: String, country: String, city: String, password: String)
 
+GET    /restaurants/singlePage      controllers.RestaurantsController.singlePage(name: String)
+GET    /restaurants/search          controllers.RestaurantsController.restaurantsSearch(pageNum: Integer ?= 0, filterByStars: Integer ?= -1, filterByPrice: Integer ?= -1, query: String ?= "")
+#GET    /restaurants/search/page     controllers.RestaurantsController.restaurantsSearchPage(pageNum: Integer ?= 0, query: String ?= "")
+GET    /restaurants/search/page     controllers.RestaurantsController.restaurantsSearchPage(pageNum: Integer ?= 0, filterByStars: Integer ?= -1, filterByPrice: Integer ?= -1, query: String ?= "")
+
+GET    /search                      controllers.SearchController.search(name: String)
+GET    /search/page                 controllers.SearchController.searchPage(name: String, pageNum: Integer)
+GET    /search/page/filter          controllers.SearchController.searchPageFilter(name: String, filterStars: Integer, filterPricing: Integer , pageNum: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file               controllers.Assets.at(path="/public", file: String)
