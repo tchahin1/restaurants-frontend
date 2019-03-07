@@ -37,7 +37,6 @@
         <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script>
             $(document).ready(function(){
-
                 $.ajax({
                     url: 'http://localhost:8080/restaurants/all',
                     type: 'get',
@@ -162,6 +161,7 @@
                 <img src="@routes.Assets.at("/images/left_arrow.png")" id="leftArrow"/>
                 <div id="slideshow">
                     <img alt="slideshow" src="@routes.Assets.at("/images/Pizza-capricciosa.jpg")" id="imgClickAndChange"/>
+                    <p id="parClickAndChange">Best pizza of 2016</p>
                 </div>
                 <img src="@routes.Assets.at("/images/right_arrow.png")" id="rightArrow"/>
             </div>
@@ -172,30 +172,7 @@
             @locations()
         </div>
         @footer()
-        <script>
-            $(document).ready(function(){
-                var token = window.localStorage.getItem("token");
-                //probably should do that for username either
-                if(token != null){
-                    $(".orange").text("Log out");
-                }
-                $(".searchForm").submit(function(e) {
-                    e.preventDefault();
-                });
-            });
-        </script>
-        <script>
-            $(".orange").click(function(event){
-                var token = window.localStorage.getItem("token");
-                //probably should do that for username either
-                if(token != null){
-                    window.localStorage.clear();
-                    $(".orange").text("Log in");
-                }
-                else{
-                    $(".orange").attr("href", "http://localhost:9000/login");
-                }
-            });
-        </script>
+
+
     </body>
     </html>

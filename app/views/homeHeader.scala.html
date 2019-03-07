@@ -1,0 +1,35 @@
+<head>
+    <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/header1.css")'>
+</head>
+
+<ul class="menu">
+    <li><a href="@routes.HomeController.home()">Home</a></li>
+    <li><a href="@routes.RestaurantsController.restaurantsSearch()">Restaurants</a></li>
+    <li><a class="orangePart" href="@routes.HomeController.login()">Log in</a></li>
+</ul>
+
+<script>
+            $(document).ready(function(){
+                var token = window.localStorage.getItem("token");
+                //probably should do that for username either
+                if(token != null){
+                    $(".orangePart").text("Log out");
+                }
+                $(".searchForm").submit(function(e) {
+                    e.preventDefault();
+                });
+            });
+        </script>
+<script>
+            $(".orangePart").click(function(event){
+                var token = window.localStorage.getItem("token");
+                //probably should do that for username either
+                if(token != null){
+                    window.localStorage.clear();
+                    $(".orangePart").text("Log in");
+                }
+                else{
+                    $(".orangePart").attr("href", "http://localhost:9000/login");
+                }
+            });
+        </script>

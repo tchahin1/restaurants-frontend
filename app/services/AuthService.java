@@ -22,7 +22,7 @@ public class AuthService extends RestService {
         return jsonNode;
     }
 
-    public boolean register(String name, String last_name, String email, String phone_num, String country, String city, String password) {
+    public JsonNode register(String name, String last_name, String email, String phone_num, String country, String city, String password) {
 
 
         WSRequest request = createRequest("/users/register");
@@ -33,7 +33,7 @@ public class AuthService extends RestService {
         JsonNode jsonNode = post(request, obj.toString());
 
         JsonNode b = jsonNode;
-        if(b!=null) return true;
-        else return false;
+        if(b!=null) return b;
+        else return b;
     }
 }

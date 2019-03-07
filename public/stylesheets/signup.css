@@ -110,6 +110,19 @@ select{
     margin-left: 35%;
 }
 
+#popUp{
+    margin-left: 45%;
+    margin-bottom: 20px;
+}
+
+.taken{
+    color: red;
+}
+
+.successful{
+    color: lawngreen;
+}
+
 @media(max-width: 347px){
     .selectCity{
         width: 86.5%;

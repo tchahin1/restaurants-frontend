@@ -15,7 +15,7 @@ public class AuthController extends Controller{
     private AuthService authService;
 
     public Result login(String username, String password) {
-        // post request
+
         JsonNode login = authService.login(username, password);
 
         if (login!=null) return ok(Json.toJson(login));
@@ -24,9 +24,8 @@ public class AuthController extends Controller{
     }
 
     public Result register(String name, String last_name, String email, String phone_num, String country, String city, String password){
-        boolean reg = authService.register(name, last_name, email, phone_num, country, city, password);
-        if(reg) return redirect(controllers.routes.HomeController.login());
-        return redirect(controllers.routes.HomeController.signup());
-        //ovdje vidjeti sta treba vratiti tj koji statusni kod jer nije isto ako korisnik vec postoji i ako ne postoji kao u primjeru iznad !!!
+        JsonNode reg = authService.register(name, last_name, email, phone_num, country, city, password);
+        if(reg!=null) return ok(Json.toJson(reg));
+        return ok("Already exists");
     }
 }

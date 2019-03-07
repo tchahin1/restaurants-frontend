@@ -83,6 +83,19 @@ input{
     margin-top: 10px;
 }
 
+#popUp{
+    margin-left: 45%;
+    margin-bottom: 20px;
+}
+
+.taken{
+    color: red;
+}
+
+.successful{
+    color: lawngreen;
+}
+
 @media only screen and (max-width: 347px){
     #login{
         margin-left: 45%;

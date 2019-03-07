@@ -1,0 +1,584 @@
+body{
+    margin: 0px;
+    background-color: whitesmoke;
+    font-family: -apple-system;
+}
+
+#before{
+    width: 100%;
+    height: 340px;
+    display: block;
+    position: relative;
+}
+
+#after{
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../images/search_photo.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 340px;
+    opacity: 0.9;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    /*z-index: -1;*/
+}
+
+#main{
+    background-color: whitesmoke;
+    height: 2900px;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+footer{
+    position: relative;
+    top: -100px;
+    background-color: #131D24;
+    width: 100%;
+    height: 190px;
+}
+
+#reservation{
+    position:relative;
+    top: 47px;
+    left: 490px;
+    height: 350px;
+    width: 700px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+    margin-top: 0px;
+}
+
+#about{
+    position:relative;
+    left: 490px;
+    top: 47px;
+    height: 667px;
+    width: 700px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+    margin-top: 20px;
+}
+
+#menu{
+    position:relative;
+    top: 47px;
+    left: 490px;
+    height: 660px;
+    width: 700px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+    margin-top: 20px;
+}
+
+#picture{
+    opacity: 1!important;
+}
+
+#photos{
+    position:relative;
+    left: 490px;
+    top: 47px;
+    height: 583px;
+    width: 700px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+    margin-top: 20px;
+}
+
+.gmap_canvas{
+    padding-top: 24px;
+}
+
+#paragraphs{
+    font-family: -apple-system;
+    font-size: 20px;
+    color: rgba(19,29,36,0.40);
+    padding-top: 24px;
+    padding-left: 30px;
+}
+
+.descriptionField{
+    margin-top: 0px;
+    font-family: ".SF NS Display";
+    font-size: 18px;
+    margin-left: 30px;
+    width: 90%;
+    height: 230px;
+}
+
+#descriptionText{
+    -moz-hyphens:auto;
+    -ms-hyphens:auto;
+    -webkit-hyphens:auto;
+    hyphens:auto;
+    word-wrap:break-word;
+}
+
+.restaurantTitle{
+    width: 700px;
+    height: 130px;
+    margin-left: 490px;
+    margin-top: 170px;
+}
+
+#restaurantName{
+    color: white;
+    margin-left: 0px;
+    padding-top: 25px;
+    font-size: 30px;
+    font-family: -apple-system;
+}
+
+#ratePlace{
+    background-color: white;
+    color: black;
+    float: right;
+    font-size: 16px;
+    font-family: -apple-system;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    margin-top: -35px;
+    width: 160px;
+    height: 36px;
+}
+
+.restaurantPicture{
+    background-color: white;
+    float: left;
+    border-radius: 3px 3px 3px 3px;
+    margin-top: 0px;
+    margin-left: -280px;
+    width: 220px;
+    height: 192px;
+}
+
+#pageMenuField{
+    float: left;
+    margin-top: -350px;
+    margin-left: 150px;
+}
+
+#pageMenu{
+    /*color: rgba(-2147483648,-2147483648,18,0.30);*/
+    color: black;
+    margin-top: 30px!important;
+}
+
+#pageMenu li{
+    margin-top: 10px;
+    display: block;
+    font-size: 18px;
+}
+
+#pageMenu li a{
+    text-decoration: none;
+}
+
+#pageMenu li a:active{
+    color: black;
+}
+
+#pageMenu li a:focus {
+    color:black;
+    outline: none;
+}
+
+#pageMenu li a:visited {
+    color:black;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 7px 25px 10px 10px;
+    background: url(../images/arrow_down.png) no-repeat 95% center;
+    background-size: 20px 20px;
+    background-color: white;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    font-size: 16px;
+    margin-left: -5px;
+    width: 155px;
+    height: 40px;
+}
+
+.reservationProcess{
+    margin-left: 35px;
+}
+
+#find{
+    position:relative;
+    left: 455px;
+    top: -116px;
+    width: 163px;
+    height: 38px;
+    background-color: #fd6f60;
+    color: white;
+    border-radius: 0 3px 3px 0;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+
+.popupOuter{
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.popupWindow{
+    width: 700px;
+    height: 583px;
+    background: white;
+    margin-left: 25%;
+    margin-top: 10%;
+}
+
+.star{
+    color: gray;
+    font-size: 36px !important;
+    margin-top: 10px !important;
+}
+
+.popupStars{
+    margin-left: 35%;
+}
+
+.popupReview{
+    margin-left: 15%;
+    margin-top: 40px;
+}
+
+#reviewText{
+    width: 485px;
+    padding: 10px 10px 233px 10px;
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    font-size: 16px;
+    font-family: -apple-system;
+}
+
+#popupTitle{
+    margin-left: 38%;
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+.saveReview{
+    border: none;
+    border-radius: 3px;
+    margin-left: 15%;
+    margin-top: 20px;
+    font-size: 24px;
+    width: 487px;
+    height: 53px;
+    background-color: #fd6f60;
+    color: white;
+}
+
+.star:hover{
+    color: orangered;
+    font-size: 36px;
+}
+
+#reservationQuery{
+    margin-top: -100px;
+    font-size: 20px;
+}
+
+.input-group-append {
+    margin-left: -1px;
+    z-index: 0!important;
+}
+
+#reserveNow{
+    margin-top: 0px;
+    font-size: 20px;
+    background-color: #fd6f60;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 35px;
+}
+
+#reserveNowTime{
+    margin-top: 0px;
+    font-size: 20px;
+    background-color: #fd6f60;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 35px;
+    margin-right: 20px;
+}
+
+#popUp{
+    margin-left: 35%;
+    margin-bottom: -50px;
+    line-height: 50px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.taken{
+    color: red;
+}
+
+@media only screen and (max-width: 347px){
+    .restaurantPicture{
+        background-color: white;
+        float: left;
+        border-radius: 3px 3px 3px 3px;
+        margin-top: 0px;
+        margin-left: -485px;
+        width: 150px;
+        height: 122px;
+    }
+
+    #picture{
+        width: 130px;
+        height: 102px;
+    }
+
+    #restaurantName{
+        color: white;
+        margin-left: -325px;
+        padding-top: 25px;
+        font-size: 30px;
+        font-family: -apple-system;
+    }
+
+    .starsAndPrice{
+        margin-left: -325px;
+    }
+
+    .pricing {
+        display: inline;
+        margin-left: 20px !important;
+    }
+
+    select{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        padding: 10px 25px 10px 10px;
+        background: url(../images/arrow_down.png) no-repeat 95% center;
+        background-size: 20px 20px;
+        background-color: white;
+        border: 1px solid #E1E1E1;
+        border-radius: 2px;
+        font-size: 16px;
+        margin-left: -5px;
+        width: 145px;
+    }
+
+    #find{
+        margin-top: -5px;
+        margin-left: -5px;
+        width: 145px!important;
+        height: 43px;
+        background-color: #fd6f60;
+        color: white;
+        border-radius: 0 3px 3px 0;
+        border: none;
+        outline: none;
+        font-size: 18px;
+    }
+
+    #ratePlace{
+        position: relative;
+        left: -865px;
+        background-color: white;
+        color: black;
+        font-size: 16px;
+        font-family: -apple-system;
+        border-radius: 3px;
+        border: none;
+        outline: none;
+        margin-top: 13px;
+        width: 160px;
+        height: 36px;
+    }
+
+    #pageMenuField{
+        float: left;
+        margin-top: -450px;
+        margin-left: -60px;
+    }
+
+    #pageMenu{
+        color: rgba(-2147483648,-2147483648,18,0.30);
+    }
+
+    #pageMenu li{
+        margin-top: 10px;
+        display: inline;
+        font-size: 18px;
+    }
+
+    #pageMenu li a{
+        text-decoration: none;
+    }
+
+    #pageMenu li a:active{
+        color: black;
+    }
+
+    #pageMenu li a:focus {
+        color:black;
+        outline: none;
+    }
+
+    #pageMenu li a:visited {
+        color:black;
+    }
+
+    #reservation{
+        position:relative;
+        left: 490px;
+        height: 350px;
+        width: 347px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+        margin-top: 100px;
+        margin-left: -490px;
+    }
+
+    #about{
+        position:relative;
+        left: 490px;
+        height: 667px;
+        width: 347px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+        margin-top: 20px;
+        margin-left: -490px;
+    }
+
+    .mapouter{
+        text-align:right;
+        height:250px;
+        width:347px!important;
+    }
+
+    .gmap_canvas {
+        overflow: hidden;
+        background:none!important;
+        height:250px;
+        width:347px!important;
+    }
+
+    iframe{
+        height:250px;
+        width:347px!important;
+    }
+
+    #descriptionText{
+        -moz-hyphens:auto;
+        -ms-hyphens:auto;
+        -webkit-hyphens:auto;
+        hyphens:auto;
+        word-wrap:break-word;
+        padding-right: 10px;
+    }
+
+    #menu{
+        position:relative;
+        left: 490px;
+        height: 660px;
+        width: 347px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+        margin-top: 20px;
+        margin-left: -490px;
+    }
+
+    #photos{
+        position:relative;
+        left: 490px;
+        height: 583px;
+        width: 347px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 7px 0 rgba(0,0,0,0.10);
+        margin-top: 20px;
+        margin-left: -490px;
+    }
+
+    #find{
+        margin-top: -5px;
+        margin-left: -5px;
+        width: 155px;
+        height: 43px;
+        background-color: #fd6f60;
+        color: white;
+        border-radius: 0 3px 3px 0;
+        border: none;
+        outline: none;
+        font-size: 18px;
+    }
+
+    .popupWindow{
+        width: 310px;
+        height: 583px;
+        background: white;
+        margin-left: 5%;
+        margin-top: 10%;
+    }
+
+    .star{
+        color: gray;
+        font-size: 36px !important;
+        margin-top: 10px !important;
+    }
+
+    .popupStars{
+        margin-left: 20%;
+    }
+
+    .popupReview{
+        margin-left: 5%;
+        margin-top: 40px;
+    }
+
+    #reviewText{
+        width: 255px;
+        padding: 10px 10px 233px 10px;
+        background: #FFFFFF;
+        border: 1px solid #E1E1E1;
+        border-radius: 2px;
+        font-size: 16px;
+        font-family: -apple-system;
+    }
+
+    #popupTitle{
+        margin-left: 28%;
+        margin-top: 40px;
+        font-size: 24px;
+    }
+
+    .saveReview{
+        border: none;
+        border-radius: 3px;
+        margin-left: 5%;
+        margin-top: 20px;
+        font-size: 24px;
+        width: 277px;
+        height: 53px;
+        background-color: #fd6f60;
+        color: white;
+    }
+}

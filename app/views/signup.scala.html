@@ -15,7 +15,32 @@
                  var country = $('#country :selected').text();
                  var city = $('#city :selected').text();
                  var password = $('#password').val();
-                 $.get("/auth/register", {name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city, password: password});
+                 $.ajax({
+                     url: '/auth/register',
+                     type: 'get',
+                     data: jQuery.param({name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city, password: password}),
+                     success:function(response){
+                         if(response == "Already exists"){
+                             $( ".taken" ).show();
+                             setTimeout(function() {
+                                 $( ".taken" ).hide();
+                             }, 2000);
+                         }
+                          else{
+                             $( ".successful" ).show();
+                             setTimeout(function() {
+                                 $( ".successful" ).hide();
+                             }, 2000);
+                             $(this).delay(2500).queue(function() {
+
+                                 window.location.replace("/login");
+
+                                 $(this).dequeue();
+
+                             });
+                         }
+                     }
+                 });
              }
         </script>
         <script>
@@ -85,7 +110,7 @@
     </head>
     <body>
         <div class="header">
-            @header()
+            @headerSignup()
         </div>
         <div class="mainContent">
             <div class="row">
@@ -96,6 +121,8 @@
                     <a class="orange1" href="@routes.HomeController.login()">Login</a>
                 </div>
             </div>
+            <p id="popUp" class="successful" style="display: none;"> Account successfully created! </p>
+            <p id="popUp" class="taken" style="display: none;"> User with that email exists!!! </p>
             <div class="row">
                 <div class='col-md-12'>
                     <input id="name" type="text" placeholder="First Name" class="prvi" required>

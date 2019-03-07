@@ -1,0 +1,76 @@
+.buttons{
+    position:relative;
+    top: -48px;
+    background-color: white;
+    color: #fd6f60;
+    width: 85px;
+    height: 34px;
+    border-radius: 2px;
+    display: inline;
+    border: none;
+    font-size: 16px;
+}
+
+.breakfastButton{
+    background-color: #fd6f60;
+    color: white;
+    margin-left: 100px;
+}
+
+.menuContainerMenu{
+    border-top: 2px;
+    border-top-color: #555555;
+    margin-left: 50px;
+    font-size: 18px!important;
+    font-weight: unset!important;
+}
+
+.lunch{
+    display: none;
+}
+
+.dinner{
+    display: none;
+}
+
+dl {
+    width: 600px;
+}
+dt {
+    float: left;
+    width: 530px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 30px;
+    margin-top: 15px;
+}
+dd { float: right; width: 50px; overflow: hidden; line-height: 20px; position: relative; top: 20px}
+
+dt:after { content: " ................................................................................................................................................................." }
+
+@media only screen and (max-width: 347px){
+    .buttons{
+        position:relative;
+        top: -50px;
+        background-color: white;
+        color: #fd6f60;
+        width: 75px;
+        height: 34px;
+        border-radius: 2px;
+        display: inline;
+        border: none;
+        font-size: 14px;
+    }
+
+    .menuContainer{
+        border-top: 2px;
+        border-top-color: #555555;
+        margin-left: 10px;
+        font-size: 18px;
+    }
+
+    dl { width: 300px }
+    dt { float: left; width: 270px; overflow: hidden; white-space: nowrap; line-height: 30px}
+    dd { float: right; width: 50px; overflow: hidden; line-height: 20px; position: relative; top: -25px; left: 35px}
+
+}

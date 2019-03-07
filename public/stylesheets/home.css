@@ -128,8 +128,8 @@ p.prvi,p.drugi{
 }
 
 #imgClickAndChange{
-    width: 500px;
-    height: 380px;
+    width: 480px;
+    height: 360px;
     margin-left: 25%;
 }
 
@@ -160,6 +160,12 @@ select{
     font-size: 18px;
     margin-left: -5px;
     width: 100px;
+}
+
+#parClickAndChange{
+    color: white;
+    text-align: center;
+    font-size: 18px;
 }
 
 @media only screen and (max-width: 347px){
