@@ -4,14 +4,21 @@ function searchRedirect() {
 
     var filterStars = 0;
     var filterPrice = 0;
+    var checkedArray = [];
 
-    var filterQuery = $("#filterby option:selected").val();
-    if(filterQuery <= 5) filterStars = filterQuery;
-    else filterPrice = filterQuery-5;
+    $("input:checkbox:checked").each(function(){
+        checkedArray.push($(this).val());
+    });
 
-    if(number == 0 && filterQuery != "Filter by"){
+    /*var filterQuery = $("#filterby option:selected").val();*/
+    for(var i=0; i<checkedArray.length; i++) {
+        if (checkedArray[i] <= 5) filterStars = checkedArray[i];
+        else filterPrice = checkedArray[i] - 5;
+    }
+
+    if(number == 0 && checkedArray.length != 0){
         $.ajax({
-            url: 'http://localhost:8080/restaurants/search/filterBy',
+            url: 'http://abh-restaurants-backend.herokuapp.com/restaurants/search/filterBy',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({query: query, pricing: filterPrice, stars: filterStars, page: 0, size: 9}),

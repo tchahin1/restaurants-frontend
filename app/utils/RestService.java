@@ -20,7 +20,7 @@ public class RestService {
     @Inject WSClient ws;
 
     protected WSRequest createRequest(String serviceUrl) {  //"http://localhost:8080"
-        return ws.url("https://abh-restaurants-backend.herokuapp.com" + serviceUrl);
+        return ws.url("http://abh-restaurants-backend.herokuapp.com" + serviceUrl);
     }
 
     protected WSRequest createFullPathRequest(String serviceUrl) {

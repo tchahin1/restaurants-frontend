@@ -4,7 +4,7 @@ var username = window.localStorage.getItem("username");
 
 function checkReservation(restname) {
     $.ajax({
-        url: 'http://localhost:8080/reservations/check',
+        url: 'http://abh-restaurants-backend.herokuapp.com/reservations/check',
         type: 'get',
         dataType: 'json',
         data: jQuery.param({restaurant: restname, user: username}),
@@ -27,3 +27,6 @@ function checkReservation(restname) {
         }
     });
 }
+
+
+/*url: 'http://localhost:8080/reservations/check',*/

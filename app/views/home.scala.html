@@ -38,7 +38,7 @@
         <script>
             $(document).ready(function(){
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/all',
+                    url: 'http://abh-restaurants-backend.herokuapp.com/restaurants/all',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
@@ -132,12 +132,14 @@
                         <select id="country" class="selectPeople" required>
                             <option>People</option>
                         </select>
-                        <select id="country" class="selectDate" required>
+                        <!--select id="country" class="selectDate" required>
                             <option>Date</option>
                         </select>
                         <select id="country" class="selectTime" required>
                             <option>Time</option>
-                        </select>
+                        </select-->
+                        <input type="date" value="Date" min="2018-01-01" max="2018-12-31" class="selectDate"/>
+                        <input type="time" value="Time" min="08:00" max="23:00" id="selectTime" class="selectTime"/>
                         <input type="submit" value="Find a table" onclick="searchRedirect()">
                     </form>
                 </div>
@@ -173,6 +175,9 @@
         </div>
         @footer()
 
-
+        <script>
+            document.getElementById("selectTime").stepUp(30);
+            document.getElementById("selectTime").stepDown(30);
+        </script>
     </body>
     </html>

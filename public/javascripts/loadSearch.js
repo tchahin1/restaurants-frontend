@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     if(number==0 && query!="") {
         $.ajax({
-            url: 'http://localhost:9000/search',
+            url: 'http://abh-restaurants-frontend.herokuapp.com/search',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({name: query}),
@@ -118,7 +118,7 @@ $(document).ready(function(){
 
     else if(number>0 && starsFilter!=-1 && priceFilter!=-1) {
         $.ajax({
-            url: 'http://localhost:9000/search/page/filter',
+            url: 'http://abh-restaurants-frontend.herokuapp.com/search/page/filter',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({name: query, filterStars: starsFilter, filterPricing: priceFilter, pageNum: number}),
@@ -229,7 +229,7 @@ $(document).ready(function(){
 
     else if(number>0 && query!=""){
         $.ajax({
-            url: 'http://localhost:9000/search/page',
+            url: 'http://abh-restaurants-frontend.herokuapp.com/search/page',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({name: query, pageNum: number}),
