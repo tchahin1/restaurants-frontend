@@ -33,6 +33,40 @@
                     margin-bottom: -20px;
                     font-size: 20px;
                 }
+
+                .multiselect{
+                    width: 112px !important;
+                    position: absolute;
+                    margin-top: -50px;
+                    margin-left: 48.5%!important;
+                    z-index: 1000;
+                }
+
+                .selectBox{
+                    position: absolute;
+                }
+
+                .overSelect{
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                }
+
+                #checkboxes{
+                    display: none;
+                    border: 1px #dadada solid;
+                    background: white;
+                }
+
+                #checkboxes label{
+                    display: block;
+                }
+
+                #checkboxes label:hover{
+                    background-color: #1e90ff;
+                }
         </style>
         <script src="@routes.Assets.at("javascripts/loadSearch.js")"></script>
         <script src="@routes.Assets.at("javascripts/search.js")"></script>
@@ -55,18 +89,34 @@
                     <select id="sortby" class="selectSort" required>
                         <option>Sort by</option>
                     </select>
-                    <select id="filterby" class="selecFilter" required>
-                        <option>Filter by</option>
-                        <option value="1">One star</option>
-                        <option value="2">Two stars</option>
-                        <option value="3">Three stars</option>
-                        <option value="4">Four stars</option>
-                        <option value="5">Five stars</option>
-                        <option value="6">Cheap</option>
-                        <option value="7">Mediocre</option>
-                        <option value="8">Expensive</option>
-                        <option value="9">Very expensive</option>
-                    </select>
+                    <div class="multiselect">
+                        <div class="selectBox" onclick="showCheckboxes()">
+                            <select id="filterby" class="selecFilter" required>
+                                <option>Filter by</option>
+                                <!--option value="1">One star</option>
+                                <option value="2">Two stars</option>
+                                <option value="3">Three stars</option>
+                                <option value="4">Four stars</option>
+                                <option value="5">Five stars</option>
+                                <option value="6">Cheap</option>
+                                <option value="7">Mediocre</option>
+                                <option value="8">Expensive</option>
+                                <option value="9">Very expensive</option-->
+                            </select>
+                            <div class="overSelect"></div>
+                            <div id="checkboxes">
+                                <label for="one"><input type="checkbox" value="1"/>One star</label>
+                                <label for="two"><input type="checkbox" value="2"/>Two stars</label>
+                                <label for="three"><input type="checkbox" value="3"/>Three stars</label>
+                                <label for="four"><input type="checkbox" value="4"/>Four stars</label>
+                                <label for="five"><input type="checkbox" value="5"/>Five stars</label>
+                                <label for="six"><input type="checkbox" value="6"/>Cheap</label>
+                                <label for="seven"><input type="checkbox" value="7"/>Mediocre</label>
+                                <label for="eight"><input type="checkbox" value="8"/>Expensive</label>
+                                <label for="nine"><input type="checkbox" value="9"/>Very expensive</label>
+                            </div>
+                        </div>
+                    </div>
                     <input type="button" value="Find a table" id="findTable" onclick="searchRedirect()">
                 </form>
             </div>
@@ -97,6 +147,24 @@
                         window.location = '/restaurants/singlePage?name=' + name;
                     });
                 }
+        </script>
+        <script>
+            var expanded = false;
+            function showCheckboxes(){
+                var checkboxes = document.getElementById("checkboxes");
+                if(!expanded){
+                    checkboxes.style.display = "block";
+                    expanded = true;
+                }
+                else{
+                    checkboxes.style.display = "none";
+                    expanded = false;
+                }
+            }
+
+            $('#checkboxes').click(function(e) {
+                e.stopPropagation();
+            });
         </script>
     </body>
 </html>
