@@ -8,7 +8,7 @@ function makeReservation(){
 
     if(token!=null) {
         $.ajax({
-            url: 'http://abh-restaurants-backend.herokuapp.com/reservations/check/table',
+            url: 'https://abh-restaurants-backend.herokuapp.com/reservations/check/table',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({date: date, time: time, username: username, restaurant: restaurant, type: type}),
