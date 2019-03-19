@@ -7,6 +7,11 @@ function makeReservation(){
     var type = $(".selectRes option:selected").text();
 
     if(token!=null) {
+        console.log(date);
+        console.log(time);
+        console.log(username);
+        console.log(restaurant);
+        console.log(type);
         $.ajax({
             url: 'https://abh-restaurants-backend.herokuapp.com/reservations/check/table',
             type: 'get',
