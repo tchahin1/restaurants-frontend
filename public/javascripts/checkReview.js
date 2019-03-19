@@ -2,7 +2,6 @@ function checkReview() {
     var token = window.localStorage.getItem("token");
     var username = window.localStorage.getItem("username");
     var restname = $("#restaurantName").text();
-    var res = null;
 
     $.ajax({
         url: 'http://abh-restaurants-backend.herokuapp.com/reviews/check',
@@ -13,13 +12,12 @@ function checkReview() {
             xhr.setRequestHeader ("Authorization", token);
         },
         success: function (response) {
-            res = response;
         },
         complete: function (response) {
-            if(response!=null && token!=null && response.status!=200) {
+            if(response!=null && token!=null && response.status!=200 && response["responseJSON"]!=null) {
                 $("#ratedYet").text("Your review: " + response["responseJSON"]["rating"] + "/5");
             }
-            else if(token!=null && response.status==200){
+            else if(token!=null && response.status==200 && response["responseJSON"]==null){
                 $("#ratedYet").text("You haven't rated this place yet.");
             }
         }

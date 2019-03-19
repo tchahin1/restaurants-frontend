@@ -1,4 +1,3 @@
-var res = null;
 var token = window.localStorage.getItem("token");
 var username = window.localStorage.getItem("username");
 
@@ -12,7 +11,6 @@ function checkReservation(restname) {
             xhr.setRequestHeader("Authorization", token);
         },
         success: function (response) {
-            res = response;
         },
         complete: function (response) {
             if(response!=null && token!=null && response.status != 200){
