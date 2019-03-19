@@ -18,6 +18,8 @@ function makeReservation(){
             success: function (response) {
             },
             complete: function (response) {
+                console.log(response.status);
+
                 if (response.status == 200) {
                     $(".reservationProcess").append("<input type='button' id='reserveNow' onclick='reserveThisTable()' value='Reserve now'>");
                 } else if (response.status == 400) {
