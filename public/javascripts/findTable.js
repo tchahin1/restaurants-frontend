@@ -19,7 +19,7 @@ function findATable(){
         var type = $(".selectRes option:selected").text();
 
         $.ajax({
-            url: 'http://abh-restaurants-backend.herokuapp.com/tables/restaurant',
+            url: 'https://abh-restaurants-backend.herokuapp.com/tables/restaurant',
             type: 'get',
             data:jQuery.param({name: name, type: type}),
             dataType: 'json',

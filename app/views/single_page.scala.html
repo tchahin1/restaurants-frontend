@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/single_page.css")'>
-        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
                 .fa{
@@ -34,7 +34,7 @@
 
                     var name = $("#restaurantName").text();
                     $.ajax({
-                        url: 'http://abh-restaurants-backend.herokuapp.com/restaurants/name',
+                        url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/name',
                         type: 'get',
                         data: jQuery.param({name: name}),
                         success:function(response){
@@ -88,7 +88,7 @@
                     checkReservation(name);
 
                     $.ajax({
-                        url: 'http://abh-restaurants-backend.herokuapp.com/tables/type',
+                        url: 'https://abh-restaurants-backend.herokuapp.com/tables/type',
                         type: 'get',
                         data:jQuery.param({name: name}),
                         dataType: 'json',
@@ -200,7 +200,7 @@
                 var type = $(".selectRes option:selected").text();
 
                 $.ajax({
-                    url: 'http://abh-restaurants-backend.herokuapp.com/reservations',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/reservations',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({
@@ -241,7 +241,7 @@
                 var type = $(".selectRes option:selected").text();
 
                 $.ajax({
-                    url: 'http://abh-restaurants-backend.herokuapp.com/reservations/save/time',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/reservations/save/time',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({

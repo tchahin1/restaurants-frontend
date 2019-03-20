@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/signup.css")'>
-        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script>
              function register () {
                  var name = $('#name').val();
@@ -47,7 +47,7 @@
             $(document).ready(function(){
 
                 $.ajax({
-                    url: 'http://abh-restaurants-backend.herokuapp.com/countries/all',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/countries/all',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
@@ -82,7 +82,7 @@
                     var select = "Select City";
 
                     $.ajax({
-                        url: 'http://abh-restaurants-backend.herokuapp.com/cities/country',
+                        url: 'https://abh-restaurants-backend.herokuapp.com/cities/country',
                         type: 'post',
                         data: JSON.stringify(json),
                         contentType: 'application/json',

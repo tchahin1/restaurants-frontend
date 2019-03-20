@@ -229,7 +229,7 @@ $(document).ready(function(){
 
     else if(number>0 && query!=""){
         $.ajax({
-            url: 'http://abh-restaurants-frontend.herokuapp.com/search/page',
+            url: 'https://abh-restaurants-frontend.herokuapp.com/search/page',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({name: query, pageNum: number}),
