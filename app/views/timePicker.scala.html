@@ -21,12 +21,22 @@
                 var d = new Date();
                 var h = d.getHours();
                 var m = d.getMinutes();
+
+                if(m>=0 && m<16) m=0;
+                else if(m>=16 && m<=30) m=30;
+                else if(m>30 && m<=45) m=30;
+                else if(m>45 && m<59)
+                {
+                    m=0;
+                    h++;
+                }
+
                 if(h<10) {
-                    d = '0'+d
+                    h = '0'+h;
                 }
 
                 if(m<10) {
-                    m = '0'+m
+                    m = '0'+m;
                 }
 
                 d = h + ":" + m;

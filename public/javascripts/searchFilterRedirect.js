@@ -16,6 +16,8 @@ function searchRedirect() {
         else filterPrice = checkedArray[i] - 5;
     }
 
+    console.log(filterStars + " " + filterPrice);
+
     if(number == 0 && checkedArray.length != 0){
         $.ajax({
             url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/search/filterBy',
