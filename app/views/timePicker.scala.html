@@ -22,15 +22,6 @@
                 var h = d.getHours();
                 var m = d.getMinutes();
 
-                if(m>=0 && m<16) m=0;
-                else if(m>=16 && m<=30) m=30;
-                else if(m>30 && m<=45) m=30;
-                else if(m>45 && m<59)
-                {
-                    m=0;
-                    h++;
-                }
-
                 if(h<10) {
                     h = '0'+h;
                 }
@@ -43,7 +34,55 @@
 
                 $('#timepicker').timepicker({
                     value: d,
-                    uiLibrary: 'bootstrap4'
+                    uiLibrary: 'bootstrap4',
+                    change: function (e) {
+                        var val = $('#timepicker').val();
+                        var time = val.split(":");
+                        var hh = Number(time[0]);
+                        var mm = Number(time[1]);
+
+                        if(mm>=0 && mm<16) mm=0;
+                        else if(mm>=16 && mm<=30) mm=30;
+                        else if(mm>30 && mm<=45) mm=30;
+                        else if(mm>45 && mm<59)
+                        {
+                            mm=0;
+                            hh++;
+                        }
+
+                        var d = new Date();
+                        var h = d.getHours();
+                        var m = d.getMinutes();
+
+                        if(hh<h || (hh==h && mm<m)){
+                            $("#reservationQuery").text("");
+                            $("#reservationQuery").text("Invalid time!");
+                            $("#reservationQuery").css("color", "red");
+
+                            if(h<10) {
+                                h = '0'+h;
+                            }
+
+                            if(m<10) {
+                                m = '0'+m;
+                            }
+
+                            $('#timepicker').val(h + ":" + m);
+                        }
+                        else {
+                            $("#reservationQuery").text("");
+
+                            if(hh<10) {
+                                hh = '0'+hh;
+                            }
+
+                            if(mm<10) {
+                                mm = '0'+mm;
+                            }
+
+                            $('#timepicker').val(hh + ":" + mm);
+                        }
+                    }
                 });
             </script>
         </div>
