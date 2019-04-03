@@ -23,6 +23,24 @@ GET    /search                      controllers.SearchController.search(name: St
 GET    /search/page                 controllers.SearchController.searchPage(name: String, pageNum: Integer)
 GET    /search/page/filter          controllers.SearchController.searchPageFilter(name: String, filterStars: Integer, filterPricing: Integer , pageNum: Integer)
 
+GET    /admin/home                      controllers.HomeController.admin
+GET    /admin/users                     controllers.HomeController.usersAdmin
+GET    /admin/categories                controllers.HomeController.categoriesAdmin
+GET    /admin/locations                 controllers.HomeController.locationsAdmin
+GET    /admin/restaurants               controllers.HomeController.restaurantsAdmin
+GET    /admin/users/add                 controllers.HomeController.addUserAdmin
+GET    /admin/locations/add             controllers.HomeController.addLocationAdmin
+GET    /admin/categories/add            controllers.HomeController.addCategoryAdmin
+GET    /admin/restaurants/add           controllers.HomeController.addRestaurantAdmin
+GET    /admin/restaurants/add/menu      controllers.HomeController.addMenuAdmin
+GET    /admin/restaurants/add/tables    controllers.HomeController.addTableAdmin
+
+
+GET    /admin/users/edit             controllers.HomeController.editUserAdmin(email: String)
+GET    /admin/locations/edit         controllers.HomeController.editLocationAdmin(name: String)
+GET    /admin/categories/edit        controllers.HomeController.editCategoryAdmin(name: String)
+#GET    /admin/restaurants/edit       controllers.HomeController.editRestaurantAdmin(name: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 GET     /assets/*file               controllers.Assets.at(path="/public", file: String)
