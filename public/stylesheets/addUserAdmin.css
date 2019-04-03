@@ -1,0 +1,189 @@
+#userDataContainer{
+    margin-top: 100px;
+    margin-left: 15%;
+    width: 70%;
+    background: #FFFFFF;
+    border: 1px solid #E6E8EB;
+    border-radius: 3px;
+}
+
+#name {
+    margin-top: 50px!important;
+}
+
+#name, #last_name, #email, #phone_num, #password, #confirm{
+    padding-left: 10px;
+    background-color: white;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    margin-left: 30%;
+    width: 40%;
+    min-width: 150px;
+    height: 53px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.selectCountry{
+    display: inline-block;
+    width: 40.5%;
+    height: 53px;
+    /*margin-left: 504px;*/
+    margin-left: 62%;
+    margin-top: 10px;
+}
+
+.selectCity{
+    display: inline-block;
+    width: 40.5%;
+    height: 53px;
+    /*margin-right: 500px;*/
+    margin-right: 100%;
+    margin-left: -2.5%;
+    margin-top: 10px;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    display: block;
+    padding: 10px 50px 10px 10px;
+    background: url(../images/arrow_down.png) no-repeat 95% center;
+    background-size: 20px 20px;
+    background-color: white;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+.divSelect{
+    width: 33%;
+    height: 53px;
+    margin-top: 10px;
+    margin-left: 35%;
+    padding: 0px;
+    background-color: whitesmoke;
+}
+
+.errorMessage{
+    color: red;
+    margin-left: 35%;
+}
+
+#popUp{
+    margin-left: 45%;
+    margin-bottom: 20px;
+}
+
+.taken{
+    color: red;
+}
+
+.successful{
+    color: lawngreen;
+}
+
+.treci{
+    border: none;
+    margin-top: 23px;
+    width: 30.5%;
+    height: 53px;
+    background-color: #fd6f60;
+    color: white;
+    margin-left: 7%;
+    margin-bottom: 45px;
+    border-radius: 3px;
+}
+
+.treci:hover{
+    cursor: pointer;
+}
+
+.cetvrti{
+    border: none;
+    margin-top: 23px;
+    width: 30.5%;
+    background-color: whitesmoke;
+    color: black;
+    margin-left: 62%;
+    height: 53px;
+    margin-bottom: 45px;
+    border-radius: 3px;
+}
+
+.cetvrti:hover{
+    cursor: pointer;
+}
+
+#adminContainer{
+    margin-top: 26px;
+    margin-left: 15%;
+    background-color: white;
+    height: 46px;
+    width: 71%;
+    padding-top: 12px;
+}
+
+#adminMenu{
+    margin-left: -10px;
+}
+
+@media(max-width: 500px){
+    .selectCity{
+        width: 86.5%;
+        height: 53px;
+        margin-top: 10px;
+        margin-left: 22px
+    }
+
+    .selectCountry{
+        width: 86.5%;
+        height: 53px;
+        margin-top: 10px;
+        margin-left: 22px;
+    }
+
+    #signup{
+        margin-left: 20%;
+    }
+
+    .orange1{
+        margin-left: 80%;
+    }
+
+    input{
+        margin-left: 22px;
+        width: 300px;
+    }
+
+    .treci{
+        width: 50%;
+    }
+
+    .errorMessage{
+        color: red;
+        margin-left: 7%;
+    }
+
+    #adminContainer{
+        margin-top: 26px;
+        margin-left: 15%;
+        background-color: white;
+        height: 66px;
+        width: 71%;
+        padding-top: 12px;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    #adminContainer{
+        margin-top: 26px;
+        margin-left: 15%;
+        background-color: white;
+        height: 66px;
+        width: 330px;
+        padding-top: 12px;
+    }
+}
+

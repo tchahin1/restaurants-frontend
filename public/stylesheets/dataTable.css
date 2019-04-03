@@ -1,0 +1,51 @@
+#tableContainer{
+   margin-top: 50px;
+}
+
+#tableTitle{
+    color: gray;
+    font-weight: normal;
+}
+
+#dataTable{
+    margin-left: 15%;
+    width: 71%;
+    background-color: white;
+}
+
+#editButton{
+    margin-left: 15%;
+    border: none;
+    background-color: white;
+    display: inline;
+    background-image: url(../images/editpng.svg);
+    background-position: -0.5px 3px;
+    background-repeat: no-repeat;
+    background-size: 16.5px 16.5px;
+}
+
+#deleteButton{
+    border: none;
+    background-color: white;
+    display: inline;
+    background-image: url(../images/deletepng.png);
+    background-position: 0px 3px;
+    background-repeat: no-repeat;
+    background-size: 17px 17px;
+    margin-left: 15%;
+}
+
+#addCategoryButton{
+    font-size: 13px;
+    height: 34px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background-color: #FD6F60;
+    margin-top: 50px;
+    margin-left: 79%;
+}
+
+.categoryTable{
+    margin-top: 0px!important;
+}

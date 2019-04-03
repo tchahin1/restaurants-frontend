@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/homeAdmin.css")'>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/addRestaurantAdmin.css")">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div class="header">
+        @headerSignup()
+        </div>
+
+        <div id="mainContent">
+            <div id="adminSearch">
+                <div class="row" id="adminContainer">
+                    <div class="col-lg-12 col-md-12 col-sm-12" id="adminMenu">
+                        <a class="menuItem" href="@routes.HomeController.admin()">Dashboard</a>
+                        <a class="menuItem" href="@routes.HomeController.restaurantsAdmin()">Restaurants</a>
+                        <a class="menuItem" href="@routes.HomeController.locationsAdmin()">Locations</a>
+                        <a class="menuItem" href="@routes.HomeController.categoriesAdmin()">Categories</a>
+                        <a class="menuItem" href="@routes.HomeController.usersAdmin()">Users</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="miniToolbar" class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12" id="adminMenu">
+                    <a class="menuItem link" href="@routes.HomeController.addRestaurantAdmin()">Basic Details</a>
+                    <a class="menuItem link" href="#">Menu</a>
+                    <a class="menuItem link" href="#">Gallery</a>
+                    <a class="menuItem link" href="@routes.HomeController.addTableAdmin()">Tables</a>
+                </div>
+            </div>
+            <div id="userDataContainer" class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12" id="leftSide">
+                    <p id="titleSide">Add Logo</p>
+                    <image id="logo" src=""></image>
+                    <p id="titleSide">Pricing</p>
+                    <select id="pricing" class="selectCountry" required>
+                        <option>Choose Pricing</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <p id="titleSide">Name</p>
+                    <input type="text" id="inputRestaurantName"/>
+                    <p id="titleSide">Description</p>
+                    <input type="text" id="descriptionRestaurant"/>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12" id="rightSide">
+                    <p id="titleSide">Add Cover Photo</p>
+                    <image id="cover" src=""></image>
+                    <div class="row">
+                        <div class='col-lg-6 col-md-6 col-sm-6'>
+                            <p id="titleSide">Category</p>
+                            <select id="country" class="selectCountry" required>
+                                <option>Choose Category</option>
+                            </select>
+                        </div>
+                        <div class='col-lg-6 col-md-6 col-sm-6'>
+                            <p id="titleSide2">Location</p>
+                            <select id="city" class="selectCity" required>
+                                <option>Choose Location</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p id="titleSide" class="removableTitle">Choose Exact Location</p>
+                    <div id="googleMap" style="width:80%;height:180px;"></div>
+                    <div class="row">
+                        <div class='col-lg-6 col-md-6 col-sm-6'>
+                            <input id="cancelRegister" type="submit" value="Cancel" class="cetvrti" onClick="javascript:history.go(-1)">
+                        </div>
+                        <div class='col-lg-6 col-md-6 col-sm-6'>
+                            <input id="submitRegister" type="submit" value="Add Restaurant" class="treci" onclick="validation()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @footer()
+        <script>
+            function myMap(city) {
+                var geocoder = new google.maps.Geocoder();
+                var map = null;
+
+                if(city!=undefined) {
+                    $("#googleMap").show();
+                    $(".removableTitle").show();
+                    $("#cancelRegister").css("margin-top", "77px");
+                    $("#submitRegister").css("margin-top", "77px");
+
+                    if(map==null) {
+                            map = new google.maps.Map(document.getElementById('googleMap'), {
+                                center: {lat: 0, lng: 0},
+                                zoom: 8
+                            });
+                        }
+
+                    geocoder.geocode({'address': city}, function (results, status) {
+                        if (status === 'OK') {
+                            map.setCenter(results[0].geometry.location);
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
+                }
+
+                else{
+                    $("#googleMap").hide();
+                    $(".removableTitle").hide();
+                    $("#cancelRegister").css("margin-top", "314px");
+                    $("#submitRegister").css("margin-top", "314px");
+                }
+
+                var marker;
+                google.maps.event.addListener(map, 'click', function(event) {
+
+                    placeMarker(event.latLng);
+
+                });
+                function placeMarker(location) {
+                    if (marker == null)
+                    {
+                        marker = new google.maps.Marker({
+                            position: location,
+                            map: map
+                        });
+                    }
+                    else {  marker.setPosition(location); }
+                }
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO5q66s3rtQ8W9iVRRbEfFw1rconKrLno&callback=myMap"></script>
+
+
+        <script>
+            function highlightCurrent() {
+                const curPage = document.URL;
+                const links = document.getElementsByClassName('link');
+                for (let link of links) {
+                    if (link.href == curPage) {
+                        link.classList.add("current");
+                    }
+                }
+            }
+        </script>
+
+        <script>
+        $("#city").change(function(){
+            var cityid = $(this).val();
+            var cityName = $( "#city option:selected" ).text();
+            myMap(cityName);
+        });
+
+        $('document').ready(function(){
+            document.getElementById("orangeLink").innerText = "Admin";
+            highlightCurrent();
+
+            $.ajax({
+                url: 'http://localhost:8080/cities/all',
+                type: 'get',
+                dataType: 'json',
+                success:function(response){
+
+                    var len = response.length;
+                    var select = "Choose Location";
+
+                    $("#city").empty();
+                    $("#city").append("<option>"+select+"</option>");
+                    for( var i = 0; i<len; i++){
+                        var id = response[i]['id'];
+                        var name = response[i]['name'];
+
+                        $("#city").append("<option value='"+id+"'>"+name+"</option>");
+
+                    }
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

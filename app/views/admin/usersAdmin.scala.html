@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/homeAdmin.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/dataTable.css")'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+</head>
+<body>
+<div class="header">
+    @headerSignup()
+</div>
+
+<div id="mainContent">
+    <div id="adminSearch">
+        <div class="row" id="adminContainer">
+            <div class="col-lg-6 col-md-12 col-sm-12" id="adminMenu">
+                <a class="menuItem" href="@routes.HomeController.admin()">Dashboard</a>
+                <a class="menuItem" href="@routes.HomeController.restaurantsAdmin()">Restaurants</a>
+                <a class="menuItem" href="@routes.HomeController.locationsAdmin()">Locations</a>
+                <a class="menuItem" href="@routes.HomeController.categoriesAdmin()">Categories</a>
+                <a class="menuItem" href="@routes.HomeController.usersAdmin()">Users</a>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12" id="searchPart">
+                <input type="text" placeholder="Search..." id="searchInput">
+            </div>
+        </div>
+
+        <div class="table-responsive" id="tableContainer" style="height:800px; overflow-y: scroll;">
+            <table class="table table-bordered" id="dataTable">
+                <col width="45%">
+                <col width="45%">
+                <col width="10%">
+                <thead>
+                    <tr>
+                        <th id="tableTitle" class="title"></th>
+                        <th id="tableTitle">Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="data">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+@footer()
+
+    <script>
+            $("#searchInput").on('keyup paste', function(){
+                var currentRequest = null;
+
+                var query = $("#searchInput").val();
+
+                currentRequest = $.ajax({
+                    url: 'http://localhost:8080/users/get/search',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({query: query}),
+                    beforeSend : function()    {
+                        if(currentRequest != null) {
+                            currentRequest.abort();
+                        }
+                    },
+                    success:function(response){
+                        $("#data").empty();
+                        console.log(response);
+                        for(var i=0; i<response.length; i++){
+                            var data1 = "<tr><td>" + response[i]["name"] + " " + response[i]["lastName"] + "</td>";
+                            var data2 = "<td>" + response[i]["email"] + "</td>";
+                            var buttons = "<td>" +
+                                    "<input type=\"submit\" id=\"editButton\" value=\"\"/>" +
+                                    "<input type=\"submit\" id=\"deleteButton\" value=\"\"/>" +
+                                    "</td></tr>";
+                            document.getElementById('data').innerHTML += data1 + data2 + buttons;
+                        }
+                    }
+                });
+            });
+        </script>
+
+    <script>
+             $(document).on("click", "#editButton", function() {
+                 var row = $(this).parent().parent();
+                 var email = row.children(":nth-child(2)").text();
+                 window.location = '/admin/users/edit?email=' + email;
+             });
+        </script>
+
+    <script>
+             $(document).on("click", "#deleteButton", function() {
+                 var row = $(this).parent().parent();
+                 var email = row.children(":nth-child(2)").text();
+                 del(email);
+             });
+
+             function del(email){
+                 $.ajax({
+                     url: 'http://localhost:8080/users/delete',
+                     type: 'get',
+                     dataType: 'json',
+                     data: jQuery.param({email: email}),
+                     complete:function(){
+                         window.location.href=window.location.href;
+                     }
+                 });
+             }
+        </script>
+
+    <script>
+            $('document').ready(function(){
+                $(".title").text("Name");
+                $.ajax({
+                    url: 'http://localhost:8080/users/all',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(response){
+                        for(var i=0; i<response.length; i++){
+                            var data1 = "<tr><td>" + response[i]["name"] + " " + response[i]["lastName"] + "</td>";
+                            var data2 = "<td>" + response[i]["email"] + "</td>";
+                            var buttons = "<td>" +
+                                    "<input type=\"submit\" id=\"editButton\" value=\"\"/>" +
+                                    "<input type=\"submit\" id=\"deleteButton\" value=\"\"/>" +
+                                    "</td></tr>";
+                            document.getElementById('data').innerHTML += data1 + data2 + buttons;
+                        }
+                    }
+                });
+            });
+        </script>
+    <script>
+        function highlightCurrent() {
+            const curPage = document.URL;
+            const links = document.getElementsByTagName('a');
+            for (let link of links) {
+                if (link.href == curPage) {
+                    link.classList.add("current");
+                }
+            }
+        }
+
+        $('document').ready(function(){
+            highlightCurrent();
+            document.getElementById("orangeLink").innerText = "Admin";
+        });
+    </script>
+</body>
+</html>

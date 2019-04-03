@@ -1,0 +1,178 @@
+body {
+    margin: 0;
+    font-family: Century, AppleGothic;
+    background: whitesmoke!important;
+}
+
+.header{
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    height: 85px;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+}
+
+#mainContent{
+    height: 1195px;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-bottom: -100px;
+}
+
+.infoDivs{
+    margin-top: 80px;
+    background-color: white;
+    width: 320px;
+    height: 220px;
+}
+
+#rowEl1{
+    margin-left: 15%;
+}
+
+#rowEl2{
+    margin-left: -10%;
+}
+
+#rowEl3{
+    margin-left: -10%;
+}
+
+.number{
+    font-family: '.SF NS Display';
+    font-size: 48px;
+    color: #131D24;
+    text-align: center;
+    letter-spacing: 0;
+    padding-top: 60px;
+}
+
+.textBelowNumber{
+    font-family: '.AppleSystemUIFont';
+    font-size: 16px;
+    color: #131D24;
+    letter-spacing: 0;
+    text-align: center;
+    margin-top: -20px;
+}
+
+.addButton{
+    border: none;
+    color: white;
+    margin-top: 38px;
+    height: 34px;
+    width: 150px;
+    margin-left: 85px;
+    background: #FD6F60;
+    border-radius: 2px;
+}
+
+#adminContainer{
+    margin-top: 26px;
+    margin-left: 15%;
+    background-color: white;
+    height: 46px;
+    width: 71%;
+    padding-top: 12px;
+}
+
+.menuItem{
+    margin-left: 25px;
+    font-size: 14px;
+    color: rgba(-2147483648,-2147483648,-2147483648,0.40);
+}
+
+#searchInput{
+    background: #fff;
+    border: none;
+    outline: none;
+    margin-top: -17px;
+    padding-left: 40px;
+    border-radius: 3px 0 0 3px;
+    font-size: 16px;
+    height: 40px;
+    background-image: url(../images/search_icon.png);
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+}
+
+#adminMenu{
+    margin-left: -10px;
+}
+
+.current{
+    color: #FD6F60;
+}
+
+@media only screen and (max-width: 1351px){
+    #rowEl1{
+        margin-left: 15%;
+    }
+
+    #rowEl2{
+        margin-left: 15%;
+    }
+
+    #rowEl3{
+        margin-left: 15%;
+    }
+}
+
+@media only screen and (max-width: 991px){
+    #searchInput{
+        background: #fff;
+        border: none;
+        outline: none;
+        padding-left: 40px;
+        border-radius: 3px 0 0 3px;
+        margin-top: 10px;
+        font-size: 16px;
+        height: 40px;
+        background-image: url(../images/search_icon.png);
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    #adminContainer{
+        margin-top: 26px;
+        margin-left: 15%;
+        background-color: white;
+        height: 66px;
+        width: 71%;
+        padding-top: 12px;
+    }
+
+    #searchInput{
+        background: #fff;
+        border: none;
+        outline: none;
+        padding-left: 40px;
+        margin-top: 5px;
+        border-radius: 3px 0 0 3px;
+        font-size: 16px;
+        height: 40px;
+        background-image: url(../images/search_icon.png);
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+    }
+}
+
+@media only screen and (max-width: 462px){
+    #adminContainer{
+        margin-top: 26px;
+        margin-left: 15%;
+        background-color: white;
+        height: 66px;
+        width: 330px;
+        padding-top: 12px;
+    }
+}
+

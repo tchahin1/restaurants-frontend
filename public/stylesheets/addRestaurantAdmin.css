@@ -1,0 +1,182 @@
+#userDataContainer{
+    margin-top: 0px;
+    margin-left: 15%;
+    width: 71%;
+    background: #FFFFFF;
+    border: 1px solid #E6E8EB;
+    border-radius: 3px;
+}
+
+#miniToolbar{
+    margin-top: 100px;
+    margin-left: 15%;
+    width: 384px;
+    background: #FFFFFF;
+    border: 1px solid #E6E8EB;
+    border-radius: 3px;
+}
+
+#titleSide{
+    margin-left: 44px;
+    margin-top: 24px;
+    font-size: 16px;
+}
+
+#titleSide2{
+    margin-left: -10px;
+    margin-top: 24px;
+    font-size: 16px;
+}
+
+#logo{
+    width: 140px;
+    height: 140px;
+    background: #FFFFFF;
+    border: 1px solid #E6E8EB;
+    border-radius: 3px;
+    margin-left: 44px;
+}
+
+#cover{
+    width: 80%;
+    height: 140px;
+    background: #FFFFFF;
+    border: 1px solid #E6E8EB;
+    border-radius: 3px;
+    margin-left: 44px;
+}
+
+.selectCountry{
+    display: inline-block;
+    width: 80%;
+    height: 50px;
+    /*margin-left: 504px;*/
+    margin-left: 44px;
+    margin-top: 0px;
+}
+
+.selectCity{
+    display: inline-block;
+    width: 80%;
+    height: 50px;
+    /*margin-right: 500px;*/
+    margin-left: -10px;
+    margin-top: 0px;
+}
+
+#tableType{
+    display: inline-block;
+    width: 80%;
+    height: 50px;
+    margin-left: 30px;
+    margin-top: 0px;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    display: block;
+    padding: 10px 50px 10px 10px;
+    background: url(../images/arrow_down.png) no-repeat 95% center;
+    background-size: 20px 20px;
+    background-color: white;
+    color: gray;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    font-size: 14px!important;
+}
+
+#inputRestaurantName{
+    margin-left: 44px;
+    width: 80%;
+    height: 50px;
+}
+
+#descriptionRestaurant{
+    margin-left: 44px;
+    width: 80%;
+    height: 175px;
+
+    padding: 10px 10px 175px 10px;
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px;
+    font-size: 16px;
+    font-family: -apple-system;
+}
+
+#googleMap{
+    margin-left: 44px;
+}
+
+.treci{
+    border: none;
+    width: 80%;
+    height: 50px;
+    background-color: #fd6f60;
+    color: white;
+    margin-left: -10px;
+    margin-bottom: 45px;
+    border-radius: 3px;
+}
+
+.treci:hover{
+    cursor: pointer;
+}
+
+.cetvrti{
+    border: none;
+    width: 80%;
+    background-color: whitesmoke;
+    color: black;
+    margin-left: 44px;
+    height: 50px;
+    margin-bottom: 45px;
+    border-radius: 3px;
+}
+
+.cetvrti:hover{
+    cursor: pointer;
+}
+
+#addTable{
+    border: none;
+    width: 129px;
+    height: 20px;
+    background-color: gray;
+    color: white;
+    margin-left: 65%;
+    border-radius: 3px;
+    margin-top: 24px;
+}
+
+.treci:hover{
+    cursor: pointer;
+}
+
+#tableNum{
+    margin-left: 30px;
+    margin-top: 13px;
+    color: gray;
+}
+
+#inputAmmount{
+    margin-left: 0px;
+    margin-top: 0px;
+    color: gray;
+    height: 50px;
+    width: 90%;
+    font-size: 16px;
+}
+
+.lastPart{
+    margin-left: -40px;
+}
+
+#tableRow{
+    margin-top: 30px;
+}
+
+
+

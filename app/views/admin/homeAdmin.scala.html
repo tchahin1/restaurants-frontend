@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/homeAdmin.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/dataTable.css")'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            @headerSignup()
+        </div>
+
+        <div id="mainContent">
+            <div id="adminSearch">
+                <div class="row" id="adminContainer">
+                    <div class="col-lg-6 col-md-12 col-sm-12" id="adminMenu">
+                        <a class="menuItem" href="@routes.HomeController.admin()">Dashboard</a>
+                        <a class="menuItem" href="@routes.HomeController.restaurantsAdmin()">Restaurants</a>
+                        <a class="menuItem" href="@routes.HomeController.locationsAdmin()">Locations</a>
+                        <a class="menuItem" href="@routes.HomeController.categoriesAdmin()">Categories</a>
+                        <a class="menuItem" href="@routes.HomeController.usersAdmin()">Users</a>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12" id="searchPart">
+                        <input type="text" placeholder="Search..." id="searchInput">
+                    </div>
+                </div>
+            </div>
+
+            <div id="homeTableContainer">
+
+            </div>
+
+            <div class="row" id="divsRow">
+                <div class='col-lg-4 col-md-12 col-sm-12' id="rowEl1">
+                    <div class="infoDivs" id="el1">
+                        <p class="number"></p>
+                        <p class="textBelowNumber">Restaurants</p>
+                        <input type="submit" class="addButton" value="Add Restaurant" onclick="window.location.assign('http://localhost:9000/admin/restaurants/add')"/>
+                    </div>
+                </div>
+                <div class='col-lg-4 col-md-12 col-sm-12' id="rowEl2">
+                    <div class="infoDivs" id="el1">
+                        <p class="number"></p>
+                        <p class="textBelowNumber">Locations</p>
+                        <input type="submit" class="addButton" value="Add Location" onclick="window.location.assign('http://localhost:9000/admin/locations/add')"/>
+                    </div>
+                </div>
+                <div class='col-lg-4 col-md-12 col-sm-12' id="rowEl3">
+                    <div class="infoDivs" id="el1">
+                        <p class="number"></p>
+                        <p class="textBelowNumber">Users</p>
+                        <input type="submit" class="addButton" value="Add New User" onclick="window.location.assign('http://localhost:9000/admin/users/add')"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @footer()
+
+        <script>
+            $("#searchInput").on('keyup paste', function(){
+                var currentRequest = null;
+
+                var query = $("#searchInput").val();
+
+                if(query!=""){
+                    $("#homeTableContainer").empty();
+                    var table = "<div class='table-responsive' id='tableContainer' style='height:800px; overflow-y: scroll;'>" +
+                                            "<table class='table table-bordered' id='dataTable'>" +
+                                            "<col width='90%'>" +
+                                            "<col width='10%'>" +
+                                            "<thead><tr><th id='tableTitle'>Name</th><th></th></tr></thead>" +
+                                            "<tbody id='data'></tbody></table></div>";
+                    document.getElementById("homeTableContainer").innerHTML += table;
+                    $("#divsRow").hide();
+                }
+
+                else{
+                    $("#homeTableContainer").empty();
+                    $("#divsRow").show();
+                }
+
+                currentRequest = $.ajax({
+                    url: 'http://localhost:8080/search/get',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({query: query}),
+                    beforeSend : function()    {
+                        if(currentRequest != null) {
+                            currentRequest.abort();
+                        }
+                    },
+                    complete:function(response){
+                        $("#data").empty();
+                        var res = response["responseJSON"];
+                        console.log(res);
+                        for(var i=0; i<res.length; i++){
+                            var data = "<tr><td>" + res[i]["name"] + "</td>";
+                            var buttons = "<td>" +
+                                    "<input type=\"submit\" id='editButton' value=\"\" onclick='edit()'/>" +
+                                    "<input type=\"submit\" id='deleteButton' value=\"\"/>" +
+                                    "</td></tr>";
+                            document.getElementById('data').innerHTML += data + buttons;
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            function highlightCurrent() {
+                const curPage = document.URL;
+                const links = document.getElementsByTagName('a');
+                for (let link of links) {
+                    if (link.href == curPage) {
+                        link.classList.add("current");
+                    }
+                }
+            }
+
+            $('document').ready(function(){
+                var rests;
+                var locs;
+                var users;
+                $.ajax({
+                    url: 'http://localhost:8080/restaurants/count',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(response){
+                        console.log(response);
+                        rests=response;
+                        console.log(rests);
+                    }
+                });
+                $.ajax({
+                    url: 'http://localhost:8080/cities/count',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(response){
+                        locs=response;
+                    }
+                });
+                $.ajax({
+                    url: 'http://localhost:8080/users/count',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(response){
+                        users=response;
+                    }
+                });
+                $( document ).ajaxStop(function() {
+                    var divsList = document.getElementsByClassName("infoDivs");
+                    $(".number").text("");
+                    for(var i=0; i<divsList.length; i++){
+                        var elems = divsList[i].getElementsByTagName("*");
+                        console.log(rests + locs + users);
+                        if(i==0) elems[0].append(rests);
+                        else if(i==1) elems[0].append(locs);
+                        else elems[0].append(users);
+                    }
+                });
+                highlightCurrent();
+                document.getElementById("orangeLink").innerText = "Admin";
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/homeAdmin.css")'>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/addRestaurantAdmin.css")">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div class="header">
+        @headerSignup()
+        </div>
+
+        <div id="mainContent">
+            <div id="adminSearch">
+                <div class="row" id="adminContainer">
+                    <div class="col-lg-12 col-md-12 col-sm-12" id="adminMenu">
+                        <a class="menuItem" href="@routes.HomeController.admin()">Dashboard</a>
+                        <a class="menuItem" href="@routes.HomeController.restaurantsAdmin()">Restaurants</a>
+                        <a class="menuItem" href="@routes.HomeController.locationsAdmin()">Locations</a>
+                        <a class="menuItem" href="@routes.HomeController.categoriesAdmin()">Categories</a>
+                        <a class="menuItem" href="@routes.HomeController.usersAdmin()">Users</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="miniToolbar" class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12" id="adminMenu">
+                    <a class="menuItem link" href="@routes.HomeController.addRestaurantAdmin()">Basic Details</a>
+                    <a class="menuItem link" href="@routes.HomeController.addMenuAdmin()">Menu</a>
+                    <a class="menuItem link" href="#">Gallery</a>
+                    <a class="menuItem link" href="@routes.HomeController.addTableAdmin()">Tables</a>
+                </div>
+            </div>
+            <div id="userDataContainer" class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12" id="leftSide">
+                    <p id="titleSide"></p>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12" id="rightSide">
+
+                </div>
+            </div>
+        </div>
+        @footer()
+        <script>
+            function highlightCurrent() {
+                const curPage = document.URL;
+                const links = document.getElementsByClassName('link');
+                for (let link of links) {
+                    if (link.href == curPage) {
+                        link.classList.add("current");
+                    }
+                }
+            }
+        </script>
+
+        <script>
+        $('document').ready(function(){
+            document.getElementById("orangeLink").innerText = "Admin";
+            highlightCurrent();
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/homeAdmin.css")'>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/addRestaurantAdmin.css")">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div class="header">
+        @headerSignup()
+        </div>
+
+        <div id="mainContent">
+            <div id="adminSearch">
+                <div class="row" id="adminContainer">
+                    <div class="col-lg-12 col-md-12 col-sm-12" id="adminMenu">
+                        <a class="menuItem" href="@routes.HomeController.admin()">Dashboard</a>
+                        <a class="menuItem" href="@routes.HomeController.restaurantsAdmin()">Restaurants</a>
+                        <a class="menuItem" href="@routes.HomeController.locationsAdmin()">Locations</a>
+                        <a class="menuItem" href="@routes.HomeController.categoriesAdmin()">Categories</a>
+                        <a class="menuItem" href="@routes.HomeController.usersAdmin()">Users</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="miniToolbar" class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12" id="adminMenu">
+                    <a class="menuItem link" href="@routes.HomeController.addRestaurantAdmin()">Basic Details</a>
+                    <a class="menuItem link" href="#">Menu</a>
+                    <a class="menuItem link" href="#">Gallery</a>
+                    <a class="menuItem link" href="@routes.HomeController.addTableAdmin()">Tables</a>
+                </div>
+            </div>
+            <div id="userDataContainer" class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12" id="leftSide" style="height:650px; overflow-y: scroll;">
+                    <p id="titleSide">Tables</p>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12" id="rightSide">
+                    <input type="submit" id="addTable" value="Add new table" onclick="addTable()"/>
+                    <div class="row">
+                        <div class='col-lg-6 col-md-6 col-sm-6'>
+                            <input id="cancelRegister" type="submit" value="Cancel" class="cetvrti" onClick="javascript:history.go(-1)">
+                        </div>
+                        <div class='col-lg-6 col-md-6 col-sm-6'>
+                            <input id="submitRegister" type="submit" value="Add Restaurant" class="treci" onclick="validation()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @footer()
+        <script>
+            function addTable(){
+                var rowNum = window.localStorage.getItem("rowNum");
+                rowNum = Number(rowNum) + 1;
+                window.localStorage.setItem("rowNum", rowNum);
+
+                var tableRow="<div class=\"row\" id='tableRow'>" +
+                        "<div class=\"col-lg-1\">" +
+                        "<p id=\"tableNum\">"+rowNum+".</p>" +
+                        "</div>" +
+                        "<div class='col-lg-8 col-md-6 col-sm-6'>" +
+                        "<select id=\"tableType\" class=\"selectCountry\" required>" +
+                        "<option>Select type of table</option>" +
+                        "</select>" +
+                        "</div>" +
+                        "<div class='col-lg-3 col-md-6 col-sm-6 lastPart'>" +
+                        "<input type=\"number\" id=\"inputAmmount\" placeholder=\"Ammount\"/>" +
+                        "</div>" +
+                        "</div>";
+
+                document.getElementById("leftSide").innerHTML += tableRow;
+            }
+        </script>
+
+        <script>
+            function highlightCurrent() {
+                const curPage = document.URL;
+                const links = document.getElementsByClassName('link');
+                for (let link of links) {
+                    if (link.href == curPage) {
+                        link.classList.add("current");
+                    }
+                }
+            }
+        </script>
+
+        <script>
+        $('document').ready(function(){
+            document.getElementById("orangeLink").innerText = "Admin";
+            highlightCurrent();
+            $("#cancelRegister").css("margin-top", "574px");
+            $("#submitRegister").css("margin-top", "574px");
+            window.localStorage.setItem("rowNum", 0);
+        });
+    </script>
+    </body>
+</html>
