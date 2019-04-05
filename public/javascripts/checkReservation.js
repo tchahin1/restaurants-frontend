@@ -10,8 +10,6 @@ function checkReservation(restname) {
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", token);
         },
-        success: function (response) {
-        },
         complete: function (response) {
             if(response!=null && token!=null && response.status != 200){
                 var res = response["responseJSON"];

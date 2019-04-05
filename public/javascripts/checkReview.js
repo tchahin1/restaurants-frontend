@@ -11,8 +11,6 @@ function checkReview() {
         beforeSend: function (xhr) {
             xhr.setRequestHeader ("Authorization", token);
         },
-        success: function (response) {
-        },
         complete: function (response) {
             if(response!=null && token!=null && response.status!=200 && response["responseJSON"]!=null) {
                 $("#ratedYet").text("Your review: " + response["responseJSON"]["rating"] + "/5");
