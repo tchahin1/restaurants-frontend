@@ -20,12 +20,12 @@ public class AuthController extends Controller{
 
         if (login!=null) return ok(Json.toJson(login));
 
-        else return ok("Register");
+        else return badRequest("Register");
     }
 
     public Result register(String name, String last_name, String email, String phone_num, String country, String city, String password){
         JsonNode reg = authService.register(name, last_name, email, phone_num, country, city, password);
         if(reg!=null) return ok(Json.toJson(reg));
-        return ok("Already exists");
+        return badRequest("Already exists");
     }
 }

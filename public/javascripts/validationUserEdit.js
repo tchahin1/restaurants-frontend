@@ -31,12 +31,10 @@ function validation (){
     if(city != "Select City") testCity = true;
 
     if(testName) errorName.text("");
-    if(testName) errorLName.text("");
-    if(testName) errorMail.text("");
-    if(testName) errorPhone.text("");
-    if(testName) errorPass.text("");
-    if(testName) errorConf.text("");
-    if(testName) errorSelect.text("");
+    if(testLName) errorLName.text("");
+    if(testEmail) errorMail.text("");
+    if(testNum) errorPhone.text("");
+    if(testCountry || testCity) errorSelect.text("");
     if(testName && testNum && testLName && testEmail && testCountry && testCity){
         register();
     }

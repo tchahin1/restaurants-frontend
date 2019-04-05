@@ -1,3 +1,4 @@
+@(restaurantName: String)
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +32,7 @@
                     <a class="menuItem link" href="@routes.HomeController.addRestaurantAdmin()">Basic Details</a>
                     <a class="menuItem link" href="#">Menu</a>
                     <a class="menuItem link" href="#">Gallery</a>
-                    <a class="menuItem link" href="@routes.HomeController.addTableAdmin()">Tables</a>
+                    <a class="menuItem link" href="@routes.HomeController.editTableAdmin()">Tables</a>
                 </div>
             </div>
             <div id="userDataContainer" class="row">
@@ -49,7 +50,7 @@
                         <option value="4">4</option>
                     </select>
                     <p id="titleSide">Name</p>
-                    <input type="text" id="inputRestaurantName"/>
+                    <input type="text" id="inputRestaurantName" value="@restaurantName"/>
                     <p id="titleSide">Description</p>
                     <textarea id="descriptionRestaurant"></textarea>
                 </div>
@@ -79,7 +80,7 @@
                             <input id="cancelRegister" type="submit" value="Cancel" class="cetvrti" onClick="javascript:history.go(-1)">
                         </div>
                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                            <button type="button" id="submitRegister" class="treci" onclick="validation()">Add Restaurant</button>
+                            <button type="button" id="submitRegister" class="treci" onclick="validation()">Save Changes</button>
                         </div>
                     </div>
                 </div>
@@ -88,23 +89,8 @@
         @footer()
 
         <script>
-            /*$("#submitRegister").click(function(event){
-                event.preventDefault();
-                save();
-            });*/
             function validation(){
-                var logoSrc = $("#logo").prop('src');
-                var coverSrc = $("#cover").attr('src');
-                var pricing = $("#pricing option:selected").val();
-                var name = $("#inputRestaurantName").val();
-                var description = $("#descriptionRestaurant").text();
-                var category = $("#country option:selected").text();
-                var location = $("#city option:selected").val();
-                var address = window.localStorage.getItem("address");
-                if(logoSrc=="" || coverSrc=="" || pricing==undefined || name=="" || description=="" || category=="Choose Category" || location==undefined || address==undefined){
-
-                }
-                else save();
+                save();
             }
         </script>
 
@@ -114,13 +100,12 @@
                 var coverSrc = $("#cover").attr('src');
                 var pricing = $("#pricing option:selected").val();
                 var name = $("#inputRestaurantName").val();
-                var description = $("#descriptionRestaurant").text();
+                var description = $("#descriptionRestaurant").val();
                 var category = $("#country option:selected").text();
                 var location = $("#city option:selected").val();
                 var address = window.localStorage.getItem("address");
-                console.log(address);
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/save',
+                    url: 'http://localhost:8080/restaurants/edit',
                     type: 'post',
                     dataType: 'json',
                     data: jQuery.param({
@@ -155,14 +140,12 @@
                                     }),
                                     complete: function (response) {
                                         if(response.status != 200){
-                                            console.log("NE VALJA");
                                             $( ".taken" ).show();
                                             setTimeout(function() {
                                                 $( ".taken" ).hide();
                                             }, 2000);
                                         }
                                         else{
-                                            console.log("USPJEEEH");
                                             $("#name").val("");
                                             $( ".successful" ).show();
                                             setTimeout(function() {
@@ -205,35 +188,43 @@
             function myMap(city) {
                 var geocoder = new google.maps.Geocoder();
                 var map = null;
+                var zoom = 8;
+                setTimeout(function(){
+                    var address = window.localStorage.getItem("address");
+                    if(city!=undefined || address!=undefined) {
+                        if(city==undefined){
+                            city = address;
+                            zoom = 20;
+                        }
+                        $("#googleMap").show();
+                        $(".removableTitle").show();
+                        $("#cancelRegister").css("margin-top", "77px");
+                        $("#submitRegister").css("margin-top", "77px");
 
-                if(city!=undefined) {
-                    $("#googleMap").show();
-                    $(".removableTitle").show();
-                    $("#cancelRegister").css("margin-top", "77px");
-                    $("#submitRegister").css("margin-top", "77px");
-
-                    if(map==null) {
+                        if(map==null) {
                             map = new google.maps.Map(document.getElementById('googleMap'), {
                                 center: {lat: 0, lng: 0},
-                                zoom: 8
+                                zoom: zoom
                             });
                         }
 
-                    geocoder.geocode({'address': city}, function (results, status) {
-                        if (status === 'OK') {
-                            map.setCenter(results[0].geometry.location);
-                        } else {
-                            alert('Geocode was not successful for the following reason: ' + status);
-                        }
-                    });
-                }
+                        geocoder.geocode({'address': city}, function (results, status) {
+                            if (status === 'OK') {
+                                map.setCenter(results[0].geometry.location);
+                            } else {
+                                alert('Geocode was not successful for the following reason: ' + status);
+                            }
+                        });
+                    }
 
-                else{
-                    $("#googleMap").hide();
-                    $(".removableTitle").hide();
-                    $("#cancelRegister").css("margin-top", "314px");
-                    $("#submitRegister").css("margin-top", "314px");
-                }
+                    else{
+                        $("#googleMap").hide();
+                        $(".removableTitle").hide();
+                        $("#cancelRegister").css("margin-top", "314px");
+                        $("#submitRegister").css("margin-top", "314px");
+                    }
+                }, 1000);
+                var address = window.localStorage.getItem("address");
 
                 var marker;
                 google.maps.event.addListener(map, 'click', function(event) {
@@ -261,34 +252,6 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO5q66s3rtQ8W9iVRRbEfFw1rconKrLno&callback=myMap"></script>
 
-
-        <script>
-                makeblob = function (dataURL) {
-                    var BASE64_MARKER = ';base64,';
-                    if (dataURL.indexOf(BASE64_MARKER) == -1) {
-                        var parts = dataURL.split(',');
-                        var contentType = parts[0].split(':')[1];
-                        var raw = decodeURIComponent(parts[1]);
-                        return new Blob([raw], { type: contentType });
-                    }
-                    var parts = dataURL.split(BASE64_MARKER);
-                    var contentType = parts[0].split(':')[1];
-                    var raw = window.atob(parts[1]);
-                    var rawLength = raw.length;
-
-                    var uInt8Array = new Uint8Array(rawLength);
-
-                    for (var i = 0; i < rawLength; ++i) {
-                        uInt8Array[i] = raw.charCodeAt(i);
-                    }
-
-                    return new Blob([uInt8Array], { type: contentType });
-            }
-            //makeblob('data:image/jpeg;base64,9j/4AAQSkZJRgA..........gAooooAKKKKACiiigD//Z')
-        </script>
-
-
-
         <script>
             function OpenFileBrowserLogo(elem) {
                 $('#fileUploadLogo').click();
@@ -301,7 +264,6 @@
 
                 reader.addEventListener("load", function () {
                     preview.src = reader.result;
-                    //makeblob(reader.result);
                 }, false);
 
                 if (file) {
@@ -351,6 +313,7 @@
         });
 
         $('document').ready(function(){
+            window.localStorage.clear();
             document.getElementById("orangeLink").innerText = "Admin";
             highlightCurrent();
 
@@ -361,10 +324,8 @@
                 success:function(response){
 
                     var len = response.length;
-                    var select = "Choose Location";
 
                     $("#city").empty();
-                    $("#city").append("<option>"+select+"</option>");
                     for( var i = 0; i<len; i++){
                         var id = response[i]['id'];
                         var name = response[i]['name'];
@@ -372,6 +333,9 @@
                         $("#city").append("<option value='"+id+"'>"+name+"</option>");
 
                     }
+
+                    var city = Number(window.localStorage.getItem("cityId"));
+                    $("#city").val(city);
                 }
             });
 
@@ -382,19 +346,66 @@
                 success:function(response){
 
                     var len = response.length;
-                    var select = "Choose Category";
 
                     $("#country").empty();
-                    $("#country").append("<option>"+select+"</option>");
                     for( var i = 0; i<len; i++){
                         var id = response[i]['id'];
                         var name = response[i]['name'];
 
                         $("#country").append("<option value='"+id+"'>"+name+"</option>");
-
                     }
+
+                    var cat = Number(window.localStorage.getItem("catId"));
+                    $("#country").val(cat);
                 }
             });
+
+            var name = $("#inputRestaurantName").val();
+            $.ajax({
+                url: 'http://localhost:8080/restaurants/get/basicDetails',
+                type: 'get',
+                dataType: 'json',
+                data: jQuery.param({name: name}),
+                success:function(response){
+                    window.localStorage.setItem("restaurantId", response["id"]);
+                    $("#descriptionRestaurant").text(response["description"]);
+                    var price = response["pricing"];
+                    $("#pricing").val(price);
+                    var city = response["city"]["id"];
+                    $("#city").val(city);
+                    window.localStorage.setItem("cityId", response["city"]["id"]);
+                    window.localStorage.setItem("address", response["address"]);
+
+                }
+            });
+
+            setTimeout(function(){
+                var id = Number(window.localStorage.getItem("restaurantId"));
+                $.ajax({
+                    url: 'http://localhost:8080/restaurants/get/logo',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({id: id}),
+                    complete:function(response){
+                        var logo = document.getElementById('logo');
+                        logo.src = response["responseJSON"]["logoUrl"];
+                        var cover = document.getElementById('cover');
+                        cover.src= response["responseJSON"]["coverUrl"];
+                    }
+                });
+
+                $.ajax({
+                    url: 'http://localhost:8080/restaurants/get/cousine',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({id: id}),
+                    success:function(response){
+                        var cat = response["id"];
+                        $("#country").val(cat);
+                        window.localStorage.setItem("catId", response["id"]);
+                    }
+                });
+            }, 1000);
         });
     </script>
     </body>

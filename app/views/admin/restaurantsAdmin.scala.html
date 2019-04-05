@@ -79,6 +79,14 @@
         </script>
 
         <script>
+             $(document).on("click", "#editButton", function() {
+                 var row = $(this).parent().parent();
+                 var name = row.children(":first").text();
+                 window.location = '/admin/restaurants/edit?name=' + name;
+             });
+        </script>
+
+        <script>
              $(document).on("click", "#deleteButton", function() {
                  var row = $(this).parent().parent();
                  var name = row.children(":first").text();

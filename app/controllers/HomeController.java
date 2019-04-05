@@ -48,8 +48,6 @@ public class HomeController extends Controller {
 
     public Result addRestaurantAdmin() { return ok(views.html.admin.restaurantAdmin.render()); }
 
-    public Result addMenuAdmin() { return ok(views.html.admin.restaurantMenu.render()); }
-
     public Result addTableAdmin() { return ok(views.html.admin.restaurantTable.render()); }
 
     public Result editUserAdmin(String email) { return ok(views.html.admin.editUserAdmin.render(email)); }
@@ -58,11 +56,9 @@ public class HomeController extends Controller {
 
     public Result editCategoryAdmin(String name) { return ok(views.html.admin.editCategoryAdmin.render(name)); }
 
-    //public Result editRestaurantAdmin(String name) { return ok(views.html.admin.editRestaurantAdmin.render(name)); }
+    public Result editRestaurantAdmin(String name) { return ok(views.html.admin.editRestaurantAdmin.render(name)); }
 
-    //public Result editMenuAdmin() { return ok(views.html.admin.restaurantMenu.render()); }
-
-    //public Result editTableAdmin(String name) { return ok(views.html.admin.restaurantTable.render()); }
+    public Result editTableAdmin() { return ok(views.html.admin.editRestaurantTable.render()); }
 
     //public Result singlePage() { return ok(views.html.single_page.render()); }
 }
