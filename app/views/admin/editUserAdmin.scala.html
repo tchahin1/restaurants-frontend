@@ -30,7 +30,7 @@
 
 
             <div id="userDataContainer">
-                <p id="popUp" class="successful" style="display: none;"> Account successfully created! </p>
+                <p id="popUp" class="successful" style="display: none;"> Account successfully changed! </p>
                 <p id="popUp" class="taken" style="display: none;"> User with that email exists!!! </p>
                 <div class="row">
                     <div class='col-md-12'>
@@ -83,19 +83,20 @@
         @footer()
         <script>
                 function register () {
-                    var id = Number(window.localStorage.getItem("id"));
+                    var id = Number(window.localStorage.getItem("userId"));
                     var name = $('#name').val();
                     var last_name = $('#last_name').val();
                     var email = $('#email').val();
                     var phone_num = $('#phone_num').val();
-                    var country = $('#country :selected').text();
-                    var city = $('#city :selected').text();
+                    var country = $('#country :selected').val();
+                    var city = $('#city :selected').val();
                     $.ajax({
-                        url: 'http://localhost:8080/',
+                        url: 'http://localhost:8080/users/edit',
                         type: 'get',
                         data: jQuery.param({id: id, name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city}),
-                        success:function(response){
-                            if(response == "Already exists"){
+                        complete:function(response){
+                            console.log(response.status);
+                            if(response.status != 200){
                                 $( ".taken" ).show();
                                 setTimeout(function() {
                                     $( ".taken" ).hide();
@@ -195,7 +196,7 @@
                     $("#phone_num").val(number);
                     $("#firstCountryOption").text(country);
                     $("#firstCityOption").text(city);
-                    window.localStorage("id", response["id"])
+                    window.localStorage.setItem("userId", response["id"]);
                     window.localStorage("token", token);
                 }
             });

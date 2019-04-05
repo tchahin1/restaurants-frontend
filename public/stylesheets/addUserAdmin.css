@@ -129,6 +129,25 @@ select{
     margin-left: -10px;
 }
 
+.errorMessage{
+    color: red;
+    margin-left: 30%;
+}
+
+.taken{
+    color: red;
+}
+
+.successful{
+    color: lawngreen;
+}
+
+#popUp{
+    margin-left: 30%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
 @media(max-width: 500px){
     .selectCity{
         width: 86.5%;

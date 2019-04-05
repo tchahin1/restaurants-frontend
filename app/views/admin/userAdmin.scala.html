@@ -104,8 +104,8 @@
                      url: '/auth/register',
                      type: 'get',
                      data: jQuery.param({name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city, password: password}),
-                     success:function(response){
-                         if(response == "Already exists"){
+                     complete:function(response){
+                         if(response.status != 200){
                              $( ".taken" ).show();
                              setTimeout(function() {
                                  $( ".taken" ).hide();

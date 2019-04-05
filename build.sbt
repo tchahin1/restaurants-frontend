@@ -9,3 +9,4 @@ scalaVersion := "2.12.8"
 
 libraryDependencies += guice
 libraryDependencies += ws
+libraryDependencies += "com.cloudinary" % "cloudinary" % "1.0.2"
