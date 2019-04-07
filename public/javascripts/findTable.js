@@ -1,11 +1,14 @@
 var counter = 0;
 
 function findATable(){
-    var peopleNum = $(".selectRes option:selected").text();
+    //var peopleNum = $(".selectRes option:selected").text();
+    var peopleNum = $(".selectRes").val();
     var date = $("#datepicker").val();
     var time = $("#timepicker").val();
 
-    if(peopleNum == "People") {
+    console.log(peopleNum);
+
+    if(peopleNum == "People" || peopleNum == undefined || peopleNum == "") {
         $("#reservationQuery").text("No number of people provided!");
         $("#reservationQuery").css("color", "red");
     }
@@ -19,7 +22,7 @@ function findATable(){
         var type = $(".selectRes option:selected").text();
 
         $.ajax({
-            url: 'https://abh-restaurants-backend.herokuapp.com/tables/restaurant',
+            url: 'http://localhost:8080/tables/restaurant',
             type: 'get',
             data:jQuery.param({name: name, type: type}),
             dataType: 'json',

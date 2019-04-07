@@ -178,5 +178,11 @@ select{
     margin-top: 30px;
 }
 
+.error{
+    margin-top: 20px;
+    margin-left: 44px;
+    color: red;
+}
+
 
 

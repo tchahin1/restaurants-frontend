@@ -32,11 +32,14 @@
                     <a class="menuItem link" href="@routes.HomeController.addRestaurantAdmin()">Basic Details</a>
                     <a class="menuItem link" href="#">Menu</a>
                     <a class="menuItem link" href="#">Gallery</a>
-                    <a class="menuItem link" href="@routes.HomeController.editTableAdmin()">Tables</a>
+                    <a class="menuItem link" onclick="changeTab()">Tables</a>
                 </div>
             </div>
             <div id="userDataContainer" class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12" id="leftSide">
+                    <p id="popUp" class="error" style="display: none;"> All fields must be entered! </p>
+                    <p id="popUp" class="taken" style="display: none;"> This restaurant already exists! </p>
+                    <p id="popUp" class="successful" style="display: none;"> Restaurant successfully added! </p>
                     <p id="titleSide">Add Logo</p>
 
                     <image id="logo" src="" class='img img-responsive img-thumbnail' onclick='return OpenFileBrowserLogo(event)' alt="" style="cursor:pointer;"></image>
@@ -89,8 +92,52 @@
         @footer()
 
         <script>
+            function changeTab(){
+                var logoSrc = $("#logo").prop('src');
+                var coverSrc = $("#cover").attr('src');
+                var pricing = $("#pricing option:selected").val();
+                var name = $("#inputRestaurantName").val();
+                var description = $("#descriptionRestaurant").val();
+                var category = $("#country option:selected").text();
+                var location = $("#city option:selected").val();
+                var address = window.localStorage.getItem("address")
+                if(logoSrc=="" || coverSrc=="" || pricing==undefined || name=="" || description=="" || category=="Choose Category" || location==undefined || address==undefined){
+                    $( ".error" ).show();
+                    setTimeout(function() {
+                        $( ".error" ).hide();
+                    }, 2000);
+                }
+                else {
+                    window.localStorage.setItem("logo", logoSrc);
+                    window.localStorage.setItem("cover", coverSrc);
+                    window.localStorage.setItem("pricing", pricing);
+                    window.localStorage.setItem("name", name);
+                    window.localStorage.setItem("description", description);
+                    window.localStorage.setItem("category", category);
+                    window.localStorage.setItem("location", location);
+                    window.localStorage.setItem("address", address);
+                    window.location.replace("/admin/restaurants/edit/tables");
+                }
+            }
+        </script>
+
+        <script>
             function validation(){
-                save();
+                var logoSrc = $("#logo").prop('src');
+                var coverSrc = $("#cover").attr('src');
+                var pricing = $("#pricing option:selected").val();
+                var name = $("#inputRestaurantName").val();
+                var description = $("#descriptionRestaurant").val();
+                var category = $("#country option:selected").text();
+                var location = $("#city option:selected").val();
+                var address = window.localStorage.getItem("address");
+                if(logoSrc=="" || coverSrc=="" || pricing==undefined || name=="" || description=="" || category=="Choose Category" || location==undefined || address==undefined){
+                    $( ".error" ).show();
+                    setTimeout(function() {
+                        $( ".error" ).hide();
+                    }, 2000);
+                }
+                else save();
             }
         </script>
 
@@ -186,11 +233,13 @@
 
         <script>
             function myMap(city) {
+                console.log("city" + city);
                 var geocoder = new google.maps.Geocoder();
                 var map = null;
                 var zoom = 8;
                 setTimeout(function(){
                     var address = window.localStorage.getItem("address");
+                    console.log("address"+address);
                     if(city!=undefined || address!=undefined) {
                         if(city==undefined){
                             city = address;
@@ -223,31 +272,30 @@
                         $("#cancelRegister").css("margin-top", "314px");
                         $("#submitRegister").css("margin-top", "314px");
                     }
+
+                    var marker;
+                    google.maps.event.addListener(map, 'click', function(event) {
+
+                        placeMarker(event.latLng);
+
+                    });
+                    function placeMarker(location) {
+                        if (marker == null)
+                        {
+                            marker = new google.maps.Marker({
+                                position: location,
+                                map: map
+                            });
+                        }
+                        else
+                        {
+                            marker.setPosition(location);
+                        }
+                        var lat = marker.getPosition().lat();
+                        var lng = marker.getPosition().lng();
+                        geocodeLatLng(geocoder, map, lat, lng);
+                    }
                 }, 1000);
-                var address = window.localStorage.getItem("address");
-
-                var marker;
-                google.maps.event.addListener(map, 'click', function(event) {
-
-                    placeMarker(event.latLng);
-
-                });
-                function placeMarker(location) {
-                    if (marker == null)
-                    {
-                        marker = new google.maps.Marker({
-                            position: location,
-                            map: map
-                        });
-                    }
-                    else
-                    {
-                        marker.setPosition(location);
-                    }
-                    var lat = marker.getPosition().lat();
-                    var lng = marker.getPosition().lng();
-                    geocodeLatLng(geocoder, map, lat, lng);
-                }
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO5q66s3rtQ8W9iVRRbEfFw1rconKrLno&callback=myMap"></script>

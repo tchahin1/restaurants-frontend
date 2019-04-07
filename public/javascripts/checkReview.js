@@ -4,7 +4,7 @@ function checkReview() {
     var restname = $("#restaurantName").text();
 
     $.ajax({
-        url: 'https://abh-restaurants-backend.herokuapp.com/reviews/check',
+        url: 'http://localhost:8080/reviews/check',
         type: 'get',
         dataType: 'json',
         data: jQuery.param({restaurant: restname, user: username}),
@@ -12,6 +12,7 @@ function checkReview() {
             xhr.setRequestHeader ("Authorization", token);
         },
         complete: function (response) {
+            console.log(response);
             if(response!=null && token!=null && response.status!=200 && response["responseJSON"]!=null) {
                 $("#ratedYet").text("Your review: " + response["responseJSON"]["rating"] + "/5");
             }

@@ -36,6 +36,9 @@
             </div>
             <div id="userDataContainer" class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12" id="leftSide" style="height:650px; overflow-y: scroll;">
+                    <p id="popUp" class="error" style="display: none;"> All fields must be entered! </p>
+                    <p id="popUp" class="taken" style="display: none;"> This restaurant already exists! </p>
+                    <p id="popUp" class="successful" style="display: none;"> Restaurant successfully added! </p>
                     <p id="titleSide">Tables</p>
                 </div>
 
@@ -53,6 +56,140 @@
             </div>
         </div>
         @footer()
+
+        <script>
+            $(document).ready(function(){
+                window.localStorage.removeItem("index");
+                $(document).on('change',".selectCountry",function(){
+                    var i = Number(window.localStorage.getItem("index"));
+                    if(i==null){
+                        i=0;
+                        window.localStorage.setItem("index", i);
+                    }
+                    else{
+                        i++;
+                        window.localStorage.setItem("index", i);
+                    }
+                    window.localStorage.setItem(i+"", $(this).val());
+                });
+            });
+        </script>
+
+        <script>
+            function validation(){
+                var error = false;
+                var length=Number(window.localStorage.getItem("rowNum"));
+                for(var i=1; i<=length; i++) {
+                    var cls = "."+i;
+                    if($(cls).val()=="") {
+                        error = true;
+                        break;
+                    }
+                }
+                if(error){
+                    $( ".error" ).show();
+                    setTimeout(function() {
+                        $( ".error" ).hide();
+                    }, 2000);
+                }
+                else save();
+            }
+        </script>
+
+        <script>
+            function save(){
+                console.log("save");
+                var logoSrc = window.localStorage.getItem("logo");
+                var coverSrc = window.localStorage.getItem("cover");
+                var pricing = window.localStorage.getItem("pricing");
+                var name = window.localStorage.getItem("name");
+                var description = window.localStorage.getItem("description");
+                var category = window.localStorage.getItem("category");
+                var location = window.localStorage.getItem("location");
+                var address = window.localStorage.getItem("address");
+                var restId;
+                $.ajax({
+                    url: 'http://localhost:8080/restaurants/save',
+                    type: 'post',
+                    dataType: 'json',
+                    data: jQuery.param({
+                        pricing: pricing,
+                        name: name,
+                        description: description,
+                        category: category,
+                        location: location,
+                        address: address
+                    }),
+                    complete: function (response) {
+                        console.log(response["responseJSON"]["id"]);
+                        var id = response["responseJSON"]["id"];
+                        restId = id;
+                        $.ajax({
+                            url: 'http://localhost:8080/restaurants/saveLogo',
+                            type: 'post',
+                            dataType: 'json',
+                            data: jQuery.param({
+                                pictureUrl: logoSrc,
+                                id: id
+                            }),
+                            complete: function (response1) {
+                                console.log(response1);
+                                var id = response1["responseJSON"]["id"];
+                                $.ajax({
+                                    url: 'http://localhost:8080/restaurants/saveCover',
+                                    type: 'post',
+                                    dataType: 'json',
+                                    data: jQuery.param({
+                                        pictureUrl: coverSrc,
+                                        id: id
+                                    }),
+                                    complete: function (response) {
+                                        var typeArray = new Array();
+                                        var length = window.localStorage.getItem("rowNum");
+                                        for(var i=1; i<=length; i++) typeArray.push(window.localStorage.getItem(i+""));
+                                        var ammountArray = new Array();
+                                        for(var i=1; i<=length; i++) {
+                                            var cls = "."+i;
+                                            ammountArray.push($(cls).val());
+                                        }
+                                        $.ajax({
+                                            url: 'http://localhost:8080/restaurants/save/tables',
+                                            type: 'post',
+                                            dataType: 'json',
+                                            traditional: true,
+                                            data: {
+                                                id: restId,
+                                                typeArray: typeArray,
+                                                ammountArray: ammountArray
+                                            },
+                                            complete: function (response) {
+                                                if(response.status != 200){
+                                                    $( ".taken" ).show();
+                                                    setTimeout(function() {
+                                                        $( ".taken" ).hide();
+                                                    }, 2000);
+                                                }
+                                                else{
+                                                    $("#name").val("");
+                                                    $( ".successful" ).show();
+                                                    setTimeout(function() {
+                                                        $( ".successful" ).hide();
+                                                    }, 2000);
+                                                    $(this).delay(2500).queue(function() {
+                                                        $(this).dequeue();
+                                                    });
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+
         <script>
             function addTable(){
                 var rowNum = window.localStorage.getItem("rowNum");
@@ -66,14 +203,21 @@
                         "<div class='col-lg-8 col-md-6 col-sm-6'>" +
                         "<select id=\"tableType\" class=\"selectCountry\" required>" +
                         "<option>Select type of table</option>" +
+                        "<option value='2'>Table for two persons</option>" +
+                        "<option value='3'>Table for three persons</option>" +
+                        "<option value='4'>Table for four persons</option>" +
+                        "<option value='5'>Table for five persons</option>" +
+                        "<option value='6'>Table for six persons</option>" +
+                        "<option value='7'>Table for seven persons</option>" +
+                        "<option value='8'>Table for eight persons</option>" +
                         "</select>" +
                         "</div>" +
                         "<div class='col-lg-3 col-md-6 col-sm-6 lastPart'>" +
-                        "<input type=\"number\" id=\"inputAmmount\" placeholder=\"Ammount\"/>" +
+                        "<input type=\"number\" id=\"inputAmmount\" class="+rowNum+" placeholder=\"Ammount\"/>" +
                         "</div>" +
                         "</div>";
 
-                document.getElementById("leftSide").innerHTML += tableRow;
+                document.getElementById("leftSide").insertAdjacentHTML("beforeend", tableRow);
             }
         </script>
 

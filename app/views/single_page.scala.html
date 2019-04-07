@@ -34,7 +34,7 @@
 
                     var name = $("#restaurantName").text();
                     $.ajax({
-                        url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/name',
+                        url: 'http://localhost:8080/restaurants/name',
                         type: 'get',
                         data: jQuery.param({name: name}),
                         success:function(response){
@@ -86,39 +86,6 @@
                     var name = $("#restaurantName").text();
                     checkReview();
                     checkReservation(name);
-
-                    $.ajax({
-                        url: 'https://abh-restaurants-backend.herokuapp.com/tables/type',
-                        type: 'get',
-                        data:jQuery.param({name: name}),
-                        dataType: 'json',
-                        success:function(responses){
-                            var len = responses.length;
-                            var select = "People";
-
-                            var response= [];
-                            var has=false;
-
-                            for(var i=0; i<len; i++){
-                                for(var j=0; j<i; j++){
-                                    if(responses[i]['type']==responses[j]['type']){
-                                        var has=true;
-                                        break;
-                                    }
-                                }
-                                if(!has) response.push(responses[i]['type']);
-                                has=false;
-                            }
-                            $("#country").empty();
-                            $("#country").append("<option>"+select+"</option>");
-                            for( var i = 0; i<response.length; i++){
-                                var type = response[i];
-
-                                $("#country").append("<option>"+type+"</option>");
-
-                            }
-                        }
-                    });
                 });
         </script>
         <script src="@routes.Assets.at("javascripts/checkReview.js")"></script>
@@ -201,7 +168,7 @@
                 /*https://abh-restaurants-backend.herokuapp.com*/
 
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/reservations',
+                    url: 'http://localhost:8080/reservations',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({
@@ -242,7 +209,7 @@
                 var type = $(".selectRes option:selected").text();
 
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/reservations/save/time',
+                    url: 'http://localhost:8080/reservations/save/time',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({
@@ -294,9 +261,10 @@
                 <a id="reserve"></a>
                 <p id="paragraphs">Make a free reservation</p>
                 <div class="reservationProcess">
-                    <select id="country" class="selectRes" required>
+                    <!--select id="country" class="selectRes" required>
                         <option>People</option>
-                    </select>
+                    </select-->
+                    <input type="number" id="country" class="selectRes" placeholder="People"/>
                     @datePicker()
                     @timePicker()
                     <input type="button" id="find" value="Find a table" onclick="findATable()">

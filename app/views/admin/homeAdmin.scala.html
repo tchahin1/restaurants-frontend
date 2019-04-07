@@ -121,6 +121,9 @@
             }
 
             $('document').ready(function(){
+                var username = window.localStorage.getItem("username");
+                var token = window.localStorage.getItem("token");
+                window.localStorage.clear();
                 var rests;
                 var locs;
                 var users;
@@ -163,6 +166,8 @@
                 });
                 highlightCurrent();
                 document.getElementById("orangeLink").innerText = "Admin";
+                window.localStorage.setItem("username", username);
+                window.localStorage.setItem("token", token);
             });
         </script>
     </body>

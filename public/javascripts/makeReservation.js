@@ -4,7 +4,8 @@ function makeReservation(){
     var time = $("#timepicker").val();
     var username = window.localStorage.getItem("username");
     var restaurant = $("#restaurantName").text();
-    var type = $(".selectRes option:selected").text();
+    //var type = $(".selectRes option:selected").text();
+    var type = $(".selectRes").val();
 
     if(token!=null) {
         console.log(date);
@@ -13,7 +14,7 @@ function makeReservation(){
         console.log(restaurant);
         console.log(type);
         $.ajax({
-            url: 'https://abh-restaurants-backend.herokuapp.com/reservations/check/table',
+            url: 'http://localhost:8080/reservations/check/table',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({date: date, time: time, username: username, restaurant: restaurant, type: type}),

@@ -48,7 +48,7 @@
             $(document).ready(function(){
 
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/countries/all',
+                    url: 'http://localhost:8080/countries/all',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
@@ -83,7 +83,7 @@
                     var select = "Select City";
 
                     $.ajax({
-                        url: 'https://abh-restaurants-backend.herokuapp.com/cities/country',
+                        url: 'http://localhost:8080/cities/country',
                         type: 'post',
                         data: JSON.stringify(json),
                         contentType: 'application/json',
