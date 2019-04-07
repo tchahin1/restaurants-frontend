@@ -338,6 +338,11 @@ select{
     color: red;
 }
 
+.selectRes{
+    width: 23.5%;
+    height: 40px;
+}
+
 @media only screen and (max-width: 347px){
     .restaurantPicture{
         background-color: white;

@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <input type="submit" id="addCategoryButton" value="Add Category" onclick="window.location.assign('http://localhost:9000/admin/categories/add')"/>
+            <input type="submit" id="addCategoryButton" value="Add Category" onclick="window.location.assign('/admin/categories/add')"/>
             <div class="table-responsive categoryTable" id="tableContainer" style="height:800px; overflow-y: scroll;">
                 <table class="table table-bordered" id="dataTable">
                     <col width="90%">
@@ -53,7 +53,7 @@
                 var name = $("#searchInput").val();
 
                 currentRequest = $.ajax({
-                    url: 'http://localhost:8080/cousines/get/search',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cousines/get/search',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({name: name}),
@@ -95,7 +95,7 @@
 
             function del(name){
                 $.ajax({
-                    url: 'http://localhost:8080/cousines/delete',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cousines/delete',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({name: name}),
@@ -110,7 +110,7 @@
             $('document').ready(function(){
                 $("#tableTitle").text("Name");
                 $.ajax({
-                    url: 'http://localhost:8080/cousines/all',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cousines/all',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){

@@ -4,7 +4,8 @@ function makeReservation(){
     var time = $("#timepicker").val();
     var username = window.localStorage.getItem("username");
     var restaurant = $("#restaurantName").text();
-    var type = $(".selectRes option:selected").text();
+    //var type = $(".selectRes option:selected").text();
+    var type = $(".selectRes").val();
 
     if(token!=null) {
         console.log(date);
