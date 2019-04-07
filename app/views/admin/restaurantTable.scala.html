@@ -109,7 +109,7 @@
                 var address = window.localStorage.getItem("address");
                 var restId;
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/save',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save',
                     type: 'post',
                     dataType: 'json',
                     data: jQuery.param({
@@ -125,7 +125,7 @@
                         var id = response["responseJSON"]["id"];
                         restId = id;
                         $.ajax({
-                            url: 'http://localhost:8080/restaurants/saveLogo',
+                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveLogo',
                             type: 'post',
                             dataType: 'json',
                             data: jQuery.param({
@@ -136,7 +136,7 @@
                                 console.log(response1);
                                 var id = response1["responseJSON"]["id"];
                                 $.ajax({
-                                    url: 'http://localhost:8080/restaurants/saveCover',
+                                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveCover',
                                     type: 'post',
                                     dataType: 'json',
                                     data: jQuery.param({
@@ -153,7 +153,7 @@
                                             ammountArray.push($(cls).val());
                                         }
                                         $.ajax({
-                                            url: 'http://localhost:8080/restaurants/save/tables',
+                                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save/tables',
                                             type: 'post',
                                             dataType: 'json',
                                             traditional: true,

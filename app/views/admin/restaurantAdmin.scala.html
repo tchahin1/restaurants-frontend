@@ -153,7 +153,7 @@
                 var address = window.localStorage.getItem("address");
                 console.log(address);
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/save',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save',
                     type: 'post',
                     dataType: 'json',
                     data: jQuery.param({
@@ -168,7 +168,7 @@
                         console.log(response["responseJSON"]["id"]);
                         var id = response["responseJSON"]["id"];
                         $.ajax({
-                            url: 'http://localhost:8080/restaurants/saveLogo',
+                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveLogo',
                             type: 'post',
                             dataType: 'json',
                             data: jQuery.param({
@@ -179,7 +179,7 @@
                                 console.log(response1);
                                 var id = response1["responseJSON"]["id"];
                                 $.ajax({
-                                    url: 'http://localhost:8080/restaurants/saveCover',
+                                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveCover',
                                     type: 'post',
                                     dataType: 'json',
                                     data: jQuery.param({
@@ -388,7 +388,7 @@
             highlightCurrent();
 
             $.ajax({
-                url: 'http://localhost:8080/cities/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cities/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){
@@ -409,7 +409,7 @@
             });
 
             $.ajax({
-                url: 'http://localhost:8080/cousines/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cousines/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){

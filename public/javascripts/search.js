@@ -3,7 +3,7 @@ function search() {
     console.log(query);
 
     $.ajax({
-        url: 'http://localhost:9000/search',
+        url: '/search',    //frontend url
         type: 'get',
         dataType: 'json',
         data: jQuery.param({name: query}),

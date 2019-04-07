@@ -152,7 +152,7 @@
                 var location = $("#city option:selected").val();
                 var address = window.localStorage.getItem("address");
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/edit',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/edit',
                     type: 'post',
                     dataType: 'json',
                     data: jQuery.param({
@@ -167,7 +167,7 @@
                         console.log(response["responseJSON"]["id"]);
                         var id = response["responseJSON"]["id"];
                         $.ajax({
-                            url: 'http://localhost:8080/restaurants/saveLogo',
+                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveLogo',
                             type: 'post',
                             dataType: 'json',
                             data: jQuery.param({
@@ -178,7 +178,7 @@
                                 console.log(response1);
                                 var id = response1["responseJSON"]["id"];
                                 $.ajax({
-                                    url: 'http://localhost:8080/restaurants/saveCover',
+                                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveCover',
                                     type: 'post',
                                     dataType: 'json',
                                     data: jQuery.param({
@@ -366,7 +366,7 @@
             highlightCurrent();
 
             $.ajax({
-                url: 'http://localhost:8080/cities/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cities/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){
@@ -388,7 +388,7 @@
             });
 
             $.ajax({
-                url: 'http://localhost:8080/cousines/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cousines/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){
@@ -410,7 +410,7 @@
 
             var name = $("#inputRestaurantName").val();
             $.ajax({
-                url: 'http://localhost:8080/restaurants/get/basicDetails',
+                url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/get/basicDetails',
                 type: 'get',
                 dataType: 'json',
                 data: jQuery.param({name: name}),
@@ -430,7 +430,7 @@
             setTimeout(function(){
                 var id = Number(window.localStorage.getItem("restaurantId"));
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/get/logo',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/get/logo',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({id: id}),
@@ -443,7 +443,7 @@
                 });
 
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/get/cousine',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/get/cousine',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({id: id}),

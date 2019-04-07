@@ -229,7 +229,7 @@ $(document).ready(function(){
 
     else if(number>0 && query!=""){
         $.ajax({
-            url: 'http://localhost:9000/search/page',
+            url: '/search/page',    //frontend url
             type: 'get',
             dataType: 'json',
             data: jQuery.param({name: query, pageNum: number}),
