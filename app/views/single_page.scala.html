@@ -164,7 +164,7 @@
                 var time = $("#timepicker").val();
                 var username = window.localStorage.getItem("username");
                 var restaurant = $("#restaurantName").text();
-                var type = $(".selectRes option:selected").text();
+                var type = $(".selectRes").val();
                 /*https://abh-restaurants-backend.herokuapp.com*/
 
                 $.ajax({
@@ -206,7 +206,7 @@
                 var timeFrom = $("#timepicker").val();
                 var username = window.localStorage.getItem("username");
                 var restaurant = $("#restaurantName").text();
-                var type = $(".selectRes option:selected").text();
+                var type = $(".selectRes").val();
 
                 $.ajax({
                     url: 'http://localhost:8080/reservations/save/time',

@@ -19,7 +19,7 @@ function findATable(){
         $("#reservationQuery").text("Availability on " + date + " around " + time + " for " + peopleNum + " people:");
 
         var name = $("#restaurantName").text();
-        var type = $(".selectRes option:selected").text();
+        var type = $(".selectRes").val();;
 
         $.ajax({
             url: 'http://localhost:8080/tables/restaurant',
@@ -27,6 +27,7 @@ function findATable(){
             data:jQuery.param({name: name, type: type}),
             dataType: 'json',
             success:function(response){
+                console.log(response);
                 $("#tablesLeft").text("");
                 $("#tablesLeft").css("color", "gray");
                 if(response == 1) $("#tablesLeft").append(response + " table left!");
