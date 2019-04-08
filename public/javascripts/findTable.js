@@ -19,7 +19,7 @@ function findATable(){
         $("#reservationQuery").text("Availability on " + date + " around " + time + " for " + peopleNum + " people:");
 
         var name = $("#restaurantName").text();
-        var type = $(".selectRes option:selected").text();
+        var type = $(".selectRes").val();
 
         $.ajax({
             url: 'https://abh-restaurants-backend.herokuapp.com/tables/restaurant',
