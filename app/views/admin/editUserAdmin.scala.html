@@ -91,7 +91,7 @@
                     var country = $('#country :selected').val();
                     var city = $('#city :selected').val();
                     $.ajax({
-                        url: 'http://localhost:8080/users/edit',
+                        url: 'https://abh-restaurants-backend.herokuapp.com/users/edit',
                         type: 'get',
                         data: jQuery.param({id: id, name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city}),
                         complete:function(response){
@@ -125,11 +125,12 @@
             document.getElementById("orangeLink").innerText = "Admin";
 
             $.ajax({
-                url: 'http://localhost:8080/countries/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/countries/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){
 
+                    console.log(1);
                     var len = response.length;
                     var select = "Select Country";
 
@@ -156,13 +157,12 @@
                 var select = "Select City";
 
                 $.ajax({
-                    url: 'http://localhost:8080/cities/country',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cities/country',
                     type: 'post',
                     data: JSON.stringify(json),
                     contentType: 'application/json',
                     dataType: 'json',
                     success:function(response){
-
                         var len = response.length;
 
                         $("#city").empty();
@@ -180,24 +180,34 @@
 
             var email = $("#email").val();
             $.ajax({
-                url: 'http://localhost:8080/users/get',
+                url: 'https://abh-restaurants-backend.herokuapp.com/users/get',
                 type: 'get',
                 dataType: 'json',
                 data: jQuery.param({email: email}),
                 success:function(response){
                     console.log(response);
+                    console.log(3);
                     var name = response["name"];
                     var lname = response["lastName"];
                     var number = response["phoneNumber"];
-                    var country = response["country"]["name"];
-                    var city = response["city"]["name"];;
+                    var country = null;
+                    if(response["country"]!=null) country = response["country"]["name"];
+                    var city = null;
+                    if(response["city"]!=null) city = response["city"]["name"];
                     $("#last_name").val(lname);
                     $("#name").val(name);
                     $("#phone_num").val(number);
-                    $("#firstCountryOption").text(country);
-                    $("#firstCityOption").text(city);
+                    if(country != null) {
+                        $("#firstCountryOption").text(country);
+                        $("#country").val(response["country"]["id"]);
+                        console.log(response["country"]["id"]);
+                        //window.localStorage.setItem("countryId", response["country"]["id"]);
+                    }
+                    else $("#firstCountryOption").text("Select Country");
+                    if(city != null) $("#firstCityOption").text(city);
+                    else $("#firstCityOption").text("Select City");
                     window.localStorage.setItem("userId", response["id"]);
-                    window.localStorage("token", token);
+                    window.localStorage.setItem("token", token);
                 }
             });
         });

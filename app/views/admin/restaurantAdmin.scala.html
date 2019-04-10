@@ -147,13 +147,16 @@
                 var coverSrc = $("#cover").attr('src');
                 var pricing = $("#pricing option:selected").val();
                 var name = $("#inputRestaurantName").val();
-                var description = $("#descriptionRestaurant").text();
+                var description = $("#descriptionRestaurant").val();
                 var category = $("#country option:selected").text();
                 var location = $("#city option:selected").val();
                 var address = window.localStorage.getItem("address");
+                var lat = window.localStorage.getItem("lat");
+                var lng = window.localStorage.getItem("lng");
+                var restaurantId = null;
                 console.log(address);
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/save',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save',
                     type: 'post',
                     dataType: 'json',
                     data: jQuery.param({
@@ -165,10 +168,11 @@
                         address: address
                     }),
                     complete: function (response) {
-                        console.log(response["responseJSON"]["id"]);
+                        console.log(response);
                         var id = response["responseJSON"]["id"];
+                        restaurantId = id;
                         $.ajax({
-                            url: 'http://localhost:8080/restaurants/saveLogo',
+                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveLogo',
                             type: 'post',
                             dataType: 'json',
                             data: jQuery.param({
@@ -179,32 +183,44 @@
                                 console.log(response1);
                                 var id = response1["responseJSON"]["id"];
                                 $.ajax({
-                                    url: 'http://localhost:8080/restaurants/saveCover',
+                                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveCover',
                                     type: 'post',
                                     dataType: 'json',
                                     data: jQuery.param({
                                         pictureUrl: coverSrc,
                                         id: id
                                     }),
-                                    complete: function (response) {
-                                        if(response.status != 200){
-                                            console.log("NE VALJA");
-                                            $( ".taken" ).show();
-                                            setTimeout(function() {
-                                                $( ".taken" ).hide();
-                                            }, 2000);
-                                        }
-                                        else{
-                                            console.log("USPJEEEH");
-                                            $("#name").val("");
-                                            $( ".successful" ).show();
-                                            setTimeout(function() {
-                                                $( ".successful" ).hide();
-                                            }, 2000);
-                                            $(this).delay(2500).queue(function() {
-                                                $(this).dequeue();
-                                            });
-                                        }
+                                    complete: function (response2) {
+                                        $.ajax({
+                                            url: 'https://abh-restaurants-backend.herokuapp.com/locations/save',
+                                            type: 'post',
+                                            dataType: 'json',
+                                            data: jQuery.param({
+                                                lat: lat,
+                                                lng: lng,
+                                                id: restaurantId
+                                            }),
+                                            complete: function (response3) {
+                                                if(response3.status != 200){
+                                                    console.log("NE VALJA");
+                                                    $( ".taken" ).show();
+                                                    setTimeout(function() {
+                                                        $( ".taken" ).hide();
+                                                    }, 2000);
+                                                }
+                                                else{
+                                                    console.log("USPJEEEH");
+                                                    $("#name").val("");
+                                                    $( ".successful" ).show();
+                                                    setTimeout(function() {
+                                                        $( ".successful" ).hide();
+                                                    }, 2000);
+                                                    $(this).delay(2500).queue(function() {
+                                                        $(this).dequeue();
+                                                    });
+                                                }
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -289,6 +305,8 @@
                     var lat = marker.getPosition().lat();
                     var lng = marker.getPosition().lng();
                     geocodeLatLng(geocoder, map, lat, lng);
+                    window.localStorage.setItem("lat", lat);
+                    window.localStorage.setItem("lng", lng);
                 }
             }
         </script>
@@ -388,7 +406,7 @@
             highlightCurrent();
 
             $.ajax({
-                url: 'http://localhost:8080/cities/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cities/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){
@@ -409,7 +427,7 @@
             });
 
             $.ajax({
-                url: 'http://localhost:8080/cousines/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cousines/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){

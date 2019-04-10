@@ -38,21 +38,21 @@
                     <div class="infoDivs" id="el1">
                         <p class="number"></p>
                         <p class="textBelowNumber">Restaurants</p>
-                        <input type="submit" class="addButton" value="Add Restaurant" onclick="window.location.assign('http://localhost:9000/admin/restaurants/add')"/>
+                        <input type="submit" class="addButton" value="Add Restaurant" onclick="window.location.assign('https://abh-restaurants-frontend.herokuapp.com/admin/restaurants/add')"/>
                     </div>
                 </div>
                 <div class='col-lg-4 col-md-12 col-sm-12' id="rowEl2">
                     <div class="infoDivs" id="el1">
                         <p class="number"></p>
                         <p class="textBelowNumber">Locations</p>
-                        <input type="submit" class="addButton" value="Add Location" onclick="window.location.assign('http://localhost:9000/admin/locations/add')"/>
+                        <input type="submit" class="addButton" value="Add Location" onclick="window.location.assign('https://abh-restaurants-frontend.herokuapp.com/admin/locations/add')"/>
                     </div>
                 </div>
                 <div class='col-lg-4 col-md-12 col-sm-12' id="rowEl3">
                     <div class="infoDivs" id="el1">
                         <p class="number"></p>
                         <p class="textBelowNumber">Users</p>
-                        <input type="submit" class="addButton" value="Add New User" onclick="window.location.assign('http://localhost:9000/admin/users/add')"/>
+                        <input type="submit" class="addButton" value="Add New User" onclick="window.location.assign('https://abh-restaurants-frontend.herokuapp.com/admin/users/add')"/>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 }
 
                 currentRequest = $.ajax({
-                    url: 'http://localhost:8080/search/get',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/search/get',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({query: query}),
@@ -128,7 +128,7 @@
                 var locs;
                 var users;
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/count',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/count',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
@@ -138,7 +138,7 @@
                     }
                 });
                 $.ajax({
-                    url: 'http://localhost:8080/cities/count',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cities/count',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
@@ -146,7 +146,7 @@
                     }
                 });
                 $.ajax({
-                    url: 'http://localhost:8080/users/count',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/users/count',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){

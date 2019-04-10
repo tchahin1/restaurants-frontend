@@ -3,12 +3,15 @@ function search() {
     console.log(query);
 
     $.ajax({
-        url: 'http://localhost:9000/search',
+        url: 'https://abh-restaurants-frontend.herokuapp.com/search',
         type: 'get',
         dataType: 'json',
         data: jQuery.param({name: query}),
         success: function (response) {
             console.log(response);
+
+            sortFunction(response);
+
             for( var i = 0; i<3; i++){
                 var id = response[i]['id'];
                 var name = response[i]['name'];

@@ -151,8 +151,11 @@
                 var category = $("#country option:selected").text();
                 var location = $("#city option:selected").val();
                 var address = window.localStorage.getItem("address");
+                var lat = window.localStorage.getItem("lat");
+                var lng = window.localStorage.getItem("lng");
+                var restaurantId = null;
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/edit',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/edit',
                     type: 'post',
                     dataType: 'json',
                     data: jQuery.param({
@@ -166,8 +169,9 @@
                     complete: function (response) {
                         console.log(response["responseJSON"]["id"]);
                         var id = response["responseJSON"]["id"];
+                        restaurantId = id;
                         $.ajax({
-                            url: 'http://localhost:8080/restaurants/saveLogo',
+                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveLogo',
                             type: 'post',
                             dataType: 'json',
                             data: jQuery.param({
@@ -178,30 +182,44 @@
                                 console.log(response1);
                                 var id = response1["responseJSON"]["id"];
                                 $.ajax({
-                                    url: 'http://localhost:8080/restaurants/saveCover',
+                                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveCover',
                                     type: 'post',
                                     dataType: 'json',
                                     data: jQuery.param({
                                         pictureUrl: coverSrc,
                                         id: id
                                     }),
-                                    complete: function (response) {
-                                        if(response.status != 200){
-                                            $( ".taken" ).show();
-                                            setTimeout(function() {
-                                                $( ".taken" ).hide();
-                                            }, 2000);
-                                        }
-                                        else{
-                                            $("#name").val("");
-                                            $( ".successful" ).show();
-                                            setTimeout(function() {
-                                                $( ".successful" ).hide();
-                                            }, 2000);
-                                            $(this).delay(2500).queue(function() {
-                                                $(this).dequeue();
-                                            });
-                                        }
+                                    complete: function (response2) {
+                                        $.ajax({
+                                            url: 'https://abh-restaurants-backend.herokuapp.com/locations/edit',
+                                            type: 'post',
+                                            dataType: 'json',
+                                            data: jQuery.param({
+                                                lat: lat,
+                                                lng: lng,
+                                                id: restaurantId
+                                            }),
+                                            complete: function (response3) {
+                                                if(response3.status != 200){
+                                                    console.log("NE VALJA");
+                                                    $( ".taken" ).show();
+                                                    setTimeout(function() {
+                                                        $( ".taken" ).hide();
+                                                    }, 2000);
+                                                }
+                                                else{
+                                                    console.log("USPJEEEH");
+                                                    $("#name").val("");
+                                                    $( ".successful" ).show();
+                                                    setTimeout(function() {
+                                                        $( ".successful" ).hide();
+                                                    }, 2000);
+                                                    $(this).delay(2500).queue(function() {
+                                                        $(this).dequeue();
+                                                    });
+                                                }
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -294,6 +312,8 @@
                         var lat = marker.getPosition().lat();
                         var lng = marker.getPosition().lng();
                         geocodeLatLng(geocoder, map, lat, lng);
+                        window.localStorage.setItem("lat", lat);
+                        window.localStorage.setItem("lng", lng);
                     }
                 }, 1000);
             }
@@ -366,7 +386,7 @@
             highlightCurrent();
 
             $.ajax({
-                url: 'http://localhost:8080/cities/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cities/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){
@@ -383,12 +403,12 @@
                     }
 
                     var city = Number(window.localStorage.getItem("cityId"));
-                    $("#city").val(city);
+                    if(city != 0) $("#city").val(city);
                 }
             });
 
             $.ajax({
-                url: 'http://localhost:8080/cousines/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/cousines/all',
                 type: 'get',
                 dataType: 'json',
                 success:function(response){
@@ -403,14 +423,16 @@
                         $("#country").append("<option value='"+id+"'>"+name+"</option>");
                     }
 
-                    var cat = Number(window.localStorage.getItem("catId"));
-                    $("#country").val(cat);
+                    var cat = null;
+                    if(Number(window.localStorage.getItem("catId"))!=0) cat = Number(window.localStorage.getItem("catId"));
+                    console.log("category" + cat);
+                    if(cat != null) $("#country").val(cat);
                 }
             });
 
             var name = $("#inputRestaurantName").val();
             $.ajax({
-                url: 'http://localhost:8080/restaurants/get/basicDetails',
+                url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/get/basicDetails',
                 type: 'get',
                 dataType: 'json',
                 data: jQuery.param({name: name}),
@@ -419,10 +441,12 @@
                     $("#descriptionRestaurant").text(response["description"]);
                     var price = response["pricing"];
                     $("#pricing").val(price);
-                    var city = response["city"]["id"];
-                    $("#city").val(city);
-                    window.localStorage.setItem("cityId", response["city"]["id"]);
-                    window.localStorage.setItem("address", response["address"]);
+                    var city = null;
+                    if(response["city"]!=null) city = response["city"]["id"];
+                    if(city!=null) $("#city").val(city);
+                    if(city!=null) window.localStorage.setItem("cityId", response["city"]["id"]);
+                    else window.localStorage.setItem("cityId", 0);
+                    if(response["address"]!=null) window.localStorage.setItem("address", response["address"]);
 
                 }
             });
@@ -430,27 +454,30 @@
             setTimeout(function(){
                 var id = Number(window.localStorage.getItem("restaurantId"));
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/get/logo',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/get/logo',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({id: id}),
                     complete:function(response){
                         var logo = document.getElementById('logo');
-                        logo.src = response["responseJSON"]["logoUrl"];
+                        if(response["responseJSON"]["logoUrl"]==null) logo.src = "";
+                        else logo.src = response["responseJSON"]["logoUrl"];
                         var cover = document.getElementById('cover');
-                        cover.src= response["responseJSON"]["coverUrl"];
+                        if(response["responseJSON"]["coverUrl"]==null) cover.src = "";
+                        else cover.src= response["responseJSON"]["coverUrl"];
                     }
                 });
 
                 $.ajax({
-                    url: 'http://localhost:8080/restaurants/get/cousine',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/get/cousine',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({id: id}),
                     success:function(response){
                         var cat = response["id"];
-                        $("#country").val(cat);
-                        window.localStorage.setItem("catId", response["id"]);
+                        //if(cat != null) $("#country").val(cat);
+                        if(cat != null) window.localStorage.setItem("catId", response["id"]);
+                        else window.localStorage.setItem("catId", 0);
                     }
                 });
             }, 1000);
