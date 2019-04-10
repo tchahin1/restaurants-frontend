@@ -9,6 +9,9 @@ function search() {
         data: jQuery.param({name: query}),
         success: function (response) {
             console.log(response);
+
+            sortFunction(response);
+
             for( var i = 0; i<3; i++){
                 var id = response[i]['id'];
                 var name = response[i]['name'];

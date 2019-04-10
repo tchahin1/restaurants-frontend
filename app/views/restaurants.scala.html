@@ -86,22 +86,14 @@
             <div class="searchbox">
                 <form class="searchForm">
                     <input type="text" placeholder="Search for a restaurant..." id="searchQuery">
-                    <select id="sortby" class="selectSort" required>
-                        <option>Sort by</option>
+                    <select id="sortby" class="selectSort" onchange="sortIt()" required>
+                        <option value="0">Sort by</option>
+                        <option value="1">Distance</option>
                     </select>
                     <div class="multiselect">
                         <div class="selectBox" onclick="showCheckboxes()">
                             <select id="filterby" class="selecFilter" required>
                                 <option>Filter by</option>
-                                <!--option value="1">One star</option>
-                                <option value="2">Two stars</option>
-                                <option value="3">Three stars</option>
-                                <option value="4">Four stars</option>
-                                <option value="5">Five stars</option>
-                                <option value="6">Cheap</option>
-                                <option value="7">Mediocre</option>
-                                <option value="8">Expensive</option>
-                                <option value="9">Very expensive</option-->
                             </select>
                             <div class="overSelect"></div>
                             <div id="checkboxes">
@@ -138,6 +130,8 @@
             @locations()
         </div>
         @footer()
+
+        <script src="@routes.Assets.at("javascripts/sorting.js")"></script>
         <script src="@routes.Assets.at("javascripts/loadPage.js")"></script>
         <script>
                 function reserve(){
@@ -164,6 +158,23 @@
 
             $('#checkboxes').click(function(e) {
                 e.stopPropagation();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                var lat;
+                var lng;
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    lat = pos.lat;
+                    lng = pos.lng;
+                    window.localStorage.setItem("lat", lat);
+                    window.localStorage.setItem("lng", lng);
+                });
             });
         </script>
     </body>

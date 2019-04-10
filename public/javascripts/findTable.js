@@ -27,6 +27,7 @@ function findATable(){
             data:jQuery.param({name: name, type: type}),
             dataType: 'json',
             success:function(response){
+                console.log(response);
                 $("#tablesLeft").text("");
                 $("#tablesLeft").css("color", "gray");
                 if(response == 1) $("#tablesLeft").append(response + " table left!");

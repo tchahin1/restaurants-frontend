@@ -10,7 +10,6 @@ function searchRedirect() {
         checkedArray.push($(this).val());
     });
 
-    /*var filterQuery = $("#filterby option:selected").val();*/
     for(var i=0; i<checkedArray.length; i++) {
         if (checkedArray[i] <= 5) filterStars = checkedArray[i];
         else filterPrice = checkedArray[i] - 5;
@@ -24,6 +23,8 @@ function searchRedirect() {
             data: jQuery.param({query: query, pricing: filterPrice, stars: filterStars, page: 0, size: 9}),
             success: function (responsePage) {
                 var response = responsePage["content"];
+
+                sortFunction(response);
 
                 $("#row1").empty(); $("#row2").empty(); $("#row3").empty(); $(".pageNumbers").empty();
 

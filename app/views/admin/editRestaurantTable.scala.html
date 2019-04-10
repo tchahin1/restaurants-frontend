@@ -121,6 +121,8 @@
                 var location = window.localStorage.getItem("location");
                 var address = window.localStorage.getItem("address");
                 var restId = Number(window.localStorage.getItem("restaurantId"));
+                var lat = window.localStorage.getItem("lat");
+                var lng = window.localStorage.getItem("lng");
                 $.ajax({
                     url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/edit',
                     type: 'post',
@@ -175,22 +177,36 @@
                                                 ammountArray: ammountArray
                                             },
                                             complete: function (response) {
-                                                if(response.status != 200){
-                                                    $( ".taken" ).show();
-                                                    setTimeout(function() {
-                                                        $( ".taken" ).hide();
-                                                    }, 2000);
-                                                }
-                                                else{
-                                                    $("#name").val("");
-                                                    $( ".successful" ).show();
-                                                    setTimeout(function() {
-                                                        $( ".successful" ).hide();
-                                                    }, 2000);
-                                                    $(this).delay(2500).queue(function() {
-                                                        $(this).dequeue();
-                                                    });
-                                                }
+                                                $.ajax({
+                                                    url: 'https://abh-restaurants-backend.herokuapp.com/locations/edit',
+                                                    type: 'post',
+                                                    dataType: 'json',
+                                                    data: jQuery.param({
+                                                        lat: lat,
+                                                        lng: lng,
+                                                        id: restId
+                                                    }),
+                                                    complete: function (response3) {
+                                                        if(response3.status != 200){
+                                                            console.log("NE VALJA");
+                                                            $( ".taken" ).show();
+                                                            setTimeout(function() {
+                                                                $( ".taken" ).hide();
+                                                            }, 2000);
+                                                        }
+                                                        else{
+                                                            console.log("USPJEEEH");
+                                                            $("#name").val("");
+                                                            $( ".successful" ).show();
+                                                            setTimeout(function() {
+                                                                $( ".successful" ).hide();
+                                                            }, 2000);
+                                                            $(this).delay(2500).queue(function() {
+                                                                $(this).dequeue();
+                                                            });
+                                                        }
+                                                    }
+                                                });
                                             }
                                         });
                                     }
@@ -232,16 +248,27 @@
                     console.log(response);
                     var num = 0;
                     var types = new Array();
-                    for(var i=0; i<response.length;){
-                        var tableType = response[i]["type"];
-                        types.push(tableType);
-                        var k=1;
-                        num++;
-                        for(var j=i+1; j<response.length; j++){
-                            if(response[j]["type"]==tableType) k++;
+                    for(var i=0; i<response.length; i++){
+                        if(i==0) {
+                            types.push(response[i]["type"]);
+                            continue;
                         }
-                        window.localStorage.setItem(tableType+"", k+"");
-                        i+=k;
+                        var is = false;
+                        for(var j=0; j<response.length; j++){
+                            if(types[j]==response[i]["type"]){
+                                is = true;
+                                break;
+                            }
+                        }
+                        if(!is) types.push(response[i]["type"]);
+                    }
+                    for(var i=0; i<types.length; i++){
+                        var k=0;
+                        num++;
+                        for(var j=0; j<response.length; j++){
+                            if(response[j]["type"]==types[i]) k++;
+                        }
+                        window.localStorage.setItem(types[i]+"", k+"");
                     }
                     for(var i=0; i<num; i++){
                         addTable(i);

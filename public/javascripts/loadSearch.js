@@ -14,6 +14,8 @@ $(document).ready(function(){
             success: function (responsePage) {
                 var response = responsePage["content"];
 
+                sortFunction(response);
+
                 var totalPageNum = responsePage["totalPages"];
                 for (var i = 0; i < totalPageNum; i++) {
                     var num = i + 1;
@@ -125,6 +127,8 @@ $(document).ready(function(){
             success: function (responsePage) {
                 var response = responsePage["content"];
 
+                sortFunction(response);
+
                 var totalPageNum = responsePage["totalPages"];
                 for (var i = 0; i < totalPageNum; i++) {
                     var num = i + 1;
@@ -229,12 +233,14 @@ $(document).ready(function(){
 
     else if(number>0 && query!=""){
         $.ajax({
-            url: 'https://abh-restaurants-frontend.herokuapp.com/search/page',    //frontend url
+            url: 'https://abh-restaurants-frontend.herokuapp.com/search/page',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({name: query, pageNum: number}),
             success: function (responsePage) {
                 var response = responsePage["content"];
+
+                sortFunction(response);
 
                 var totalPageNum = responsePage["totalPages"];
                 for (var i = 0; i < totalPageNum; i++) {

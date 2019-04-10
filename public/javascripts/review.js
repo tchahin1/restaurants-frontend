@@ -63,6 +63,9 @@ function saveReview() {
                         },
                         complete: function () {
                             $(".popupOuter").fadeOut("slow");
+                            setTimeout(function() {
+                                window.location.href=window.location.href;
+                            }, 2000);
                         }
                     });
                 }

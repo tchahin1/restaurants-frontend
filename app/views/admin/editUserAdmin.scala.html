@@ -130,6 +130,7 @@
                 dataType: 'json',
                 success:function(response){
 
+                    console.log(1);
                     var len = response.length;
                     var select = "Select Country";
 
@@ -162,7 +163,6 @@
                     contentType: 'application/json',
                     dataType: 'json',
                     success:function(response){
-
                         var len = response.length;
 
                         $("#city").empty();
@@ -186,18 +186,28 @@
                 data: jQuery.param({email: email}),
                 success:function(response){
                     console.log(response);
+                    console.log(3);
                     var name = response["name"];
                     var lname = response["lastName"];
                     var number = response["phoneNumber"];
-                    var country = response["country"]["name"];
-                    var city = response["city"]["name"];;
+                    var country = null;
+                    if(response["country"]!=null) country = response["country"]["name"];
+                    var city = null;
+                    if(response["city"]!=null) city = response["city"]["name"];
                     $("#last_name").val(lname);
                     $("#name").val(name);
                     $("#phone_num").val(number);
-                    $("#firstCountryOption").text(country);
-                    $("#firstCityOption").text(city);
+                    if(country != null) {
+                        $("#firstCountryOption").text(country);
+                        $("#country").val(response["country"]["id"]);
+                        console.log(response["country"]["id"]);
+                        //window.localStorage.setItem("countryId", response["country"]["id"]);
+                    }
+                    else $("#firstCountryOption").text("Select Country");
+                    if(city != null) $("#firstCityOption").text(city);
+                    else $("#firstCityOption").text("Select City");
                     window.localStorage.setItem("userId", response["id"]);
-                    window.localStorage("token", token);
+                    window.localStorage.setItem("token", token);
                 }
             });
         });

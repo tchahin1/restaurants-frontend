@@ -43,13 +43,14 @@ function makeReservation(){
                     var res = response["responseJSON"];
                     console.log(res);
                     for(var i=0; i<res.length; i++){
-                        if(i==3) break;
+                        if(i==4) break;
                         var temp = res[i].split("T");
                         var time = temp[1];
                         var temp = time.split(":");
                         var hours = temp[0];
                         var minutes = temp[1];
                         var timeFrom = hours + ":" + minutes;
+                        console.log(timeFrom);
                         $(".reservationProcess").append("<input type='button' class='removable' id='reserveNowTime' onclick='reserveThisTableTime()' value=" + timeFrom + ">");
                     }
                     /*$(".reservationProcess").append("<input type='button' class='removable' id='reserveNowTime' onclick='reserveThisTableTime()' value=" + timeFrom1 + ">");
