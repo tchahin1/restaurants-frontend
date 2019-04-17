@@ -3,7 +3,7 @@ function search() {
     console.log(query);
 
     $.ajax({
-        url: 'https://abh-restaurants-frontend.herokuapp.com/search',
+        url: 'http://localhost:9000/search',
         type: 'get',
         dataType: 'json',
         data: jQuery.param({name: query}),

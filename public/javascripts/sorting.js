@@ -14,7 +14,7 @@ function sortIt(){
         var index = new Array();
         var distance = new Array();
         $.ajax({
-            url: 'https://abh-restaurants-backend.herokuapp.com/locations/all',
+            url: 'http://localhost:8080/locations/all',
             type: 'get',
             dataType: 'json',
             success:function(responseLocations){

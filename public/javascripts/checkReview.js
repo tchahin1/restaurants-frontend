@@ -4,7 +4,7 @@ function checkReview() {
     var restname = $("#restaurantName").text();
 
     $.ajax({
-        url: 'https://abh-restaurants-backend.herokuapp.com/reviews/check',
+        url: 'http://localhost:8080/reviews/check',
         type: 'get',
         dataType: 'json',
         data: jQuery.param({restaurant: restname, user: username}),

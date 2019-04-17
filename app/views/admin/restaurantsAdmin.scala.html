@@ -53,7 +53,7 @@
                 var name = $("#searchInput").val();
 
                 currentRequest = $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/get/search',
+                    url: 'http://localhost:8080/restaurants/get/search',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({name: name}),
@@ -95,7 +95,7 @@
 
              function del(name){
                  $.ajax({
-                     url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/delete',
+                     url: 'http://localhost:8080/restaurants/delete',
                      type: 'get',
                      dataType: 'json',
                      data: jQuery.param({name: name}),
@@ -110,7 +110,7 @@
             $('document').ready(function(){
                 $("#tableTitle").text("Name");
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/find/all',
+                    url: 'http://localhost:8080/restaurants/find/all',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){

@@ -77,7 +77,7 @@
                     var name = $("#name").val();
                     var id = Number(window.localStorage.getItem("cousineId"));
                     $.ajax({
-                        url: 'https://abh-restaurants-backend.herokuapp.com/cousines/edit',
+                        url: 'http://localhost:8080/cousines/edit',
                         type: 'get',
                         dataType: 'json',
                         data: jQuery.param({
@@ -113,7 +113,7 @@
 
             var name = $("#name").val();
             $.ajax({
-                url: 'https://abh-restaurants-backend.herokuapp.com/cousines/get',
+                url: 'http://localhost:8080/cousines/get',
                 type: 'get',
                 dataType: 'json',
                 data: jQuery.param({name: name}),

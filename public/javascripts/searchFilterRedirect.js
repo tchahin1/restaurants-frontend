@@ -17,7 +17,7 @@ function searchRedirect() {
 
     if(number == 0 && checkedArray.length != 0){
         $.ajax({
-            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/search/filterBy',
+            url: 'http://localhost:8080/restaurants/search/filterBy',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({query: query, pricing: filterPrice, stars: filterStars, page: 0, size: 9}),

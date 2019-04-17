@@ -77,7 +77,7 @@
                     var name = $("#name").val();
                     var id = Number(window.localStorage.getItem("cityId"));
                     $.ajax({
-                        url: 'https://abh-restaurants-backend.herokuapp.com/cities/edit',
+                        url: 'http://localhost:8080/cities/edit',
                         type: 'get',
                         dataType: 'json',
                         data: jQuery.param({
@@ -113,7 +113,7 @@
 
             var name = $("#name").val();
             $.ajax({
-                url: 'https://abh-restaurants-backend.herokuapp.com/cities/get',
+                url: 'http://localhost:8080/cities/get',
                 type: 'get',
                 dataType: 'json',
                 data: jQuery.param({name: name}),
