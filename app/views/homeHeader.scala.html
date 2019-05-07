@@ -2,11 +2,13 @@
     <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/header1.css")'>
 </head>
 
-<ul class="menu">
-    <li><a href="@routes.HomeController.home()">Home</a></li>
-    <li><a href="@routes.RestaurantsController.restaurantsSearch()">Restaurants</a></li>
-    <li><a class="orangePart" href="@routes.HomeController.login()">Log in</a></li>
-</ul>
+<div class="container">
+  <ul class="menu">
+      <li><a href="@routes.HomeController.home()">Home</a></li>
+      <li><a href="@routes.RestaurantsController.restaurantsSearch()">Restaurants</a></li>
+      <li><a class="orangePart" href="@routes.HomeController.login()">Log in</a></li>
+  </ul>
+</div>
 
 <script>
             $(document).ready(function(){

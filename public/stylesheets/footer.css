@@ -1,43 +1,33 @@
 footer{
-    font-family: -apple-system;
-    font-size: 16px;
     background-color: #131d24;
     margin-top: 100px;
     height: 150px;
     padding-top: 50px;
 }
 
-.firstPart p{
-    font-family: -apple-system;
-    font-size: 16px;
+.firstPart span{
     color: #FFFFFF;
     display: inline;
-    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.secondPart p{
-    font-family: -apple-system;
-    font-size: 16px;
+.secondPart span{
     color: #FFFFFF;
     display: inline;
-    padding-left: 20px;;
+    padding-right: 20px;
 }
 
 .firstPart{
     display: inline;
-    margin-left: 13.7%;
 }
 
 .secondPart{
     display: inline;
-    margin-left: 14%;
+    float: right;
 }
 
 #copyright{
-    font-family: -apple-system;
-    font-size: 16px;
     color: #FFFFFF;
-    margin-left: 15%;
     margin-top: 10px;
 }
 
@@ -47,7 +37,6 @@ footer{
     }
 
     .firstPart{
-        margin-left: 0px;
         display: inline;
     }
 

@@ -68,7 +68,6 @@ input{
 .drugi{
     margin-top: 2%;
     font-size: 20px;
-    font-weight: lighter;
     line-height: 20px;
 }
 
@@ -82,14 +81,10 @@ p.prvi,p.drugi{
 }
 
 #row1{
-    margin-left: 100px;
-    margin-right: 0px;
     padding-top: 100px;
 }
 
 #row2{
-    margin-left: 100px;
-    margin-right: 0px;
     padding-top: 121px;
 }
 
@@ -175,6 +170,11 @@ p.prvi,p.drugi{
 
 .margin-left-searchbar {
     margin-left: -5px;
+}
+
+.reserve-btn {
+    width: 300px;
+    height: 36px;
 }
 
 @media only screen and (max-width: 347px){
