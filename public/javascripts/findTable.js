@@ -13,6 +13,11 @@ function findATable(){
         $("#reservationQuery").css("color", "red");
     }
 
+    else if(peopleNum == "People" || peopleNum < 0 || peopleNum > 50) {
+        $("#reservationQuery").text("Invalid number of people provided!");
+        $("#reservationQuery").css("color", "red");
+    }
+
     else {
         $("#reservationQuery").text("");
         $("#reservationQuery").css("color", "black");

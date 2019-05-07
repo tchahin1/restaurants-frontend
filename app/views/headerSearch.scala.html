@@ -5,5 +5,33 @@
 <ul class="menu">
     <li><a href="@routes.HomeController.home()">Home</a></li>
     <li><a href="@routes.RestaurantsController.restaurantsSearch()">Restaurants</a></li>
-    <li><a class="orange">Search</a></li>
+    <!--li><a class="orange">Search</a></li-->
+    <li><a class="orange" href="@routes.HomeController.login()">Log in</a></li>
 </ul>
+
+<script>
+            $(".orange").click(function(event){
+                var token = window.localStorage.getItem("token");
+                //probably should do that for username either
+                if(token != null){
+                    window.localStorage.clear();
+                    $(".orange").text("Log in");
+                }
+                else{
+                    $(".orange").attr("href", "/login");
+                }
+            });
+        </script>
+
+<script>
+            $(document).ready(function(){
+                var token = window.localStorage.getItem("token");
+                //probably should do that for username either
+                if(token != null){
+                    $(".orange").text("Log out");
+                }
+                $(".searchForm").submit(function(e) {
+                    e.preventDefault();
+                });
+            });
+        </script>

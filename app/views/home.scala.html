@@ -37,6 +37,15 @@
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script>
             $(document).ready(function(){
+
+                $('#searchQuery').click(function(e) {
+                    var mousePosInElement = e.pageX - $(this).position().left;
+                    if (mousePosInElement < 40) {
+                        console.log(mousePosInElement + "    " + $(this).width());
+                        searchRedirect();
+                    }
+                });
+
                 $.ajax({
                     url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/all',
                     type: 'get',
@@ -127,7 +136,7 @@
                     <p class="drugi">Choose your table from hundreds of restaurants near you</p>
                 </form>
                 <div class="searchbox">
-                    <form class="searchForm">
+                    <form class="searchForm" id="searchForm">
                         <input type="text" placeholder="Location, Restaurant or Cousine" id="searchQuery">
                         <select id="country" class="selectPeople" required>
                             <option>People</option>

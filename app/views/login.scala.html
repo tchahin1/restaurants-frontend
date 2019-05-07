@@ -49,6 +49,21 @@
         </script>
 
         <script src="@routes.Assets.at("javascripts/validationLogin.js")"></script>
+
+        <script>
+                document.addEventListener('keydown', function (e) {
+                    if (e.which == 13) {
+                        e.preventDefault();
+                        validation();
+                    }
+                });
+                /*$('.mainContent').on('keydown', function(e) {
+                    if (e.which == 13) {
+                        e.preventDefault();
+                        validation();
+                    }
+                });*/
+        </script>
     </head>
     <body>
         <div class="header">

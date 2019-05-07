@@ -11,8 +11,8 @@
         <style>
                 .fa{
                     color: gray;
-                    font-size: 25px;
-                    margin-top: -20px;
+                    font-size: 22px;
+                    margin-top: 0px;
                 }
                 .checked {
                     color: orangered;
@@ -65,7 +65,7 @@
                             $(".starsAndPrice").append(starString+priceString+"<button");
 
                             var pictureUrl = response["pictureUrl"];
-                            $(".restaurantPicture").append("<img id=\"picture\" src="+pictureUrl+" height=\"172px\" width=\"200px\">");
+                            $(".restaurantPicture").append("<img id=\"picture\" src="+pictureUrl+" height=\"182px\" width=\"210px\">");
 
                             var address = response["address"];
                             var splitAddress = address.split(" ");

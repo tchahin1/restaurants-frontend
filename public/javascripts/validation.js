@@ -27,7 +27,7 @@ function validation (){
 
     var nameReg = new RegExp('^[a-zA-Z ]{3,}[a-zA-Z-]*$');
     if(nameReg.test(name.val())) testName = true;
-    var lastNameReg = new RegExp('^[a-zA-Z]{5,}[a-zA-Z-]*$');
+    var lastNameReg = new RegExp('^[a-zA-Z]{2,}[a-zA-Z-]*$');
     if(lastNameReg.test(lastName.val())) testLName = true;
     var emailReg = new RegExp('^[\\w._-]+[+]?[\\w._-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$');
     if(emailReg.test(email.val())) testEmail = true;

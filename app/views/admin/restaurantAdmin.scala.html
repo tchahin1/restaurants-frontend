@@ -41,7 +41,7 @@
                     <p id="popUp" class="successful" style="display: none;"> Restaurant successfully added! </p>
                     <p id="titleSide">Add Logo</p>
 
-                    <image id="logo" src="" class='img img-responsive img-thumbnail' onclick='return OpenFileBrowserLogo(event)' alt="" style="cursor:pointer;"></image>
+                    <image id="logo" src="@routes.Assets.at("/images/uploadLogo.png")" class='img img-responsive img-thumbnail' onclick='return OpenFileBrowserLogo(event)' alt="" style="cursor:pointer;"></image>
                     <input type="file" name="PicturePath" id="fileUploadLogo" accept=".png,.jpg,.jpeg,.gif,.tif" onchange="previewFileLogo()" style="display: none"/>
                     <p id="titleSide">Pricing</p>
                     <select id="pricing" class="selectCountry" required>
@@ -59,7 +59,7 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-12" id="rightSide">
                     <p id="titleSide">Add Cover Photo</p>
-                    <image id="cover" src="" class='img img-responsive img-thumbnail' onclick='return OpenFileBrowserCover(event)' alt="" style="cursor:pointer;"></image>
+                    <image id="cover" src="@routes.Assets.at("/images/uploadCover.png")" class='img img-responsive img-thumbnail' onclick='return OpenFileBrowserCover(event)' alt="" style="cursor:pointer;"></image>
                     <input type="file" name="PicturePath" id="fileUploadCover" accept=".png,.jpg,.jpeg,.gif,.tif" onchange="previewFileCover()" style="display: none"/>
                     <div class="row">
                         <div class='col-lg-6 col-md-6 col-sm-6'>

@@ -6,7 +6,7 @@ function searchRedirect() {
     var filterPrice = 0;
     var checkedArray = [];
 
-    $("input:checkbox:checked").each(function(){
+    $("input:radio:checked").each(function(){
         checkedArray.push($(this).val());
     });
 

@@ -64,7 +64,15 @@
                     display: block;
                 }
 
-                #checkboxes label:hover{
+                .label:hover{
+                    background-color: #1e90ff;
+                }
+
+                label input[type="radio"]:hover{
+                    background-color: #1e90ff;
+                }
+
+                input[type="radio"]:hover{
                     background-color: #1e90ff;
                 }
         </style>
@@ -97,15 +105,21 @@
                             </select>
                             <div class="overSelect"></div>
                             <div id="checkboxes">
-                                <label for="one"><input type="checkbox" value="1"/>One star</label>
-                                <label for="two"><input type="checkbox" value="2"/>Two stars</label>
-                                <label for="three"><input type="checkbox" value="3"/>Three stars</label>
-                                <label for="four"><input type="checkbox" value="4"/>Four stars</label>
-                                <label for="five"><input type="checkbox" value="5"/>Five stars</label>
-                                <label for="six"><input type="checkbox" value="6"/>Cheap</label>
-                                <label for="seven"><input type="checkbox" value="7"/>Mediocre</label>
-                                <label for="eight"><input type="checkbox" value="8"/>Expensive</label>
-                                <label for="nine"><input type="checkbox" value="9"/>Very expensive</label>
+                                <div id="ratings">
+                                    <label>RATINGS:</label>
+                                    <label class="label" for="one"><input name="rating" type="radio" value="1"/> One star</label>
+                                    <label class="label" for="two"><input name="rating" type="radio" value="2"/> Two stars</label>
+                                    <label class="label" for="three"><input name="rating" type="radio" value="3"/> Three stars</label>
+                                    <label class="label" for="four"><input name="rating" type="radio" value="4"/> Four stars</label>
+                                    <label class="label" for="five"><input name="rating" type="radio" value="5"/> Five stars</label>
+                                </div>
+                                <div id="pricings">
+                                    <label>PRICINGS:</label>
+                                    <label class="label" for="six"><input name="pricing" type="radio" value="6"/> Cheap</label>
+                                    <label class="label" for="seven"><input name="pricing" type="radio" value="7"/> Mediocre</label>
+                                    <label class="label" for="eight"><input name="pricing" type="radio" value="8"/> Expensive</label>
+                                    <label class="label" for="nine"><input name="pricing" type="radio" value="9"/> Very expensive</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -133,6 +147,26 @@
 
         <script src="@routes.Assets.at("javascripts/sorting.js")"></script>
         <script src="@routes.Assets.at("javascripts/loadPage.js")"></script>
+
+        <script>
+                $('#searchQuery').click(function(e) {
+                    var mousePosInElement = e.pageX - $(this).position().left;
+                    if (mousePosInElement < 40) {
+                        console.log(mousePosInElement + "    " + $(this).width());
+                        searchRedirect();
+                    }
+                });
+        </script>
+
+        <script>
+                $('#searchQuery').on('keydown', function(e) {
+                    if (e.which == 13) {
+                        e.preventDefault();
+                        searchRedirect();
+                    }
+                });
+        </script>
+
         <script>
                 function reserve(){
                     $(document).on("click", "#button", function() {

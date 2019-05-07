@@ -22,7 +22,7 @@
     border-top-color: #555555;
     margin-left: 50px;
     font-size: 18px!important;
-    font-weight: unset!important;
+    font-weight: normal!important;
 }
 
 .lunch{
@@ -43,6 +43,8 @@ dt {
     white-space: nowrap;
     line-height: 30px;
     margin-top: 15px;
+    font-weight: normal !important;
+    font-size: 18px;
 }
 dd { float: right; width: 50px; overflow: hidden; line-height: 20px; position: relative; top: 20px}
 
