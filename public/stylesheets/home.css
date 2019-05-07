@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Century, AppleGothic;
+    font-family: 'Helvetica Neue', Helvetica !important;
     font-weight: 400;
     text-align: left;
     background: white;
@@ -32,43 +32,36 @@ input{
     box-sizing: border-box;
 }
 
-input[type="text"]{
+.search-input {
     background: #fff;
     border: none;
     outline: none;
-    padding: 0 25px;
-    padding-left: 60px;
-    width: 52%;
-    min-width: 300px;
+    padding-left: 60px !important;
+    padding-right: 0 !important;
     height: 56px;
     border-radius: 3px 0 0 3px;
-    font-size: 18px;
     background-image: url(../images/search_icon.png);
     background-position: 5px 7.5px;
     background-repeat: no-repeat;
     background-size: 40px 40px;
 }
 
-input[type="submit"]{
-    position: relative;
+.submit-btn {
     border: none;
     outline: none;
-    width: 16%;
-    min-width: 105px;
     height: 56px;
     cursor: pointer;
     background: #fd6f60;
     border-radius: 0 3px 3px 0;
     color: white;
-    font-size: 18px;
-    left: 5px;
+    margin-left: -5px;
+    padding: 0;
 }
 
 .prvi{
     padding-top: 200px;
     font-size: 48px;
     font-weight: normal;
-    font-family: "-apple-system";
     line-height: 60px;
 }
 
@@ -76,7 +69,6 @@ input[type="submit"]{
     margin-top: 2%;
     font-size: 20px;
     font-weight: lighter;
-    font-family: "-apple-system";
     line-height: 20px;
 }
 
@@ -149,19 +141,16 @@ p.prvi,p.drugi{
     margin-top: -250px;
 }
 
-select{
+.selectPeople {
     -webkit-appearance: none;
     -moz-appearance: none;
-
-    padding: 10px 25px 10px 10px;
     background: url(../images/arrow_down.png) no-repeat 95% center;
     background-size: 20px 20px;
     background-color: white;
     border: none;
-    border-radius: 2px;
-    font-size: 18px;
-    margin-left: -20px!important;
-    width: 100px;
+    border-radius: 0px;
+    height: 56px;
+    margin-left: -5px;
 }
 
 #parClickAndChange{
@@ -172,24 +161,20 @@ select{
 }
 
 .selectDate, .selectTime{
-
     background-color: white;
     border: none;
-    border-radius: 2px;
-    /*width: 105px;*/
+    height: 56px;
+    margin-left: -5px;
 }
 
-.selectTime{
-    width: 75px;
-    font-size: 16px;
-    margin-left: -15px;
+.selectTime {
 }
 
-.selectDate{
-    width: 155px;
-    font-size: 15px;
-    padding: 10px 25px 10px 10px;
-    margin-left: 5px;
+.selectDate {
+}
+
+.margin-left-searchbar {
+    margin-left: -5px;
 }
 
 @media only screen and (max-width: 347px){
@@ -234,7 +219,7 @@ select{
         left: 57px;
     }
 
-    input[type="submit"]{
+    .submit-btn {
         margin-left: 0px;
     }
 

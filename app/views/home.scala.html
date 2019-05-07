@@ -135,22 +135,24 @@
                     <p class="prvi">Make a free<br>reservation</p>
                     <p class="drugi">Choose your table from hundreds of restaurants near you</p>
                 </form>
-                <div class="searchbox">
-                    <form class="searchForm" id="searchForm">
-                        <input type="text" placeholder="Location, Restaurant or Cousine" id="searchQuery">
-                        <select id="country" class="selectPeople" required>
-                            <option>People</option>
-                        </select>
-                        <!--select id="country" class="selectDate" required>
-                            <option>Date</option>
-                        </select>
-                        <select id="country" class="selectTime" required>
-                            <option>Time</option>
-                        </select-->
-                        <input type="date" value="Date" min="2018-01-01" max="2018-12-31" class="selectDate"/>
-                        <input type="time" value="Time" min="08:00" max="23:00" id="selectTime" class="selectTime"/>
-                        <input type="submit" value="Find a table" onclick="searchRedirect()">
-                    </form>
+                <div class="row">
+                    <div class="col-12 col-xl-10 offset-xl-1 px-4">
+                        <form class="searchForm" id="searchForm">
+                            <input class="search-input col-6" type="text" placeholder="Location, Restaurant or Cousine" id="searchQuery">
+                            <select id="country" class="selectPeople col-1" required>
+                                <option>People</option>
+                            </select>
+                            <!--select id="country" class="selectDate" required>
+                                <option>Date</option>
+                            </select>
+                            <select id="country" class="selectTime" required>
+                                <option>Time</option>
+                            </select-->
+                            <input type="date" value="Date" min="2018-01-01" max="2018-12-31" class="selectDate col-2"/>
+                            <input type="time" value="Time" min="08:00" max="23:00" id="selectTime" class="selectTime col-1"/>
+                            <input type="submit" class="submit-btn col-2" value="Find a table" onclick="searchRedirect()">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
