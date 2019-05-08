@@ -146,6 +146,7 @@ p.prvi,p.drugi{
     border-radius: 0px;
     height: 56px;
     margin-left: -5px;
+    padding-left: 10px !important;
 }
 
 #parClickAndChange{
@@ -163,9 +164,11 @@ p.prvi,p.drugi{
 }
 
 .selectTime {
+    padding-left: 0px !important;
 }
 
 .selectDate {
+    padding-left: 40px !important;
 }
 
 .margin-left-searchbar {
@@ -173,7 +176,7 @@ p.prvi,p.drugi{
 }
 
 .reserve-btn {
-    width: 300px;
+    width: 300px !important;
     height: 36px;
 }
 

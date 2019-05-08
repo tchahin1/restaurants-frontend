@@ -9,7 +9,7 @@
 
 #dataTable{
     margin-left: 15%;
-    width: 71%;
+    width: 72%;
     background-color: white;
 }
 
@@ -43,7 +43,8 @@
     color: white;
     background-color: #FD6F60;
     margin-top: 50px;
-    margin-left: 79%;
+    margin-left: 79.7%;
+    width: 105px !important;
 }
 
 .categoryTable{

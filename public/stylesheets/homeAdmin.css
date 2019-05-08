@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Century, AppleGothic;
+    font-family: "Helvetica Neue";
     background: whitesmoke!important;
 }
 
@@ -34,11 +34,11 @@ body {
 }
 
 #rowEl2{
-    margin-left: -10%;
+    margin-left: -9.5%;
 }
 
 #rowEl3{
-    margin-left: -10%;
+    margin-left: -9.5%;
 }
 
 .number{
@@ -76,7 +76,7 @@ body {
     margin-left: 15%;
     background-color: white;
     height: 46px;
-    width: 71%;
+    width: 72%;
     padding-top: 12px;
 }
 
