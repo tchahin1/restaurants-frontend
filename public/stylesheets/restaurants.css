@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    font-family: -apple-system;
+    font-family: "Helvetica Neue";
     background-color: whitesmoke!important;
 }
 
@@ -32,7 +32,11 @@ body{
 }
 
 .row{
-    margin-left: 60px !important;
+    margin-left: 70px !important;
+}
+
+.container{
+    max-width: 1175px;
 }
 
 .locationsContainer{
