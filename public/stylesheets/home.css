@@ -7,6 +7,10 @@ body {
     line-height: 1.5px;
 }
 
+#columns{
+    margin-left: 30px !important;
+}
+
 .searchbox{
     background: #FFFFFF;
     border-radius: 3px;
