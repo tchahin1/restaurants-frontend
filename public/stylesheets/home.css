@@ -143,9 +143,9 @@ p.prvi,p.drugi{
 .selectPeople {
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: url(../images/arrow_down.png) no-repeat 95% center;
+    /*background: url(../images/arrow_down.png) no-repeat 95% center;
     background-size: 20px 20px;
-    background-color: white;
+    background-color: white;*/
     border: none;
     border-radius: 0px;
     height: 56px;
@@ -172,7 +172,7 @@ p.prvi,p.drugi{
 }
 
 .selectDate {
-    padding-left: 40px !important;
+    padding-left: 30px !important;
 }
 
 .margin-left-searchbar {

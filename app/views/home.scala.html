@@ -40,7 +40,8 @@
 
                 $('#searchQuery').click(function(e) {
                     var mousePosInElement = e.pageX - $(this).position().left;
-                    if (mousePosInElement < 40) {
+                    console.log(mousePosInElement + "    " + $(this).width());
+                    if (mousePosInElement < 192) {
                         console.log(mousePosInElement + "    " + $(this).width());
                         searchRedirect();
                     }
@@ -140,16 +141,17 @@
                         <div class="col-12 px-4">
                             <form class="searchForm" id="searchForm">
                                 <input class="search-input col-6" type="text" placeholder="Location, Restaurant or Cousine" id="searchQuery">
-                                <select id="country" class="selectPeople col-1" required>
+                                <!--select id="country" class="selectPeople col-1" required>
                                     <option>People</option>
-                                </select>
+                                </select-->
+                                <input type="number" id="country" class="selectPeople col-1" placeholder="People"/>
                                 <!--select id="country" class="selectDate" required>
                                     <option>Date</option>
                                 </select>
                                 <select id="country" class="selectTime" required>
                                     <option>Time</option>
                                 </select-->
-                                <input type="date" value="Date" min="2018-01-01" max="2018-12-31" class="selectDate col-2"/>
+                                <input type="date" value="Date" min="2019-01-01" max="2019-12-31" class="selectDate col-2"/>
                                 <input type="time" value="Time" min="08:00" max="23:00" id="selectTime" class="selectTime col-1"/>
                                 <input type="submit" class="submit-btn col-2" value="Find a table" onclick="searchRedirect()">
                             </form>

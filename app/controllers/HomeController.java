@@ -60,5 +60,7 @@ public class HomeController extends Controller {
 
     public Result editTableAdmin() { return ok(views.html.admin.editRestaurantTable.render()); }
 
+    public Result confirmationPage() { return ok(views.html.confirmation.render()); }
+
     //public Result singlePage() { return ok(views.html.single_page.render()); }
 }

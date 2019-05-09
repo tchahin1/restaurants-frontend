@@ -29,6 +29,8 @@
                                      data: jQuery.param({email: username}),
                                      complete:function(response1){
                                          if(response1.status == 200) window.location.replace("/admin/home");
+                                         //console.log(document.referrer);
+                                         else if(document.referrer.includes("/confirmation")) window.location.replace("/confirmation");
                                          else window.location.replace("/home");
                                      }
                                  });
