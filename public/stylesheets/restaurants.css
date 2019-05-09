@@ -42,7 +42,8 @@ body{
 .locationsContainer{
     background-color: whitesmoke !important;
     margin-top: 100px!important;
-    margin-left: 0px;
+    margin-left: 130px !important;
+    max-width: 1250px !important;
 }
 
 #abovePar{
