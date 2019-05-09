@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/confirmation.css")'>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+        <script>
+            function move() {
+                var elem = document.getElementById("myBar");
+                var width = 100;
+                var id = setInterval(frame, 1800);
+                function frame() {
+                    if (width <= 0) {
+                        clearInterval(id);
+                    }
+                    else {
+                        width--;
+                        elem.style.width = width + '%';
+                    }
+                }
+                var xd = setInterval(frame1, 1000);
+                function frame1() {
+                    var time = document.getElementById("time").innerHTML;
+                    var seconds = Number(time.split(":")[1]);
+                    var minutes = time.split(":")[0];
+                    if(seconds < 10) seconds = "0" + seconds;
+                    if(seconds != "00") seconds--;
+                    else if(seconds == "00"){
+                        seconds = "59";
+                        minutes--;
+                    }
+                    seconds = Number(seconds);
+                    if(seconds < 10) seconds = "0" + seconds;
+                    time = minutes + ":" + seconds;
+                    document.getElementById("time").innerHTML = time;
+                    if(time == "0:00") {
+                        clearInterval(xd);
+                        $("#timerTextContainer").empty();
+                        $("#timerTextContainer").append("<p class='timerText'>Reservation has been canceled</p>")
+                    }
+                }
+            }
+        </script>
+
+        <script>
+            $(document).ready(function(){
+               move();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+        @headerSearch()
+        </div>
+        <div class="mainContent">
+            <div class="row">
+                <div class='col-lg-12 col-md-12'>
+                    <p id="login">Complete your reservation</p>
+                </div>
+            </div>
+            <p id="popUp" class="successful" style="display: none;"> Successfully logged in! </p>
+            <p id="popUp" class="taken" style="display: none;"> Account doesn't exist! </p>
+            <div id="reservationDetails" class="container">
+                <div class="row">
+                    <div class='col-md-6'>
+                        <p id="detailsTitle">Reservation Details</p>
+                    </div>
+                    <div class='col-md-6' >
+                        <div id="myProgress">
+                            <div id="myBar">
+                                <div id="timerTextContainer">
+                                    <p class="timerText">You have</p>
+                                    <p id="time" class="timerText">3:00</p>
+                                    <p class="timerText">minutes to complete reservation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div id="signInContainer" class="row">
+                    <div class='col-lg-12'>
+                        <p>Already a member? <a id="signInLink" href="@routes.HomeController.login()">Sign in</a> </p>
+                    </div>
+                </div>
+            </div>
+            <div id="errorMessage"></div>
+            <div class="container userDetails">
+                <div class="row">
+                    <div class='col-lg-6 col-md-12'>
+                        <input id="name" type="text" placeholder="First Name" class="prvi" required>
+                    </div>
+                    <div class='col-lg-6 col-md-12'>
+                        <input id="last_name" type="text" placeholder="Last Name" class="drugi" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-lg-6 col-md-12'>
+                        <input id="phone_num" type="text" placeholder="Phone Number" class="prvi" required>
+                    </div>
+                    <div class='col-lg-6 col-md-12'>
+                        <select id="country" class="selectCountry" required>
+                            <option>Select Country</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-lg-6 col-md-12'>
+                        <input id="email" type="text" placeholder="Email" class="prvi" required>
+                    </div>
+                    <div class='col-lg-6 col-md-12'>
+                        <input id="optional" type="text" placeholder="Add a special request (optional)" class="drugi" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-lg-12 col-md-12'>
+                    <input id="confirmReservation" type="submit" value="Complete Reservation" class="treci" onclick="validation()">
+                </div>
+            </div>
+            <p id="terms">By clicking “Complete Reservation” you agree to the <a class="terms" href="#">AppName Terms of use</a> and <a class="terms" href="#">Privacy Policy</a>.</p>
+        </div>
+        @footer()
+    </body>
+</html>
