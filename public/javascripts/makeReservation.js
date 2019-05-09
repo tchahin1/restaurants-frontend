@@ -14,7 +14,9 @@ function makeReservation(){
         console.log(restaurant);
         console.log(type);
         $.ajax({
-            url: 'https://abh-restaurants-backend.herokuapp.com/reservations/check/table',
+            //url: 'https://abh-restaurants-backend.herokuapp.com/reservations/check/table',
+            //url: 'https://localhost:8080/reservations/check/table',
+            url: 'http://localhost:8080/reservations/check/table',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({date: date, time: time, username: username, restaurant: restaurant, type: type}),

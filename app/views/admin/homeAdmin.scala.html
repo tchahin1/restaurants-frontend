@@ -83,7 +83,9 @@
                 }
 
                 currentRequest = $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/search/get',
+                    //url: 'https://abh-restaurants-backend.herokuapp.com/search/get',
+                    url: 'https://localhost:8080/search/get',
+                    //url: 'http://localhost:8080/search/get',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({query: query}),
@@ -128,7 +130,9 @@
                 var locs;
                 var users;
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/count',
+                    //url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/count',
+                    url: 'https://localhost:8080/restaurants/count',
+                    //url: 'http://localhost:8080/restaurants/count',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
@@ -138,7 +142,9 @@
                     }
                 });
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/cities/count',
+                    //url: 'https://abh-restaurants-backend.herokuapp.com/cities/count',
+                    url: 'https://localhost:8080/cities/count',
+                    //url: 'http://localhost:8080/cities/count',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
@@ -146,7 +152,9 @@
                     }
                 });
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/users/count',
+                    //url: 'https://abh-restaurants-backend.herokuapp.com/users/count',
+                    url: 'https://localhost:8080/users/count',
+                    //url: 'http://localhost:8080/users/count',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){

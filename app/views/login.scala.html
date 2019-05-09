@@ -24,7 +24,9 @@
                              $(this).delay(2500).queue(function() {
 
                                  $.ajax({
-                                     url: 'https://abh-restaurants-backend.herokuapp.com/users/get/role',
+                                     //url: 'https://abh-restaurants-backend.herokuapp.com/users/get/role',
+                                     url: 'https://localhost:8080/users/get/role',
+                                     //url: 'http://localhost:8080/users/get/role',
                                      type: 'get',
                                      data: jQuery.param({email: username}),
                                      complete:function(response1){

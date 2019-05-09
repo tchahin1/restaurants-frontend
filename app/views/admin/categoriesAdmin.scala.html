@@ -53,7 +53,9 @@
                 var name = $("#searchInput").val();
 
                 currentRequest = $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/cousines/get/search',
+                    //url: 'https://abh-restaurants-backend.herokuapp.com/cousines/get/search',
+                    url: 'https://localhost:8080/cousines/get/search',
+                    //url: 'http://localhost:8080/cousines/get/search',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({name: name}),
@@ -95,7 +97,9 @@
 
             function del(name){
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/cousines/delete',
+                    //url: 'https://abh-restaurants-backend.herokuapp.com/cousines/delete',
+                    url: 'https://localhost:8080/cousines/delete',
+                    //url: 'http://localhost:8080/cousines/delete',
                     type: 'get',
                     dataType: 'json',
                     data: jQuery.param({name: name}),
@@ -110,7 +114,9 @@
             $('document').ready(function(){
                 $("#tableTitle").text("Name");
                 $.ajax({
-                    url: 'https://abh-restaurants-backend.herokuapp.com/cousines/all',
+                    //url: 'https://abh-restaurants-backend.herokuapp.com/cousines/all',
+                    url: 'https://localhost:8080/cousines/all',
+                    //url: 'http://localhost:8080/cousines/all',
                     type: 'get',
                     dataType: 'json',
                     success:function(response){
