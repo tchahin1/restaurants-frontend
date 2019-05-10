@@ -122,4 +122,94 @@ $(document).ready(function(){
         $(".star3").addClass("checked");
         $(".star4").addClass("checked");
     });
+
+
+
+
+
+
+
+    $(".dollar1").hover(function(){
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "orangered");
+        }
+    }, function() {
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "gray");
+        }
+    });
+
+    $(".dollar2").hover(function(){
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "orangered");
+            $(".dollar1").css("color", "orangered");
+        }
+    }, function() {
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "gray");
+            $(".dollar1").css("color", "gray");
+        }
+    });
+
+    $(".dollar3").hover(function(){
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "orangered");
+            $(".dollar1").css("color", "orangered");
+            $(".dollar2").css("color", "orangered");
+        }
+    }, function() {
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "gray");
+            $(".dollar1").css("color", "gray");
+            $(".dollar2").css("color", "gray");
+        }
+    });
+
+    $(".dollar4").hover(function(){
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "orangered");
+            $(".dollar1").css("color", "orangered");
+            $(".dollar2").css("color", "orangered");
+            $(".dollar3").css("color", "orangered");
+        }
+    }, function() {
+        if(!$(this).hasClass("checked")) {
+            $(this).css("color", "gray");
+            $(".dollar1").css("color", "gray");
+            $(".dollar2").css("color", "gray");
+            $(".dollar3").css("color", "gray");
+        }
+    });
+
+    $(".dollar1").click(function(){
+        $(this).removeClass("checked");
+        $(this).addClass("checked");
+    });
+
+    $(".dollar2").click(function(){
+        $(this).removeClass("checked");
+        $(".dollar1").removeClass("checked");
+        $(this).addClass("checked");
+        $(".dollar1").addClass("checked");
+    });
+
+    $(".dollar3").click(function(){
+        $(this).removeClass("checked");
+        $(".dollar1").removeClass("checked");
+        $(".dollar2").removeClass("checked");
+        $(this).addClass("checked");
+        $(".dollar1").addClass("checked");
+        $(".dollar2").addClass("checked");
+    });
+
+    $(".dollar4").click(function(){
+        $(this).removeClass("checked");
+        $(".dollar1").removeClass("checked");
+        $(".dollar2").removeClass("checked");
+        $(".dollar3").removeClass("checked");
+        $(this).addClass("checked");
+        $(".dollar1").addClass("checked");
+        $(".dollar2").addClass("checked");
+        $(".dollar3").addClass("checked");
+    });
 });

@@ -5,9 +5,10 @@ $(document).ready(function(){
     var starsFilter = $("#filterStars").val();
     var priceFilter = $("#filterPrice").val();
 
-    if(number==0 && query!="") {
+    if(number==0) {
         $.ajax({
             url: 'https://abh-restaurants-frontend.herokuapp.com/search',
+            //url: 'http://localhost:9000/search',
             type: 'get',
             dataType: 'json',
             data: jQuery.param({name: query}),

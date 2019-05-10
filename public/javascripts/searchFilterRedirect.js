@@ -6,16 +6,52 @@ function searchRedirect() {
     var filterPrice = 0;
     var checkedArray = [];
 
-    $("input:radio:checked").each(function(){
+    /*$("input:radio:checked").each(function(){
         checkedArray.push($(this).val());
     });
 
     for(var i=0; i<checkedArray.length; i++) {
         if (checkedArray[i] <= 5) filterStars = checkedArray[i];
         else filterPrice = checkedArray[i] - 5;
+    }*/
+
+    var rating = 0;
+    if ($('.star1').is('.checked')) {
+        rating++;
+    }
+    if ($('.star2').is('.checked')) {
+        rating++;
+    }
+    if ($('.star3').is('.checked')) {
+        rating++;
+    }
+    if ($('.star4').is('.checked')) {
+        rating++;
+    }
+    if ($('.star5').is('.checked')) {
+        rating++;
     }
 
-    if(number == 0 && checkedArray.length != 0){
+    var price = 0;
+    if ($('.dollar1').is('.checked')) {
+        price++;
+    }
+    if ($('.dollar2').is('.checked')) {
+        price++;
+    }
+    if ($('.dollar3').is('.checked')) {
+        price++;
+    }
+    if ($('.dollar4').is('.checked')) {
+        price++;
+    }
+
+    filterStars = rating;
+    filterPrice = price;
+
+    console.log(filterStars + filterPrice);
+
+    if(number == 0 && (rating != 0 || price !=0)){
         $.ajax({
             url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/search/filterBy',
             //url: 'https://localhost:8080/restaurants/search/filterBy',

@@ -78,6 +78,7 @@
         </style>
         <script src="@routes.Assets.at("javascripts/loadSearch.js")"></script>
         <script src="@routes.Assets.at("javascripts/search.js")"></script>
+        <script src="@routes.Assets.at("javascripts/openPopup.js")"></script>
         <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/restaurants.css")'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="@routes.Assets.at("javascripts/searchFilterRedirect.js")"></script>
@@ -105,25 +106,36 @@
                             </select>
                             <div class="overSelect"></div>
                             <div id="checkboxes">
-                                <div id="ratings">
-                                    <label>RATINGS:</label>
-                                    <label class="label" for="one"><input name="rating" type="radio" value="1"/> One star</label>
-                                    <label class="label" for="two"><input name="rating" type="radio" value="2"/> Two stars</label>
-                                    <label class="label" for="three"><input name="rating" type="radio" value="3"/> Three stars</label>
-                                    <label class="label" for="four"><input name="rating" type="radio" value="4"/> Four stars</label>
-                                    <label class="label" for="five"><input name="rating" type="radio" value="5"/> Five stars</label>
-                                </div>
-                                <div id="pricings">
-                                    <label>PRICINGS:</label>
-                                    <label class="label" for="six"><input name="pricing" type="radio" value="6"/> Cheap</label>
-                                    <label class="label" for="seven"><input name="pricing" type="radio" value="7"/> Mediocre</label>
-                                    <label class="label" for="eight"><input name="pricing" type="radio" value="8"/> Expensive</label>
-                                    <label class="label" for="nine"><input name="pricing" type="radio" value="9"/> Very expensive</label>
+                                <div class="row">
+                                    <div id="pricings" class="col-lg-6 col-md-6">
+                                        <label class="filterTitle">PRICE</label>
+                                        <!--label class="label" for="six"><input name="pricing" type="radio" value="6"/> Cheap</label>
+                                        <label class="label" for="seven"><input name="pricing" type="radio" value="7"/> Mediocre</label>
+                                        <label class="label" for="eight"><input name="pricing" type="radio" value="8"/> Expensive</label>
+                                        <label class="label" for="nine"><input name="pricing" type="radio" value="9"/> Very expensive</label-->
+                                        <span class="fa fa-dollar dollar1 dollar"></span>
+                                        <span class="fa fa-dollar dollar2 dollar"></span>
+                                        <span class="fa fa-dollar dollar3 dollar"></span>
+                                        <span class="fa fa-dollar dollar4 dollar"></span>
+                                    </div>
+                                    <div id="ratings" class="col-lg-6 col-md-6">
+                                        <label class="filterTitle">RATING</label>
+                                            <!--label class="label" for="one"><input name="rating" type="radio" value="1"/> One star</label>
+                                        <label class="label" for="two"><input name="rating" type="radio" value="2"/> Two stars</label>
+                                        <label class="label" for="three"><input name="rating" type="radio" value="3"/> Three stars</label>
+                                        <label class="label" for="four"><input name="rating" type="radio" value="4"/> Four stars</label>
+                                        <label class="label" for="five"><input name="rating" type="radio" value="5"/> Five stars</label-->
+                                        <span class="fa fa-star star1 star"></span>
+                                        <span class="fa fa-star star2 star"></span>
+                                        <span class="fa fa-star star3 star"></span>
+                                        <span class="fa fa-star star4 star"></span>
+                                        <span class="fa fa-star star5 star"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <input type="button" value="Find a table" id="findTable" onclick="searchRedirect()">
+                    <input type="button" value="Search" id="findTable" onclick="searchRedirect()">
                 </form>
             </div>
 
