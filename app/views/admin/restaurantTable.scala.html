@@ -111,8 +111,8 @@
                 var lng = window.localStorage.getItem("lng");
                 var restId;
                 $.ajax({
-                    //url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save',
-                    url: 'https://localhost:8080/restaurants/save',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save',
+                    //url: 'https://localhost:8080/restaurants/save',
                     //url: 'http://localhost:8080/restaurants/save',
                     type: 'post',
                     dataType: 'json',
@@ -129,8 +129,8 @@
                         var id = response["responseJSON"]["id"];
                         restId = id;
                         $.ajax({
-                            //url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveLogo',
-                            url: 'https://localhost:8080/restaurants/saveLogo',
+                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveLogo',
+                            //url: 'https://localhost:8080/restaurants/saveLogo',
                             //url: 'http://localhost:8080/restaurants/saveLogo',
                             type: 'post',
                             dataType: 'json',
@@ -142,8 +142,8 @@
                                 console.log(response1);
                                 var id = response1["responseJSON"]["id"];
                                 $.ajax({
-                                    //url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveCover',
-                                    url: 'https://localhost:8080/restaurants/saveCover',
+                                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/saveCover',
+                                    //url: 'https://localhost:8080/restaurants/saveCover',
                                     //url: 'http://localhost:8080/restaurants/saveCover',
                                     type: 'post',
                                     dataType: 'json',
@@ -161,8 +161,8 @@
                                             ammountArray.push($(cls).val());
                                         }
                                         $.ajax({
-                                            //url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save/tables',
-                                            url: 'https://localhost:8080/restaurants/save/tables',
+                                            url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/save/tables',
+                                            //url: 'https://localhost:8080/restaurants/save/tables',
                                             //url: 'http://localhost:8080/restaurants/save/tables',
                                             type: 'post',
                                             dataType: 'json',
@@ -174,8 +174,8 @@
                                             },
                                             complete: function (response) {
                                                 $.ajax({
-                                                    //url: 'https://abh-restaurants-backend.herokuapp.com/locations/save',
-                                                    url: 'https://localhost:8080/locations/save',
+                                                    url: 'https://abh-restaurants-backend.herokuapp.com/locations/save',
+                                                    //url: 'https://localhost:8080/locations/save',
                                                     //url: 'http://localhost:8080/locations/save',
                                                     type: 'post',
                                                     dataType: 'json',

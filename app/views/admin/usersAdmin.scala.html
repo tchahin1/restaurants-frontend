@@ -56,8 +56,8 @@
                 var query = $("#searchInput").val();
 
                 currentRequest = $.ajax({
-                    //url: 'https://abh-restaurants-backend.herokuapp.com/users/get/search',
-                    url: 'https://localhost:8080/users/get/search',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/users/get/search',
+                    //url: 'https://localhost:8080/users/get/search',
                     //url: 'http://localhost:8080/users/get/search',
                     type: 'get',
                     dataType: 'json',
@@ -101,8 +101,8 @@
 
              function del(email){
                  $.ajax({
-                     //url: 'https://abh-restaurants-backend.herokuapp.com/users/delete',
-                     url: 'https://localhost:8080/users/delete',
+                     url: 'https://abh-restaurants-backend.herokuapp.com/users/delete',
+                     //url: 'https://localhost:8080/users/delete',
                      //url: 'http://localhost:8080/users/delete',
                      type: 'get',
                      dataType: 'json',
@@ -118,8 +118,8 @@
             $('document').ready(function(){
                 $(".title").text("Name");
                 $.ajax({
-                    //url: 'https://abh-restaurants-backend.herokuapp.com/users/all',
-                    url: 'https://localhost:8080/users/all',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/users/all',
+                    //url: 'https://localhost:8080/users/all',
                     //url: 'http://localhost:8080/users/all',
                     type: 'get',
                     dataType: 'json',

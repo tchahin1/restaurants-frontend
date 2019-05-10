@@ -24,8 +24,8 @@ function saveReview() {
     }
 
     $.ajax({
-        //url: 'https://abh-restaurants-backend.herokuapp.com/users/id',
-        url: 'https://localhost:8080/users/id',
+        url: 'https://abh-restaurants-backend.herokuapp.com/users/id',
+        //url: 'https://localhost:8080/users/id',
         //url: 'http://localhost:8080/users/id',
         type: 'get',
         data: jQuery.param({username: username}),
@@ -37,8 +37,8 @@ function saveReview() {
             var user = response;
 
             $.ajax({
-                //url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/name',
-                url: 'https://localhost:8080/restaurants/name',
+                url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/name',
+                //url: 'https://localhost:8080/restaurants/name',
                 //url: 'http://localhost:8080/restaurants/name',
                 type: 'get',
                 dataType: 'json',
@@ -55,8 +55,8 @@ function saveReview() {
                         'rating': rating
                     };
                     $.ajax({
-                        //url: 'https://abh-restaurants-backend.herokuapp.com/reviews',
-                        url: 'https://localhost:8080/reviews',
+                        url: 'https://abh-restaurants-backend.herokuapp.com/reviews',
+                        //url: 'https://localhost:8080/reviews',
                         //url: 'http://localhost:8080/reviews',
                         type: 'post',
                         dataType: 'json',

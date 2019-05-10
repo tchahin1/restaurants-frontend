@@ -91,8 +91,8 @@
                     var country = $('#country :selected').val();
                     var city = $('#city :selected').val();
                     $.ajax({
-                        //url: 'https://abh-restaurants-backend.herokuapp.com/users/edit',
-                        url: 'https://localhost:8080/users/edit',
+                        url: 'https://abh-restaurants-backend.herokuapp.com/users/edit',
+                        //url: 'https://localhost:8080/users/edit',
                         //url: 'http://localhost:8080/users/edit',
                         type: 'get',
                         data: jQuery.param({id: id, name: name, last_name: last_name, email: email, phone_num: phone_num, country: country, city: city}),
@@ -127,8 +127,8 @@
             document.getElementById("orangeLink").innerText = "Admin";
 
             $.ajax({
-                //url: 'https://abh-restaurants-backend.herokuapp.com/countries/all',
-                url: 'https://localhost:8080/countries/all',
+                url: 'https://abh-restaurants-backend.herokuapp.com/countries/all',
+                //url: 'https://localhost:8080/countries/all',
                 //url: 'http://localhost:8080/countries/all',
                 type: 'get',
                 dataType: 'json',
@@ -161,8 +161,8 @@
                 var select = "Select City";
 
                 $.ajax({
-                    //url: 'https://abh-restaurants-backend.herokuapp.com/cities/country',
-                    url: 'https://localhost:8080/cities/country',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cities/country',
+                    //url: 'https://localhost:8080/cities/country',
                     //url: 'http://localhost:8080/cities/country',
                     type: 'post',
                     data: JSON.stringify(json),
@@ -186,8 +186,8 @@
 
             var email = $("#email").val();
             $.ajax({
-                //url: 'https://abh-restaurants-backend.herokuapp.com/users/get',
-                url: 'https://localhost:8080/users/get',
+                url: 'https://abh-restaurants-backend.herokuapp.com/users/get',
+                //url: 'https://localhost:8080/users/get',
                 //url: 'http://localhost:8080/users/get',
                 type: 'get',
                 dataType: 'json',

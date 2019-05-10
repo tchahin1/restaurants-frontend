@@ -53,8 +53,8 @@
                 var name = $("#searchInput").val();
 
                 currentRequest = $.ajax({
-                    //url: 'https://abh-restaurants-backend.herokuapp.com/cities/get/search',
-                    url: 'https://localhost:8080/cities/get/search',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cities/get/search',
+                    //url: 'https://localhost:8080/cities/get/search',
                     //url: 'http://localhost:8080/cities/get/search',
                     type: 'get',
                     dataType: 'json',
@@ -97,8 +97,8 @@
 
              function del(name){
                  $.ajax({
-                     //url: 'https://abh-restaurants-backend.herokuapp.com/cities/delete',
-                     url: 'https://localhost:8080/cities/delete',
+                     url: 'https://abh-restaurants-backend.herokuapp.com/cities/delete',
+                     //url: 'https://localhost:8080/cities/delete',
                      //url: 'http://localhost:8080/cities/delete',
                      type: 'get',
                      dataType: 'json',
@@ -114,8 +114,8 @@
             $('document').ready(function(){
                 $("#tableTitle").text("Name");
                 $.ajax({
-                    //url: 'https://abh-restaurants-backend.herokuapp.com/cities/all',
-                    url: 'https://localhost:8080/cities/all',
+                    url: 'https://abh-restaurants-backend.herokuapp.com/cities/all',
+                    //url: 'https://localhost:8080/cities/all',
                     //url: 'http://localhost:8080/cities/all',
                     type: 'get',
                     dataType: 'json',
