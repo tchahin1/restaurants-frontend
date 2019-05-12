@@ -8,8 +8,35 @@
 
         <script>
             function move() {
+                var secs = 0;
+                var startTime = new Date().getTime();
+                var name = window.localStorage.getItem("resUser");
+                console.log(startTime);
+                if(window.localStorage.getItem(name+"Time") == null) {
+                    window.localStorage.setItem(name+"Time", startTime);
+                    reserveThisTable();
+                }
+                else{
+                    startTime = Number(window.localStorage.getItem(name+"Time"));
+                    var endTime = new Date().getTime();
+                    console.log(startTime);
+                    console.log(endTime);
+                    var timeDiff = endTime - startTime; //in ms
+                    // strip the ms
+                    timeDiff /= 1000;
+
+                    // get seconds
+                    secs = Math.round(timeDiff);
+                    console.log(secs + " seconds");
+                }
+
+
                 var elem = document.getElementById("myBar");
-                var width = 100;
+                var width = 0;
+                if(secs == 0) width = 100;
+                else{
+                    width = 100 - Math.round((secs*100)/180);
+                }
                 var id = setInterval(frame, 1800);
                 function frame() {
                     if (width <= 0) {
@@ -21,13 +48,31 @@
                     }
                 }
                 var xd = setInterval(frame1, 1000);
+                var t = false;
                 function frame1() {
-                    var time = document.getElementById("time").innerHTML;
-                    var seconds = Number(time.split(":")[1]);
-                    var minutes = time.split(":")[0];
+                    var time = null;
+                    var minutes = null;
+                    var seconds = null;
+                    if(secs == 0 || t) time = document.getElementById("time").innerHTML;
+                    else if(!t){
+                        t = true;
+                        var timePassed = 180 - secs;
+                        if (timePassed <= 0) {
+                            clearInterval(xd);
+                            $("#timerTextContainer").empty();
+                            $("#timerTextContainer").append("<p class='timerText'>Reservation has been canceled</p>");
+                            cancelReservation();
+                        }
+                        var minutos = Math.floor(timePassed / 60);
+                        var secondos = timePassed - minutos * 60;
+                        if(secondos<10) secondos = "0" + secondos;
+                        time = minutos + ":" + secondos;
+                    }
+                    seconds = Number(time.split(":")[1]);
+                    minutes = time.split(":")[0];
                     if(seconds < 10) seconds = "0" + seconds;
-                    if(seconds != "00") seconds--;
-                    else if(seconds == "00"){
+                    if(seconds != "00" || seconds != 0) seconds--;
+                    else if(seconds == "00" || seconds == 0){
                         seconds = "59";
                         minutes--;
                     }
@@ -38,7 +83,8 @@
                     if(time == "0:00") {
                         clearInterval(xd);
                         $("#timerTextContainer").empty();
-                        $("#timerTextContainer").append("<p class='timerText'>Reservation has been canceled</p>")
+                        $("#timerTextContainer").append("<p class='timerText'>Reservation has been canceled</p>");
+                        cancelReservation();
                     }
                 }
             }
@@ -46,8 +92,172 @@
 
         <script>
             $(document).ready(function(){
-               move();
+                move();
+                $.ajax({
+                    url: 'https://abh-restaurants-backend.herokuapp.com/restaurants/name',
+                    //url: 'https://localhost:8080/restaurants/all',
+                    //url: 'http://localhost:8080/restaurants/all',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({name: window.localStorage.getItem("resRestaurant")}),
+                    success:function(response){
+                        $("#guests").text(window.localStorage.getItem("resType") + " People");
+                        $("#times").text(window.localStorage.getItem("resTime"));
+                        $("#restaurantName").text(window.localStorage.getItem("resRestaurant"));
+                        var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                        var month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                        var a = new Date(window.localStorage.getItem("resDate"));
+                        $("#date").text(weekday[a.getDay()] + ", " + month[a.getMonth()] + " " + a.getDate() + ", " + a.getFullYear());
+                        //console.log(response);
+                        $("#picture").attr("src", response["pictureUrl"]);
+                    }
+                });
             });
+        </script>
+
+        <script>
+            function reserveThisTable(){
+                var token = window.localStorage.getItem("token");
+                if(token != null){
+                    //if($("#reservedYet").text()=="You haven't reserved any tables yet.") saveReservation();
+                    saveReservation();
+                    /*else{
+                        //todo: check if desired table is already reserved by this user
+                        $("#popUp").text("");
+                        $("#popUp").css("color", "red");
+                        $("#popUp").text("You already made a reservation at this restaurant!");
+                        $( ".taken" ).show();
+                        setTimeout(function() {
+                            $( ".taken" ).hide();
+                        }, 2000);
+                    }*/
+                }
+                else{
+                    $("#popUp").text("Please log in to proceed!");
+                    $( ".taken" ).show();
+                    setTimeout(function() {
+                        $( ".taken" ).hide();
+                    }, 2000);
+                }
+            }
+        </script>
+
+        <script>
+            function saveReservation() {
+                var token = window.localStorage.getItem("token");
+                var date = window.localStorage.getItem("resDate");
+                var time = window.localStorage.getItem("resTime");
+                var username = window.localStorage.getItem("username");
+                var restaurant = window.localStorage.getItem("resRestaurant");
+                var type = window.localStorage.getItem("resType");
+                /*https://abh-restaurants-backend.herokuapp.com*/
+
+                $.ajax({
+                    url: 'https://abh-restaurants-backend.herokuapp.com/reservations',
+                    //url: 'https://localhost:8080/reservations',
+                    //url: 'http://localhost:8080/reservations',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({
+                        date: date,
+                        time: time,
+                        username: username,
+                        restaurant: restaurant,
+                        type: type
+                    }),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", token);
+                    },
+                    success: function (response) {
+                    },
+                    complete: function (response) {
+                        /*$("#reservationQuery").text("");
+                        $("#tablesLeft").text("");
+                        $("#bestTime").text("");
+                        $(".removable").remove();
+                        $("#reserveNow").remove();
+                        $("#popUp").text("");
+                        $("#popUp").css("color", "lawngreen");
+                        $("#popUp").text("Reservation successfully completed!");
+                        $( ".taken" ).show();
+                        setTimeout(function() {
+                            $( ".taken" ).hide();
+                        }, 2000);
+                        setTimeout(function() {
+                            window.location.href=window.location.href;
+                        }, 2500);*/
+                    }
+                });
+            }
+        </script>
+
+
+        <script>
+            function confirmReservation(){
+                var username = window.localStorage.getItem("username");
+                window.localStorage.removeItem(username+"Time");
+                var restaurant = window.localStorage.getItem("resRestaurant");
+                var type = window.localStorage.getItem("resType");
+                $.ajax({
+                    url: 'https://abh-restaurants-backend.herokuapp.com/reservations/confirm',
+                    //url: 'https://localhost:8080/reservations',
+                    //url: 'http://localhost:8080/reservations',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({
+                        username: username,
+                        restaurant: restaurant,
+                        type: type
+                    }),
+                    beforeSend: function (xhr) {
+                        //xhr.setRequestHeader("Authorization", token);
+                    },
+                    success: function (response) {
+                    },
+                    complete: function (response) {
+                        setTimeout(function() {
+                            $( ".taken" ).hide();
+                        }, 2000);
+                        setTimeout(function() {
+                            window.location = "/restaurants/singlePage?name=" + restaurant;
+                        }, 2500);
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            function cancelReservation(){
+                var username = window.localStorage.getItem("username");
+                window.localStorage.removeItem(username+"Time");
+                var restaurant = window.localStorage.getItem("resRestaurant");
+                var type = window.localStorage.getItem("resType");
+                $.ajax({
+                    url: 'https://abh-restaurants-backend.herokuapp.com/reservations/cancel',
+                    //url: 'https://localhost:8080/reservations',
+                    //url: 'http://localhost:8080/reservations',
+                    type: 'get',
+                    dataType: 'json',
+                    data: jQuery.param({
+                        username: username,
+                        restaurant: restaurant,
+                        type: type
+                    }),
+                    beforeSend: function (xhr) {
+                        //xhr.setRequestHeader("Authorization", token);
+                    },
+                    success: function (response) {
+                    },
+                    complete: function (response) {
+                        setTimeout(function() {
+                            $( ".taken" ).hide();
+                        }, 2000);
+                        setTimeout(function() {
+                            window.location = "/restaurants/singlePage?name=" + restaurant;
+                        }, 2500);
+                    }
+                });
+            }
         </script>
     </head>
     <body>
@@ -75,6 +285,33 @@
                                     <p id="time" class="timerText">3:00</p>
                                     <p class="timerText">minutes to complete reservation</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <img id="picture" src="" height="113px" width="130px">
+                    </div>
+                    <div class="col-10" id="detailsRow">
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="detailTitles" id="restaurantTitle">RESTAURANT</p>
+                                <p class="info" id="restaurantName"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <p class="detailTitles">GUESTS</p>
+                                <p class="info" id="guests"></p>
+                            </div>
+                            <div class="col-4">
+                                <p class="detailTitles">DATE</p>
+                                <p class="info" id="date"></p>
+                            </div>
+                            <div class="col-2" id="moveTime">
+                                <p class="detailTitles">TIME</p>
+                                <p class="info" id="times"></p>
                             </div>
                         </div>
                     </div>
@@ -118,7 +355,7 @@
             </div>
             <div class="row">
                 <div class='col-lg-12 col-md-12'>
-                    <input id="confirmReservation" type="submit" value="Complete Reservation" class="treci" onclick="validation()">
+                    <input id="confirmReservation" type="submit" value="Complete Reservation" class="treci" onclick="confirmReservation()">
                 </div>
             </div>
             <p id="terms">By clicking “Complete Reservation” you agree to the <a class="terms" href="#">AppName Terms of use</a> and <a class="terms" href="#">Privacy Policy</a>.</p>

@@ -32,8 +32,40 @@
                                      complete:function(response1){
                                          if(response1.status == 200) window.location.replace("/admin/home");
                                          //console.log(document.referrer);
-                                         else if(document.referrer.includes("/confirmation")) window.location.replace("/confirmation");
-                                         else window.location.replace("/home");
+                                         //else if(document.referrer.includes("/confirmation"))
+                                         else
+                                         {
+                                             $.ajax({
+                                                 url: 'https://abh-restaurants-backend.herokuapp.com/reservations/checkTemp',
+                                                 type: 'get',
+                                                 data: jQuery.param({username: username}),
+                                                 complete:function(response2){
+                                                    if(response2.status == 200) {
+                                                        console.log(response2);
+                                                        window.localStorage.setItem("resUser", username);
+                                                        var restaurant = response2["responseJSON"]["table"]["restaurant"]["name"];
+                                                        window.localStorage.setItem("resRestaurant", restaurant);
+                                                        var type = response2["responseJSON"]["table"]["type"];
+                                                        window.localStorage.setItem("resType", type);
+                                                        var dateTime = response2["responseJSON"]["timeFrom"];
+                                                        var date = dateTime.split("T")[0];
+                                                        var year = date.split("-")[0];
+                                                        var month = date.split("-")[1];
+                                                        var day = date.split("-")[2];
+                                                        date = day + "/" + month + "/" + year;
+                                                        var time = dateTime.split("T")[1];
+                                                        var hours = time.split(":")[0];
+                                                        var minutes = time.split(":")[1];
+                                                        var time = hours + ":" + minutes;
+                                                        window.localStorage.setItem("resDate", date);
+                                                        window.localStorage.setItem("resTime", time);
+                                                        window.location.replace("/confirmation");
+                                                    }
+                                                    else window.location.replace("/home");
+                                                 }
+                                             });
+                                         }
+                                         //else window.location.replace("/home");
                                      }
                                  });
 

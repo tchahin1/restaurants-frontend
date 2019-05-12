@@ -27,7 +27,8 @@
                 var token = window.localStorage.getItem("token");
                 //probably should do that for username either
                 if(token != null){
-                    window.localStorage.clear();
+                    window.localStorage.removeItem("username");
+                    window.localStorage.removeItem("token");
                     $(".orangePart").text("Log in");
                 }
                 else{

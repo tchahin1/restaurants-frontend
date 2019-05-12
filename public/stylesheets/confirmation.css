@@ -2,7 +2,7 @@ body{
     margin: 0px;
     padding: 0px;
     background-color: whitesmoke;
-    font-family: Century, AppleGothic;
+    /*font-family: Century, AppleGothic;*/
     background-color: whitesmoke;
 }
 
@@ -196,6 +196,36 @@ select{
 .successful{
     color: lawngreen;
 }
+
+
+
+#picture{
+    margin-left: 30px;
+    border: none;
+}
+
+#detailsRow{
+    padding-left: 50px;
+}
+
+.detailTitles{
+    font-size: 14px!important;
+    color: rgba(19,29,36,0.40)!important;
+}
+
+.info{
+    margin-top: -20px!important;
+    font-size: 20px;
+}
+
+#restaurantName{
+    color: #FD6F60;
+}
+
+#moveTime{
+    margin-left: -45px;
+}
+
 
 @media only screen and (max-width: 347px){
     #login{

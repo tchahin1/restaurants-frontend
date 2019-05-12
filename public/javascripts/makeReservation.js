@@ -13,6 +13,13 @@ function makeReservation(){
         console.log(username);
         console.log(restaurant);
         console.log(type);
+
+        window.localStorage.setItem("resDate", date);
+        window.localStorage.setItem("resTime", time);
+        window.localStorage.setItem("resUser", username);
+        window.localStorage.setItem("resRestaurant", restaurant);
+        window.localStorage.setItem("resType", type);
+
         $.ajax({
             url: 'https://abh-restaurants-backend.herokuapp.com/reservations/check/table',
             //url: 'https://localhost:8080/reservations/check/table',
@@ -29,7 +36,8 @@ function makeReservation(){
                 console.log(response.status);
 
                 if (response.status == 200) {
-                    $(".reservationProcess").append("<input type='button' id='reserveNow' onclick='reserveThisTable()' value='Reserve now'>");
+                    window.localStorage.setItem("status", response.status);
+                    $(".reservationProcess").append("<input type='button' id='reserveNow' onclick='openConfirmation()' value='Reserve now'>");
                 } else if (response.status == 400) {
                     $("#reservationQuery").text("");
                     $("#tablesLeft").text("");
@@ -42,6 +50,7 @@ function makeReservation(){
                         $(".taken").hide();
                     }, 2000);
                 } else if (response.status == 409) {
+                    window.localStorage.setItem("status", response.status);
                     var res = response["responseJSON"];
                     console.log(res);
                     for(var i=0; i<res.length; i++){
@@ -75,4 +84,10 @@ function makeReservation(){
     }
 
     /*https://abh-restaurants-backend.herokuapp.com*/
+}
+
+//if status code 200 ===> reserveThisTable()
+
+function openConfirmation(){
+    window.location = "/confirmation";
 }

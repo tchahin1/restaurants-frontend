@@ -121,7 +121,7 @@
                 }
             }
 
-            function reserveThisTable(){
+            /*function reserveThisTable(){
                 var token = window.localStorage.getItem("token");
                 if(token != null){
                     if($("#reservedYet").text()=="You haven't reserved any tables yet.") saveReservation();
@@ -143,7 +143,7 @@
                         $( ".taken" ).hide();
                     }, 2000);
                 }
-            }
+            }*/
 
             function reserveThisTableTime(){
                 var token = window.localStorage.getItem("token");
@@ -160,7 +160,7 @@
                 }
             }
 
-            function saveReservation() {
+            /*function saveReservation() {
                 var token = window.localStorage.getItem("token");
                 var date = $("#datepicker").val();
                 var time = $("#timepicker").val();
@@ -169,7 +169,7 @@
                 var type = $(".selectRes").val();
                 /*https://abh-restaurants-backend.herokuapp.com*/
 
-                $.ajax({
+                /*$.ajax({
                     url: 'https://abh-restaurants-backend.herokuapp.com/reservations',
                     //url: 'https://localhost:8080/reservations',
                     //url: 'http://localhost:8080/reservations',
@@ -205,7 +205,7 @@
                         }, 2500);
                     }
                 });
-            }
+            }*/
 
             function saveReservationTime(time) {
                 var token = window.localStorage.getItem("token");
