@@ -247,7 +247,11 @@
                         if (results[0]) {
                             map.setZoom(20);
                             var addr = results[0].formatted_address.split(",");
-                            window.localStorage.setItem("address", addr[0])
+                            var cityAddr = results[1].formatted_address.split(",");
+                            console.log(cityAddr[1]);
+                            if(cityAddr[1].includes(window.localStorage.getItem("cityName"))) window.localStorage.setItem("address", addr[0]);
+                            else window.localStorage.setItem("address", 0);
+                            //window.localStorage.setItem("address", addr[0]);
                         } else {
                             window.alert('No results found');
                         }
