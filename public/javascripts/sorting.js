@@ -50,8 +50,8 @@ function sortIt(){
             type: 'get',
             dataType: 'json',
             data: jQuery.param({query: query, lon: lng, lat: lat, pricing: price, rating: rating}),
-            success:function(responseLocations){
-                console.log(responseLocations);
+            success:function(response){
+                console.log(response);
 
 
                 $("#row1").empty(); $("#row2").empty(); $("#row3").empty();
