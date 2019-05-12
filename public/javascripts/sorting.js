@@ -39,6 +39,8 @@ function sortIt(){
         if ($('.dollar4').is('.checked')) {
             price++;
         }
+        if(price == 0) price = -1;
+        if(rating == 0) rating = -1;
         var lat = Number(window.localStorage.getItem("lat"));
         var lng = Number(window.localStorage.getItem("lng"));
 
