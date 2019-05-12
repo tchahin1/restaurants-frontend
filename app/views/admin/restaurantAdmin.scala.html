@@ -131,6 +131,8 @@
                 var location = $("#city option:selected").val();
                 var address = window.localStorage.getItem("address");
                 if(logoSrc=="" || coverSrc=="" || pricing==undefined || name=="" || description=="" || category=="Choose Category" || location==undefined || address==undefined || address==0){
+                    if(address==0) $( ".error" ).text("Address not matching city!!!");
+                    else $( ".error" ).text("All fields must be entered!!!");
                     $( ".error" ).show();
                     setTimeout(function() {
                         $( ".error" ).hide();
@@ -410,6 +412,7 @@
         $("#city").change(function(){
             var cityid = $(this).val();
             var cityName = $( "#city option:selected" ).text();
+            window.localStorage.setItem("cityName", cityName);
             myMap(cityName);
         });
 
