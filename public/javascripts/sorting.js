@@ -54,7 +54,7 @@ function sortIt(){
                 console.log(responseLocations);
 
 
-                /*$("#row1").empty(); $("#row2").empty(); $("#row3").empty();
+                $("#row1").empty(); $("#row2").empty(); $("#row3").empty();
 
                 for( var i = 0; i<3; i++){
                     var id = response[i]['id'];
@@ -147,7 +147,7 @@ function sortIt(){
                     priceString += '</div>';
 
                     $("#row3").append("<div class='col-lg-4 col-sm-6 col-xs-12 rowElement'><img id=\"picture\" src="+pictureUrl+" height=\"260px\" width=\"300px\"><br><p id='namePar'>"+name+"</p><br>"+starString+priceString+"<br><input type='submit' id='button' value='Reserve now' onclick='reserve()'></div>");
-                }*/
+                }
 
 
             }
