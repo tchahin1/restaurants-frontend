@@ -130,7 +130,7 @@
                 var category = $("#country option:selected").text();
                 var location = $("#city option:selected").val();
                 var address = window.localStorage.getItem("address");
-                if(logoSrc=="" || coverSrc=="" || pricing==undefined || name=="" || description=="" || category=="Choose Category" || location==undefined || address==undefined){
+                if(logoSrc=="" || coverSrc=="" || pricing==undefined || name=="" || description=="" || category=="Choose Category" || location==undefined || address==undefined || address==0){
                     $( ".error" ).show();
                     setTimeout(function() {
                         $( ".error" ).hide();
@@ -274,11 +274,11 @@
                     $("#submitRegister").css("margin-top", "77px");
 
                     if(map==null) {
-                            map = new google.maps.Map(document.getElementById('googleMap'), {
-                                center: {lat: 0, lng: 0},
-                                zoom: 8
-                            });
-                        }
+                        map = new google.maps.Map(document.getElementById('googleMap'), {
+                            center: {lat: 0, lng: 0},
+                            zoom: 8
+                        });
+                    }
 
                     geocoder.geocode({'address': city}, function (results, status) {
                         if (status === 'OK') {
