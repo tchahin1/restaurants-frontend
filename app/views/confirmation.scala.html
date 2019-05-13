@@ -107,6 +107,7 @@
                         var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
                         var month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
                         var a = new Date(window.localStorage.getItem("resDate"));
+                        console.log(window.localStorage.getItem("resDate"));
                         $("#date").text(weekday[a.getDay()] + ", " + month[a.getMonth()] + " " + a.getDate() + ", " + a.getFullYear());
                         //console.log(response);
                         $("#picture").attr("src", response["pictureUrl"]);
