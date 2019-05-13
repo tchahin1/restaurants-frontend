@@ -43,6 +43,7 @@ body {
 
 .number{
     font-family: -apple-system;
+    font-weight: 400;
     font-size: 48px;
     color: #131D24;
     text-align: center;
@@ -51,7 +52,8 @@ body {
 }
 
 .textBelowNumber{
-    font-family: -apple-system;
+    font-family: "Helvetica Neue";
+    font-weight: 300;
     font-size: 16px;
     color: #131D24;
     letter-spacing: 0;

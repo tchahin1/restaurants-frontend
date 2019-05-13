@@ -2,6 +2,7 @@ body{
     margin: 0px;
     background-color: whitesmoke;
     font-family: "Helvetica Neue" !important;
+    font-weight: 300;
 }
 
 #before{
@@ -96,7 +97,6 @@ footer{
 }
 
 #paragraphs{
-    font-family: -apple-system;
     font-size: 20px;
     color: rgba(19,29,36,0.40);
     padding-top: 24px;
@@ -105,7 +105,6 @@ footer{
 
 .descriptionField{
     margin-top: 0px;
-    font-family: -apple-system;
     font-size: 16px;
     margin-left: 30px;
     width: 90%;
@@ -368,7 +367,6 @@ select{
         margin-left: -325px;
         padding-top: 25px;
         font-size: 30px;
-        font-family: -apple-system;
     }
 
     .starsAndPrice{
@@ -500,7 +498,8 @@ select{
         hyphens:auto;
         word-wrap:break-word;
         padding-right: 10px;
-        font-family: -apple-system !important;
+        font-family: "Helvetica Neue" !important;
+        font-weight: 300;
     }
 
     #menu{
@@ -568,7 +567,8 @@ select{
         border: 1px solid #E1E1E1;
         border-radius: 2px;
         font-size: 16px;
-        font-family: -apple-system;
+        font-family: "Helvetica Neue" !important;
+        font-weight: 300;
     }
 
     #popupTitle{

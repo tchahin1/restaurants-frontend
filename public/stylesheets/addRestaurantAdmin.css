@@ -103,7 +103,7 @@ select{
     border: 1px solid #E1E1E1;
     border-radius: 2px;
     font-size: 16px;
-    font-family: -apple-system;
+    font-family: "Helvetica Neue";
 }
 
 #googleMap{
