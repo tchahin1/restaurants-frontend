@@ -110,6 +110,27 @@
                         $("#date").text(weekday[a.getDay()] + ", " + month[a.getMonth()] + " " + a.getDate() + ", " + a.getFullYear());
                         //console.log(response);
                         $("#picture").attr("src", response["pictureUrl"]);
+                        $.ajax({
+                            url: 'https://abh-restaurants-backend.herokuapp.com/countries/all',
+                            type: 'get',
+                            dataType: 'json',
+                            success:function(response1){
+                                console.log(response1);
+
+                                var len = response1.length;
+                                var select = "Select Country";
+
+                                $("#country").empty();
+                                $("#country").append("<option>"+select+"</option>");
+                                for( var i = 0; i<len; i++){
+                                    var id = response1[i]['id'];
+                                    var name = response1[i]['name'];
+
+                                    $("#country").append("<option value='"+id+"'>"+name+"</option>");
+
+                                }
+                            }
+                        });
                     }
                 });
             });
