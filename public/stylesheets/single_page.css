@@ -117,6 +117,8 @@ footer{
     -webkit-hyphens:auto;
     hyphens:auto;
     word-wrap:break-word;
+    font-family: "Helvetica Neue" !important;
+    font-weight: 300;
 }
 
 .restaurantTitle{
@@ -131,7 +133,7 @@ footer{
     margin-left: 0px;
     padding-top: 25px;
     font-size: 30px;
-    font-family: -apple-system;
+    /*font-family: -apple-system*/;
 }
 
 #ratePlace{
@@ -139,7 +141,7 @@ footer{
     color: black;
     float: right;
     font-size: 16px;
-    font-family: -apple-system;
+    /*font-family: -apple-system*/;
     border-radius: 3px;
     border: none;
     outline: none;
@@ -268,7 +270,9 @@ select{
     border: 1px solid #E1E1E1;
     border-radius: 2px;
     font-size: 16px;
-    font-family: -apple-system;
+    /*font-family: -apple-system*/;
+    font-family: "Helvetica Neue" !important;
+    font-weight: 300;
 }
 
 #popupTitle{
@@ -412,7 +416,7 @@ select{
         background-color: white;
         color: black;
         font-size: 16px;
-        font-family: -apple-system;
+        /*font-family: -apple-system*/;
         border-radius: 3px;
         border: none;
         outline: none;
