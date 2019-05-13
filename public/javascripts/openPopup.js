@@ -8,9 +8,22 @@ $(document).ready(function(){
         $(".popupOuter").fadeOut("slow");
     });
 
+    $(".star1").removeClass("checked");
+    $(".star2").removeClass("checked");
+    $(".star3").removeClass("checked");
+    $(".star4").removeClass("checked");
+    $(".star5").removeClass("checked");
+    $(".dollar1").removeClass("checked");
+    $(".dollar2").removeClass("checked");
+    $(".dollar3").removeClass("checked");
+    $(".dollar4").removeClass("checked");
+
     $(".star1").hover(function(){
         if(!$(this).hasClass("checked")) {
             $(this).css("color", "orangered");
+        }
+        else {
+            $(".star1").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
@@ -22,6 +35,10 @@ $(document).ready(function(){
         if(!$(this).hasClass("checked")) {
             $(this).css("color", "orangered");
             $(".star1").css("color", "orangered");
+        }
+        else {
+            $(".star1").removeClass("checked");
+            $(".star2").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
@@ -35,6 +52,11 @@ $(document).ready(function(){
             $(this).css("color", "orangered");
             $(".star1").css("color", "orangered");
             $(".star2").css("color", "orangered");
+        }
+        else {
+            $(".star1").removeClass("checked");
+            $(".star2").removeClass("checked");
+            $(".star3").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
@@ -50,6 +72,12 @@ $(document).ready(function(){
             $(".star1").css("color", "orangered");
             $(".star2").css("color", "orangered");
             $(".star3").css("color", "orangered");
+        }
+        else {
+            $(".star1").removeClass("checked");
+            $(".star2").removeClass("checked");
+            $(".star3").removeClass("checked");
+            $(".star4").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
@@ -67,6 +95,13 @@ $(document).ready(function(){
             $(".star2").css("color", "orangered");
             $(".star3").css("color", "orangered");
             $(".star4").css("color", "orangered");
+        }
+        else {
+            $(".star1").removeClass("checked");
+            $(".star2").removeClass("checked");
+            $(".star3").removeClass("checked");
+            $(".star4").removeClass("checked");
+            $(".star5").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
@@ -133,6 +168,9 @@ $(document).ready(function(){
         if(!$(this).hasClass("checked")) {
             $(this).css("color", "orangered");
         }
+        else {
+            $(".dollar1").removeClass("checked");
+        }
     }, function() {
         if(!$(this).hasClass("checked")) {
             $(this).css("color", "gray");
@@ -143,6 +181,10 @@ $(document).ready(function(){
         if(!$(this).hasClass("checked")) {
             $(this).css("color", "orangered");
             $(".dollar1").css("color", "orangered");
+        }
+        else {
+            $(".dollar1").removeClass("checked");
+            $(".dollar2").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
@@ -156,6 +198,11 @@ $(document).ready(function(){
             $(this).css("color", "orangered");
             $(".dollar1").css("color", "orangered");
             $(".dollar2").css("color", "orangered");
+        }
+        else {
+            $(".dollar1").removeClass("checked");
+            $(".dollar2").removeClass("checked");
+            $(".dollar3").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
@@ -171,6 +218,12 @@ $(document).ready(function(){
             $(".dollar1").css("color", "orangered");
             $(".dollar2").css("color", "orangered");
             $(".dollar3").css("color", "orangered");
+        }
+        else {
+            $(".dollar1").removeClass("checked");
+            $(".dollar2").removeClass("checked");
+            $(".dollar3").removeClass("checked");
+            $(".dollar4").removeClass("checked");
         }
     }, function() {
         if(!$(this).hasClass("checked")) {
